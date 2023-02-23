@@ -1,0 +1,14 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "getBootedIosSimId",
+            "type": "process",
+            "command": "just booted-ios-sim-id",
+            "runOptions": {
+                "reevaluateOnRerun": false
+            },
+            "problemMatcher": []
+        }
+    ]
+}
