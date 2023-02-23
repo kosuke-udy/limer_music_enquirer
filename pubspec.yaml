@@ -1,5 +1,5 @@
-name: songs_inspector
-description: Inspect the information of current playing song.
+name: limer_music_enquirer
+description: A Flutter App for looking into music information.
 publish_to: 'none'
 version: 0.0.1+1
 

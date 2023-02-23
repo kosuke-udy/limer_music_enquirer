@@ -9,7 +9,7 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
-      title: 'Songs Inspector',
+      title: 'Limer',
       theme: ThemeData(
         useMaterial3: true,
       ),
