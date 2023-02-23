@@ -1,3 +1,3 @@
-# songs_inspector
+# Limer: The Music Enquirer
 
 A new Flutter project.
