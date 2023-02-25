@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../widgets/am_test.dart';
 import 'layout/app_body.dart';
 import 'layout/app_top_bar.dart';
 
@@ -12,9 +13,7 @@ class HomePage extends HookConsumerWidget {
     return const AppBody(
       topBar: AppTopBar("Home"),
       fillRemaining: true,
-      body: Center(
-        child: Text('Hello World'),
-      ),
+      body: AmTest(),
     );
   }
 }

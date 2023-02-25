@@ -25,5 +25,5 @@ run:
   xcrun simctl list devices {{ARG}}
 
 ## Run build_runner for code generation
-build_runner COMMAND="build":
-  if [[ {{COMMAND}} == "build"]] 
+build_runner SUBCOMMAND="build":
+  fvm flutter pub run build_runner {{SUBCOMMAND}} --delete-conflicting-outputs
