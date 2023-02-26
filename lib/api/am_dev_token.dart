@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -30,8 +28,8 @@ class AmDevToken extends _$AmDevToken {
 
     final Map<String, dynamic> payload = {
       "iss": preloads.amTeamId,
-      "iat": dateTimeToEpochSec(now),
-      "exp": dateTimeToEpochSec(expiration),
+      "iat": _dateTimeToEpochSec(now),
+      "exp": _dateTimeToEpochSec(expiration),
     };
 
     return JWT(payload, header: header).sign(
@@ -41,7 +39,7 @@ class AmDevToken extends _$AmDevToken {
     );
   }
 
-  int dateTimeToEpochSec(DateTime dateTime) {
+  int _dateTimeToEpochSec(DateTime dateTime) {
     return dateTime.millisecondsSinceEpoch ~/ 1000;
   }
 }

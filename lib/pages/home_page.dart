@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../widgets/am_test.dart';
+import '../widgets/am_api_test.dart';
 import 'layout/app_body.dart';
 import 'layout/app_top_bar.dart';
 
@@ -10,10 +10,14 @@ class HomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const AppBody(
-      topBar: AppTopBar("Home"),
+    return AppBody(
+      topBar: const AppTopBar("Home"),
       fillRemaining: true,
-      body: AmTest(),
+      body: Column(
+        children: const [
+          AmApiTest(),
+        ],
+      ),
     );
   }
 }
