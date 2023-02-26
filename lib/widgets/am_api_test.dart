@@ -5,8 +5,10 @@ import '../api/am_client.dart';
 import '../api/am_dev_token.dart';
 import '../api/am_user_token.dart';
 
-class AmTest extends HookConsumerWidget {
-  const AmTest({Key? key}) : super(key: key);
+part 'am_api_test.g.dart';
+
+class AmApiTest extends HookConsumerWidget {
+  const AmApiTest({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,9 +17,8 @@ class AmTest extends HookConsumerWidget {
         .watch(asyncAmApiTestProvider)
         .whenData((response) => response.statusCode);
 
-    final asyncUserAuthStatus = ref
-        .watch(asyncAmUserAuthProvider)
-        .whenData((status) => status.toString());
+    final asyncUserToken =
+        ref.watch(asyncAmUserTokenProvider).whenData((status) => status);
 
     return Center(
       child: Column(
@@ -28,9 +29,10 @@ class AmTest extends HookConsumerWidget {
             loading: () => const CircularProgressIndicator(),
             error: (err, stack) => Text(err.toString()),
           ),
-          asyncUserAuthStatus.when(
+          asyncUserToken.when(
             data: (data) {
-              return Text("User Auth Status: $data");
+              final isNotEmpty = data.isNotEmpty.toString();
+              return Text("User Token: $isNotEmpty");
             },
             loading: () {
               return const CircularProgressIndicator();

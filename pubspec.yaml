@@ -42,3 +42,4 @@ flutter:
     - auth/apple_music/auth_key.p8
     - auth/apple_music/key_id
     - auth/apple_music/team_id
+    - auth/apple_music/mock_user_token

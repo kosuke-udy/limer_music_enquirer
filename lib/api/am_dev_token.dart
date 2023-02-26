@@ -25,17 +25,17 @@ class AmDevToken extends _$AmDevToken {
 
     final Map<String, dynamic> header = {
       "alg": "ES256",
-      "kid": preloads.kid,
+      "kid": preloads.amKeyId,
     };
 
     final Map<String, dynamic> payload = {
-      "iss": preloads.iss,
+      "iss": preloads.amTeamId,
       "iat": dateTimeToEpochSec(now),
       "exp": dateTimeToEpochSec(expiration),
     };
 
     return JWT(payload, header: header).sign(
-      ECPrivateKey(preloads.authKey),
+      ECPrivateKey(preloads.amAuthKey),
       algorithm: JWTAlgorithm.ES256,
       noIssueAt: true,
     );

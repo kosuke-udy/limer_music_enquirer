@@ -5,15 +5,6 @@ import 'am_dev_token.dart';
 
 part 'am_client.g.dart';
 
-@riverpod
-class AsyncAmApiTest extends _$AsyncAmApiTest {
-  @override
-  Future<Response> build() {
-    final client = ref.watch(amClientProvider);
-    return client.get("test");
-  }
-}
-
 @Riverpod(keepAlive: true)
 class AmClient extends _$AmClient {
   @override

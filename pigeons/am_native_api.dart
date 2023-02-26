@@ -6,4 +6,7 @@ abstract class AmNativeApi {
 
   @async
   String requestUserAuth();
+
+  @async
+  String requestUserToken(String devToken);
 }

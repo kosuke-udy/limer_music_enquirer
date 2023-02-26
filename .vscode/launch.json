@@ -7,8 +7,8 @@
             "type": "dart",
             "args": [
                 "--enable-impeller",
-                "-d",
-                "`just booted-ios-sim-id`"
+                // "-d",
+                // "`just booted-ios-sim-id`"
             ]
         },
         {

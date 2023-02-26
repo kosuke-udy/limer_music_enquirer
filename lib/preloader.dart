@@ -17,41 +17,65 @@ Preloads preloader(PreloaderRef ref) {
 class AsyncPreloader extends _$AsyncPreloader {
   @override
   Future<Preloads> build() async {
-    final kid = await rootBundle.loadString("auth/apple_music/key_id");
-    final iss = await rootBundle.loadString("auth/apple_music/team_id");
-    final authKey = await rootBundle.loadString("auth/apple_music/auth_key.p8");
+    try {
+      final amKeyId = await rootBundle.loadString("auth/apple_music/key_id");
+      final amTeamId = await rootBundle.loadString("auth/apple_music/team_id");
+      final amAuthKey =
+          await rootBundle.loadString("auth/apple_music/auth_key.p8");
 
-    return Preloads(kid, iss, authKey);
+      String amMockUserToken;
+      try {
+        amMockUserToken =
+            await rootBundle.loadString("auth/apple_music/mock_user_token");
+      } catch (e) {
+        print("Can't load auth/apple_music/mock_user_token.");
+        amMockUserToken = "";
+      }
+
+      return Preloads(
+        amKeyId: amKeyId,
+        amTeamId: amTeamId,
+        amAuthKey: amAuthKey,
+        amMockUserToken: amMockUserToken,
+      );
+    } catch (e, stack) {
+      return Preloads.error(e, stack);
+    }
   }
 }
 
 class Preloads {
-  final String kid;
-  final String iss;
-  final String authKey;
+  final String amKeyId;
+  final String amTeamId;
+  final String amAuthKey;
+  final String amMockUserToken;
+
   final Object? error;
   final StackTrace? stack;
   final Exception? exception;
 
-  Preloads(
-    this.kid,
-    this.iss,
-    this.authKey, {
+  Preloads({
+    required this.amKeyId,
+    required this.amTeamId,
+    required this.amAuthKey,
+    required this.amMockUserToken,
     this.error,
     this.stack,
     this.exception,
   });
 
   Preloads.error(this.error, this.stack)
-      : kid = "",
-        iss = "",
-        authKey = "",
+      : amKeyId = "",
+        amTeamId = "",
+        amAuthKey = "",
+        amMockUserToken = "",
         exception = null;
 
   Preloads.exception(this.exception)
-      : kid = "",
-        iss = "",
-        authKey = "",
+      : amKeyId = "",
+        amTeamId = "",
+        amAuthKey = "",
+        amMockUserToken = "",
         error = null,
         stack = null;
 }
