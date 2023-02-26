@@ -2,9 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<!-- Enable Flutter Impeller -->
+	<!-- Activate Flutter Impeller -->
 	<key>FLTEnableImpeller</key>
 	<true/>
+
+	<!-- Enable to Access User's Apple Music -->
+	<key>NSAppleMusicUsageDescription</key>
+	<string>The app requires Apple Music Library access</string>
+
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -18,7 +23,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>songs_inspector</string>
+	<string>limer</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

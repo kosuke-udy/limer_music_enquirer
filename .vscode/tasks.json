@@ -2,6 +2,12 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "pigeon build",
+            "type": "shell",
+            "command": "just pigeon",
+            "problemMatcher": []
+        },
+        {
             "label": "build_runner build",
             "type": "shell",
             "command": "just build_runner build",

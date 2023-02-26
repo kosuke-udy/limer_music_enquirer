@@ -27,3 +27,14 @@ run:
 ## Run build_runner for code generation
 build_runner SUBCOMMAND="build":
   fvm flutter pub run build_runner {{SUBCOMMAND}} --delete-conflicting-outputs
+
+## Run Pigeon for platform-specific code generation
+pigeon: 
+  fvm flutter pub run pigeon \
+  --input pigeons/am_native_api.dart \
+  --dart_out lib/api/am_native_api.pigeon.dart \
+  --objc_header_out ios/Runner/am_native_api.pigeon.h \
+  --objc_source_out ios/Runner/am_native_api.pigeon.m \
+  --experimental_swift_out ios/Runner/AmNativeApi.pigeon.swift \
+# --java_out ./android/app/src/main/java/dev/flutter/pigeon/Pigeon.java \
+# --java_package "dev.flutter.pigeon"
