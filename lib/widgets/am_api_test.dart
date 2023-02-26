@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../api/am_client.dart';
 import '../api/am_dev_token.dart';
-import '../api/am_user_auth.dart';
+import '../api/am_user_token.dart';
 
 part 'am_api_test.g.dart';
 
