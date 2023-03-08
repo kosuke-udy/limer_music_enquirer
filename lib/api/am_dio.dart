@@ -1,11 +1,11 @@
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
-import 'package:limer_music_enquirer/api/type/am_user_auth_status.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../util/app_logger.dart';
 import 'am_native_api_wrapper.dart';
+import 'enum/am_user_auth_status.dart';
 
 part 'am_dio.g.dart';
 
