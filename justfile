@@ -32,7 +32,7 @@ build_runner SUBCOMMAND="build":
 pigeon: 
   fvm flutter pub run pigeon \
   --input pigeons/am_native_api.dart \
-  --dart_out lib/api/am_native_api.pigeon.dart \
+  --dart_out lib/api/apple_music/am_native_api.pigeon.dart \
   --objc_header_out ios/Runner/am_native_api.pigeon.h \
   --objc_source_out ios/Runner/am_native_api.pigeon.m \
   --experimental_swift_out ios/Runner/AmNativeApi.pigeon.swift \
