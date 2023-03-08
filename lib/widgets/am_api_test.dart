@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../api/am_client.dart';
+import '../api/am_dio.dart';
 // import '../util/app_logger.dart';
 
 // final _logger = AppLogger.get("am_api_test.dart");
@@ -12,7 +12,7 @@ class AmApiTest extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Center(
-      child: ref.watch(asyncAmClientProvider).when(
+      child: ref.watch(asyncAmDioProvider).when(
             data: (client) {
               return const Text("Client is Ready");
             },

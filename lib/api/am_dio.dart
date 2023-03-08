@@ -7,12 +7,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../util/app_logger.dart';
 import 'am_native_api_wrapper.dart';
 
-part 'am_client.g.dart';
+part 'am_dio.g.dart';
 
-final _log = AppLogger.get("am_client.dart");
+final _log = AppLogger.get("am_dio.dart");
 
 @Riverpod(keepAlive: true)
-class AsyncAmClient extends _$AsyncAmClient {
+class AsyncAmDio extends _$AsyncAmDio {
   @override
   Future<Dio> build() async {
     // Get Tokens
