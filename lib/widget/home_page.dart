@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'layout/app_body.dart';
 import 'layout/app_top_bar.dart';
-import '../component/am_recently_played.dart';
+import 'component/am_recently_played.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);

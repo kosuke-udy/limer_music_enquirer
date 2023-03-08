@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../api/apple_music/request/am_recently_played_tracks.dart';
-import '../util/app_logger.dart';
+import '../../api/apple_music/request/am_recently_played_tracks.dart';
+import '../../util/app_logger.dart';
 
 final _logger = AppLogger.get("am_recently_played.dart");
 
