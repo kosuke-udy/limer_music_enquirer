@@ -49,3 +49,7 @@ app.*.map.json
 # Automatically generated files
 *.g.dart
 *.freezed.dart
+*.pigeon.*
+
+# Private keys
+auth/

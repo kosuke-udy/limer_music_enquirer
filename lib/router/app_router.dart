@@ -1,9 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'app_nav_destinations.dart';
+import '../widget/layout/app_layout.dart';
+import 'nav_destinations.dart';
 import 'routes.dart';
-import '../pages/layout/app_layout.dart';
 
 part 'app_router.g.dart';
 
@@ -18,7 +18,7 @@ class AppRouter extends _$AppRouter {
           builder: (context, state, child) {
             return AppLayout(
               body: child,
-              destinations: ref.watch(appNavDestinationsProvider),
+              destinations: ref.watch(navDestinationsProvider),
             );
           },
         ),

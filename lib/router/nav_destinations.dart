@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../pages/layout/nav_widget_destination.dart';
+import '../widget/layout/app_layout.dart';
 
-part 'app_nav_destinations.g.dart';
+part 'nav_destinations.g.dart';
 
 @Riverpod(keepAlive: true)
-class AppNavDestinations extends _$AppNavDestinations {
+class NavDestinations extends _$NavDestinations {
   @override
   List<NavWidgetDestination> build() {
     return [
