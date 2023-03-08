@@ -1,55 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../api/am_client.dart';
-import '../api/am_dev_token.dart';
-import '../api/am_user_token.dart';
+// import '../util/app_logger.dart';
 
-part 'am_api_test.g.dart';
+// final _logger = AppLogger.get("am_api_test.dart");
 
-@riverpod
-Future<int> asyncAmDevTokenStatus(AsyncAmDevTokenStatusRef ref) {
-  return ref
-      .watch(amClientProvider.notifier)
-      .testDevToken()
-      .then((response) => response.code);
-}
-
-class AmApiTest extends HookConsumerWidget {
+class AmApiTest extends ConsumerWidget {
   const AmApiTest({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final devToken = ref.watch(amDevTokenProvider);
-    final asyncDevTokenStatus = ref.watch(asyncAmDevTokenStatusProvider);
-
-    final asyncUserToken =
-        ref.watch(asyncAmUserTokenProvider).whenData((status) => status);
-
     return Center(
-      child: Column(
-        children: [
-          Text("isDevTokenGenerated: ${devToken.isNotEmpty.toString()}"),
-          asyncDevTokenStatus.when(
-            data: (data) => Text("Developer Token Status: $data"),
+      child: ref.watch(asyncAmClientProvider).when(
+            data: (client) {
+              return const Text("Client is Ready");
+            },
             loading: () => const CircularProgressIndicator(),
-            error: (err, stack) => Text(err.toString()),
+            error: (error, stack) => Text(error.toString()),
           ),
-          asyncUserToken.when(
-            data: (data) {
-              final isNotEmpty = data.isNotEmpty.toString();
-              return Text("User Token: $isNotEmpty");
-            },
-            loading: () {
-              return const CircularProgressIndicator();
-            },
-            error: (err, stack) {
-              return Text(err.toString());
-            },
-          ),
-        ],
-      ),
     );
   }
 }

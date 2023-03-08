@@ -1,68 +1,108 @@
+import 'dart:io';
+
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/services.dart';
+import 'package:limer_music_enquirer/api/type/am_user_auth_status.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'am_dev_token.dart';
+import '../util/app_logger.dart';
+import 'am_native_api_wrapper.dart';
 
 part 'am_client.g.dart';
 
+final _log = AppLogger.get("am_client.dart");
+
 @Riverpod(keepAlive: true)
-class AmClient extends _$AmClient {
+class AsyncAmClient extends _$AsyncAmClient {
   @override
-  Dio build() {
-    final dio = Dio(BaseOptions(
-      baseUrl: "https://api.music.apple.com/v1/",
-    ));
+  Future<Dio> build() async {
+    // Get Tokens
+    // devToken = await _generateDevToken();
+    // userToken = await _requestUserToken(devToken);
+    final devToken =
+        await rootBundle.loadString("auth/apple_music/mock_dev_token");
+    final userToken =
+        await rootBundle.loadString("auth/apple_music/mock_user_token");
+    _log.info("Using mock tokens for Apple Music API.");
 
-    // Add the token to the header
-    final token = ref.watch(amDevTokenProvider);
-    dio.options.headers = {"Authorization": "Bearer $token"};
-
-    // Log requests and responses
+    // Create dio and set options
+    final dio =
+        Dio(BaseOptions(baseUrl: "https://api.music.apple.com/v1/", headers: {
+      "Authorization": "Bearer $devToken",
+      "Music-User-Token": userToken,
+    }));
     // dio.interceptors.add(LogInterceptor());
+
+    final test = await dio.get("/me/library/songs");
+    _log.fine([
+      "status: ${test.statusCode}",
+      "Developer Token:",
+      IndentLog(devToken, indent: 1),
+      "User Token:",
+      IndentLog(userToken, indent: 1),
+    ]);
 
     return dio;
   }
-
-  Future<AmApiStatus> testDevToken() async {
-    final response = await state.get("test");
-    return AmApiStatus.fromCode(
-        response.statusCode ?? AmApiStatus.noStatus.code);
-  }
 }
 
-enum AmApiStatus {
-  unknownStatusCode(0),
-  noStatus(1),
-  ok(200),
-  created(201),
-  accepted(202),
-  noContent(204),
-  movedPermanently(301),
-  found(302),
-  badRequest(400),
-  unauthorized(401),
-  forbidden(403),
-  notFound(404),
-  methodNotAllowed(405),
-  conflict(409),
-  payloadTooLarge(413),
-  uriTooLong(414),
-  tooManyRequests(429),
-  internalServerError(500),
-  notImplemented(501),
-  serviceUnavailable(503);
+Future<String> _generateDevToken() async {
+  final keyId = await rootBundle.loadString("auth/apple_music/key_id");
+  final teamId = await rootBundle.loadString("auth/apple_music/team_id");
+  final authKey = await rootBundle.loadString("auth/apple_music/auth_key.p8");
+  final now = DateTime.now();
+  final expiration = now.add(const Duration(days: 90));
 
-  final int code;
+  final Map<String, dynamic> header = {
+    "alg": "ES256",
+    "kid": keyId,
+  };
 
-  const AmApiStatus(this.code);
+  final Map<String, dynamic> payload = {
+    "iss": teamId,
+    "iat": _dateTimeToEpochSec(now),
+    "exp": _dateTimeToEpochSec(expiration),
+  };
 
-  factory AmApiStatus.fromCode(int code) {
-    try {
-      final ret = AmApiStatus.values.firstWhere((e) => e.code == code);
-      return ret;
-    } catch (e) {
-      print(e.toString());
-      return AmApiStatus.unknownStatusCode;
+  final result = JWT(payload, header: header).sign(
+    ECPrivateKey(authKey),
+    algorithm: JWTAlgorithm.ES256,
+    noIssueAt: true,
+  );
+
+  return result;
+}
+
+int _dateTimeToEpochSec(DateTime dateTime) {
+  return dateTime.millisecondsSinceEpoch ~/ 1000;
+}
+
+// Fetch user token from native API.
+// If the mock exists in auth/apple_music folder, use it instead.
+// NOTICE:
+//   On iOS simulator, API fetching will fail.
+//   In that case, place the mock at auth/apple_music/mock_user_token.
+Future<String> _requestUserToken(String devToken) async {
+  final native = AmNativeApiWrapper();
+  final status = await native.getUserAuthStatus();
+
+  _log.info("Apple Music User Authorization Status: $status");
+
+  if (status != AmUserAuthStatus.authorized) {
+    if (status == AmUserAuthStatus.notDetermined) {
+      _log.info("Requesting Apple Music User Authorization...");
+
+      final reqResponse = await native.requestUserAuth();
+      if (reqResponse != AmUserAuthStatus.authorized) {
+        throw reqResponse.toException();
+      }
+    } else {
+      throw status.toException();
     }
   }
+
+  _log.info("Requesting Apple Music User Token...");
+
+  return await native.requestUserToken(devToken);
 }

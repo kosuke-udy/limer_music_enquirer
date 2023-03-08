@@ -19,6 +19,7 @@ dependencies:
   freezed_annotation: ^2.2.0
   go_router: ^6.0.10
   hooks_riverpod: ^2.2.0
+  intl: ^0.18.0
   json_annotation: ^4.8.0
   logging: ^1.1.1
   retrofit: ^4.0.1
@@ -42,4 +43,5 @@ flutter:
     - auth/apple_music/auth_key.p8
     - auth/apple_music/key_id
     - auth/apple_music/team_id
+    - auth/apple_music/mock_dev_token
     - auth/apple_music/mock_user_token

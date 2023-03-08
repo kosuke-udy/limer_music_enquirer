@@ -14,7 +14,7 @@ class HomePage extends HookConsumerWidget {
       topBar: const AppTopBar("Home"),
       fillRemaining: true,
       body: Column(
-        children: const [
+        children: [
           AmApiTest(),
         ],
       ),
