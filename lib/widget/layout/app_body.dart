@@ -1,39 +1,24 @@
-import 'package:flutter/material.dart';
-
-import 'app_top_bar.dart';
+part of app_layout;
 
 class AppBody extends StatelessWidget {
   const AppBody({
     Key? key,
-    this.fillRemaining = false,
-    required this.topBar,
-    required this.body,
+    this.topBar = const AppTopBar(),
+    required this.contents,
   }) : super(key: key);
 
   final AppTopBar topBar;
-  final Widget body;
-  final bool fillRemaining;
+  final AppContents contents;
 
   @override
   Widget build(BuildContext context) {
-    if (fillRemaining) {
-      return Scaffold(
-        body: CustomScrollView(
-          slivers: <Widget>[
-            topBar,
-            SliverFillRemaining(child: body),
-          ],
-        ),
-      );
-    } else {
-      return Scaffold(
-        body: CustomScrollView(
-          slivers: <Widget>[
-            topBar,
-            SliverToBoxAdapter(child: body),
-          ],
-        ),
-      );
-    }
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          topBar,
+          contents,
+        ],
+      ),
+    );
   }
 }

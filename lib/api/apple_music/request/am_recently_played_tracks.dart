@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../util/app_logger.dart';
@@ -17,8 +15,7 @@ final asyncAmRecentlyPlayedTracksProvider =
       "me/recent/played/tracks",
       queryParameters: queries.toMap(),
     );
-    final List<AmTrack> ret = AmTracksResponse.fromJson(response.data!).data;
-    return ret;
+    return AmTracksResponse.fromJson(response.data!).data;
   },
 );
 
