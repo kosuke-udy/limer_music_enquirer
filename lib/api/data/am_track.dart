@@ -12,3 +12,16 @@ class AmTrack {
     return AmTrack(id: id, name: name, artistName: artistName);
   }
 }
+
+class AmTracksResponse {
+  List<AmTrack> data;
+
+  AmTracksResponse({required this.data});
+
+  factory AmTracksResponse.fromJson(Map<String, dynamic> json) {
+    final List<dynamic> rawData = json['data'];
+    final List<AmTrack> data =
+        rawData.map((dynamic e) => AmTrack.fromJson(e)).toList();
+    return AmTracksResponse(data: data);
+  }
+}

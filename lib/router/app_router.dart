@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../pages/layout/app_layout.dart';
+import '../ui/layout/app_layout.dart';
 import 'app_nav_destinations.dart';
 import 'routes.dart';
 
