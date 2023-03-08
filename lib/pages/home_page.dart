@@ -5,7 +5,7 @@ import '../widgets/am_api_test.dart';
 import 'layout/app_body.dart';
 import 'layout/app_top_bar.dart';
 
-class HomePage extends HookConsumerWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -14,7 +14,7 @@ class HomePage extends HookConsumerWidget {
       topBar: const AppTopBar("Home"),
       fillRemaining: true,
       body: Column(
-        children: [
+        children: const [
           AmApiTest(),
         ],
       ),
