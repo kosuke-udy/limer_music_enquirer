@@ -30,7 +30,6 @@ class AsyncAmDio extends _$AsyncAmDio {
       "Authorization": "Bearer $devToken",
       "Music-User-Token": userToken,
     }));
-    // dio.interceptors.add(LogInterceptor());
 
     final test = await dio.get("/me/library/songs");
     _log.fine([
