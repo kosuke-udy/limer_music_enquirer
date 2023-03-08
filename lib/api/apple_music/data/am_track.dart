@@ -5,6 +5,7 @@ class AmTrack {
 
   AmTrack({required this.id, required this.name, required this.artistName});
 
+  @override
   factory AmTrack.fromJson(Map<String, dynamic> json) {
     final String id = json['id'];
     final String name = json['attributes']['name'];

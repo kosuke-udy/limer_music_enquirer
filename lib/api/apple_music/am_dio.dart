@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../util/app_logger.dart';
+import '../../util/app_logger.dart';
 import 'am_native_api_wrapper.dart';
 import 'enum/am_user_auth_status.dart';
 
@@ -30,6 +30,14 @@ class AsyncAmDio extends _$AsyncAmDio {
       "Authorization": "Bearer $devToken",
       "Music-User-Token": userToken,
     }));
+    // dio.interceptors.add(LogInterceptor(
+    //   requestHeader: false,
+    //   requestBody: false,
+    //   responseHeader: true,
+    //   responseBody: false,
+    //   error: true,
+    //   logPrint: (object) => _log.info(object),
+    // ));
 
     final test = await dio.get("/me/library/songs");
     _log.fine([

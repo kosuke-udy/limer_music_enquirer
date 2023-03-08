@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../api/am_dio.dart';
+import '../api/apple_music/am_dio.dart';
 // import '../util/app_logger.dart';
 
 // final _logger = AppLogger.get("am_api_test.dart");

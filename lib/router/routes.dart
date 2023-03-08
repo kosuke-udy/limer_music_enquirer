@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../ui/home_page.dart';
+import '../page/home_page.dart';
 
 part 'routes.g.dart';
 

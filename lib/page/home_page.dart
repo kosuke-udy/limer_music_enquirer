@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'layout/app_body.dart';
 import 'layout/app_top_bar.dart';
-import 'widgets/am_api_test.dart';
+import '../component/am_recently_played.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class HomePage extends ConsumerWidget {
       fillRemaining: true,
       body: Column(
         children: const [
-          AmApiTest(),
+          AmRecentlyPlayed(),
         ],
       ),
     );
