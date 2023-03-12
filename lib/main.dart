@@ -3,8 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'app.dart';
 import '../util/app_logger.dart';
+import 'app.dart';
+import 'widget/ui_constants.dart';
 
 void main() {
   AppLogger.init();
@@ -14,5 +15,11 @@ void main() {
   final osName = Platform.operatingSystem;
   logger.info("Running on $osName");
 
-  runApp(const ProviderScope(child: App()));
+  runApp(
+    const ProviderScope(
+      child: UiConstants(
+        child: App(),
+      ),
+    ),
+  );
 }
