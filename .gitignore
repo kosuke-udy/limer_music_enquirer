@@ -53,3 +53,6 @@ app.*.map.json
 
 # Private keys
 auth/
+
+# flutter_icon_launcher
+ios/Runner/Assets.xcassets/AppIcon.appiconset/*.png

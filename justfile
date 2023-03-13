@@ -24,6 +24,12 @@ run:
 @iossims ARG="available":
   xcrun simctl list devices {{ARG}}
 
+## Run all autogenerator tools
+prebuild:
+  just pigeon
+  just build_runner
+  just flutter_icon_launcher
+
 ## Run build_runner for code generation
 build_runner SUBCOMMAND="build":
   fvm flutter pub run build_runner {{SUBCOMMAND}} --delete-conflicting-outputs
@@ -38,3 +44,7 @@ pigeon:
   --experimental_swift_out ios/Runner/AmNativeApi.pigeon.swift \
 # --java_out ./android/app/src/main/java/dev/flutter/pigeon/Pigeon.java \
 # --java_package "dev.flutter.pigeon"
+
+## flutter_icon_launcher
+flutter_icon_launcher:
+  flutter pub run flutter_launcher_icons -f pubspec.yaml
