@@ -1,5 +1,10 @@
 part of track_list;
 
+const _rowHeight = 60.0;
+const _artworkSize = 46.0;
+const _forwardIconSize = 11.0;
+const _forwardIconVerticalSpace = _forwardIconSize * (6.5 / 24.0);
+
 class TrackListItem extends StatelessWidget {
   const TrackListItem({
     Key? key,
@@ -12,21 +17,30 @@ class TrackListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final horizontalPadding = UiConstants.of(context).horizontalPadding;
 
-    Widget textTrackName(String title) => Text(
-          title,
-          style: Theme.of(context).textTheme.bodyMedium,
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
+    final titleTextStyle = Theme.of(context).textTheme.bodyMedium;
+    final subtitleTextStyle = Theme.of(context).textTheme.bodySmall!.copyWith(
+          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
         );
 
-    Widget textArtistName(String subtitle) => Text(
-          subtitle,
-          style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
-              ),
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
-        );
+    final titlePainter = TextPainter(
+      text: TextSpan(
+        text: track.name,
+        style: titleTextStyle,
+      ),
+      maxLines: 1,
+      textDirection: TextDirection.ltr,
+    )..layout();
+
+    late double artworkWidth, artworkHeight;
+    if (track.artwork.width > track.artwork.height) {
+      artworkWidth = _artworkSize;
+      artworkHeight =
+          _artworkSize * (track.artwork.height / track.artwork.width);
+    } else {
+      artworkHeight = _artworkSize;
+      artworkWidth =
+          _artworkSize * (track.artwork.width / track.artwork.height);
+    }
 
     return Column(
       children: [
@@ -37,24 +51,23 @@ class TrackListItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(4),
-                child: Image.network(
-                  getAmArtworkUrl(
-                    track,
-                    maxLength: 100,
-                  ),
-                  fit: BoxFit.contain,
-                  height: _artworkHeight,
-                  width: _artworkHeight,
-                ),
+              RoundedImage.network(
+                url: track.artwork.url100,
+                width: artworkWidth,
+                height: artworkHeight,
               ),
-              SizedBox(width: horizontalPadding),
+              SizedBox(
+                width: horizontalPadding,
+                height: _rowHeight,
+              ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    textTrackName(track.name),
+                    EllipsisText(
+                      track.name,
+                      style: titleTextStyle,
+                    ),
                     LayoutBuilder(
                       builder: (context, constraints) {
                         return Row(
@@ -63,19 +76,23 @@ class TrackListItem extends StatelessWidget {
                               constraints: BoxConstraints(
                                 maxWidth: constraints.maxWidth / 2,
                               ),
-                              child: textArtistName(track.artistName),
+                              child: EllipsisText(
+                                track.artistName,
+                                style: subtitleTextStyle,
+                              ),
                             ),
-                            track.composerName != null
-                                ? Container(
-                                    constraints: BoxConstraints(
-                                      maxWidth: constraints.maxWidth / 2,
-                                    ),
-                                    // Display composer name label
-                                    child: textArtistName(
-                                      " / ${track.composerName!}",
-                                    ),
-                                  )
-                                : const SizedBox.shrink(),
+                            Container(
+                              constraints: BoxConstraints(
+                                maxWidth: constraints.maxWidth / 2,
+                              ),
+                              // Display composer name label
+                              child: EllipsisText(
+                                track.hasComposer
+                                    ? " / Composer: ${track.composerName!}"
+                                    : " / No Composer Data",
+                                style: subtitleTextStyle,
+                              ),
+                            ),
                           ],
                         );
                       },
@@ -95,7 +112,7 @@ class TrackListItem extends StatelessWidget {
         Divider(
           height: 1,
           thickness: 1,
-          indent: horizontalPadding * 2 + _artworkHeight,
+          indent: horizontalPadding * 2 + _artworkSize,
           color: Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
         ),
       ],

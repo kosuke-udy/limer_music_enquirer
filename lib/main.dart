@@ -17,7 +17,7 @@ void main() {
 
   runApp(
     const ProviderScope(
-      child: UiConstants(
+      child: UiConstants.scope(
         child: App(),
       ),
     ),

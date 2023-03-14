@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'layout/app_layout.dart';
-import 'data/am_recently_played.dart';
-import 'component/track_list.dart';
 import 'component/track_detail_card.dart';
+import 'component/track_list.dart';
+import 'data/am_recently_played.dart';
 
-class HomePage extends ConsumerWidget {
-  const HomePage({Key? key}) : super(key: key);
+class RecentlyPlayedPage extends ConsumerWidget {
+  const RecentlyPlayedPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AppBody(
+      topBar: const AppTopBar(
+        titleData: 'Recently Played',
+      ),
       contents: AppContents(
         child: AmRecentlyPlayed(
           ok: (tracks) {
@@ -19,7 +22,6 @@ class HomePage extends ConsumerWidget {
             return Column(
               children: [
                 TrackDetailCard(track: lastPlayed),
-                const SizedBox(height: 16),
                 TrackList(tracks: tracks),
               ],
             );

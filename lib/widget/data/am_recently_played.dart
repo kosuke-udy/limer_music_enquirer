@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../api/apple_music/am_dio.dart';
-import '../../api/apple_music/data/am_track.dart';
+import '../../api/apple_music/models/am_track.dart';
 
 final _futureProvider = FutureProvider<List<AmTrack>>(
   (ref) async {

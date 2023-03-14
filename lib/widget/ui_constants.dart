@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class UiConstants extends InheritedWidget {
-  const UiConstants({
+  const UiConstants.scope({
     Key? key,
     required Widget child,
   }) : super(key: key, child: child);

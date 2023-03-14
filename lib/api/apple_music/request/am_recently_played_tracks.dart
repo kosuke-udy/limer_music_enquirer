@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../util/app_logger.dart';
 import '../am_dio.dart';
-import '../data/am_track.dart';
+import '../models/am_track.dart';
 
 final _logger = AppLogger.get("am_recently_played_tracks.dart");
 

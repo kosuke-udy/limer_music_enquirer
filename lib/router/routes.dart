@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../widget/home_page.dart';
+import '../widget/recently_played_page.dart';
 
 part 'routes.g.dart';
 
@@ -13,16 +13,16 @@ part 'routes.g.dart';
 class RootRoute extends GoRouteData {
   @override
   FutureOr<String?> redirect(BuildContext context, GoRouterState state) {
-    return $homePageRoute.path;
+    return $recentlyPlayedPageRoute.path;
   }
 }
 
-@TypedGoRoute<HomePageRoute>(
-  path: "/home",
+@TypedGoRoute<RecentlyPlayedPageRoute>(
+  path: "/recently-played",
 )
-class HomePageRoute extends GoRouteData {
+class RecentlyPlayedPageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const HomePage();
+    return const RecentlyPlayedPage();
   }
 }
