@@ -15,20 +15,25 @@ class TrackList extends StatelessWidget {
   const TrackList({
     Key? key,
     required this.tracks,
+    this.showTopDivider = false,
   }) : super(key: key);
 
   final List<AmTrack> tracks;
+  final bool showTopDivider;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Divider(
-        //   height: 1,
-        //   thickness: 1,
-        //   indent: _horizontalPadding,
-        //   color: Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
-        // ),
+        showTopDivider
+            ? Divider(
+                height: 1,
+                thickness: 1,
+                indent: UiConstants.of(context).horizontalPadding,
+                color:
+                    Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
+              )
+            : Container(),
         ...tracks.map((e) => TrackListItem(track: e)).toList(),
       ],
     );

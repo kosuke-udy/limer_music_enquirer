@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:limer_music_enquirer/widget/component/common_parts/m3_cards.dart';
 
 import '../../api/apple_music/models/am_track.dart';
 import '../ui_constants.dart';
-import 'common_parts/rounded_image.dart';
 import 'common_parts/custom_texts.dart';
+import 'common_parts/m3_cards.dart';
+import 'common_parts/rounded_image.dart';
 
 const double _artworkSize = 100;
 
@@ -19,9 +19,11 @@ class TrackDetailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: UiConstants.of(context).horizontalPadding,
-        vertical: UiConstants.of(context).verticalPadding,
+      padding: EdgeInsets.fromLTRB(
+        UiConstants.of(context).horizontalPadding,
+        0,
+        UiConstants.of(context).horizontalPadding,
+        UiConstants.of(context).verticalPadding,
       ),
       child: FilledCard(
         child: Column(

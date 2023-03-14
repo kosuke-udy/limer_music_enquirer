@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'layout/app_layout.dart';
-import 'component/track_detail_card.dart';
-import 'component/track_list.dart';
-import 'data/am_recently_played.dart';
+import '../components/track_detail_card.dart';
+import '../components/track_list.dart';
+import '../data_widgets/am_recently_played.dart';
+import '../layout/app_layout.dart';
 
 class RecentlyPlayedPage extends ConsumerWidget {
   const RecentlyPlayedPage({Key? key}) : super(key: key);

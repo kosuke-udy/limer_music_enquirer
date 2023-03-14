@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../util/app_logger.dart';
 import 'app.dart';
-import 'widget/ui_constants.dart';
+import 'widgets/ui_constants.dart';
 
 void main() {
   AppLogger.init();
