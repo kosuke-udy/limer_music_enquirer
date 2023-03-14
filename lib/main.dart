@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../util/app_logger.dart';
+import '../utils/app_logger.dart';
 import 'app.dart';
 import 'widgets/ui_constants.dart';
 

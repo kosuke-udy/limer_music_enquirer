@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../util/app_logger.dart';
+import '../../utils/app_logger.dart';
 import 'am_native_api_wrapper.dart';
 import 'enums/am_user_auth_status.dart';
 
