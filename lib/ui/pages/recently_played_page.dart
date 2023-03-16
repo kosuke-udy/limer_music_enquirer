@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
 import '../components/components.dart';
 import '../data_widgets/am_recently_played.dart';
-import '../layout/app_layout.dart';
 
 class RecentlyPlayedPage extends ConsumerWidget {
   const RecentlyPlayedPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return AppBody(
-      contents: AppContents(
+    return ContentsScaffold(
+      body: ContentsBody(
         child: AmRecentlyPlayed(
           ok: (tracks) {
             final lastPlayed = tracks.first;

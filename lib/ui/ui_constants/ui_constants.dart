@@ -16,10 +16,10 @@ part 'ui_constants.g.dart';
 class UiConstants extends _$UiConstants {
   @override
   UiConstantsModel build() => UiConstantsModel(
-        color: ColorConstants().build(),
-        opacity: OpacityConstants().build(),
-        radius: RadiusConstants().build(),
-        size: SizeConstants().build(),
+        color: ref.watch(colorConstantsProvider),
+        opacity: ref.watch(opacityConstantsProvider),
+        radius: ref.watch(radiusConstantsProvider),
+        size: ref.watch(sizeConstantsProvider),
       );
 }
 

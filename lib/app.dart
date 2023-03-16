@@ -11,6 +11,8 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.read(appThemeDataProvider);
+
     return MaterialApp.router(
       title: 'Limer',
       routerConfig: ref.watch(appRouterProvider),
