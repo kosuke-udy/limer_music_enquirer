@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../widgets/pages/recently_played_page.dart';
+import '../ui/pages/recently_played_page.dart';
 
 part 'routes.g.dart';
 

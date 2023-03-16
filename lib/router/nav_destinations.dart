@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../widgets/layout/app_layout.dart';
+import '../ui/layout/app_layout.dart';
 
 part 'nav_destinations.g.dart';
 
