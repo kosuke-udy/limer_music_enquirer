@@ -58,4 +58,4 @@ auth/
 ios/Runner/Assets.xcassets/AppIcon.appiconset/*.png
 
 # For my package
-pubspec_override.yaml
+pubspec_overrides.yaml
