@@ -56,3 +56,6 @@ auth/
 
 # flutter_icon_launcher
 ios/Runner/Assets.xcassets/AppIcon.appiconset/*.png
+
+# For my package
+pubspec_override.yaml
