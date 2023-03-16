@@ -7,8 +7,8 @@ import 'common_parts/common_parts.dart';
 
 const double _artworkSize = 80.0;
 
-class TrackDetailCard extends ConsumerWidget {
-  const TrackDetailCard({
+class TrackCard extends ConsumerWidget {
+  const TrackCard({
     Key? key,
     required this.track,
   }) : super(key: key);

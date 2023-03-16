@@ -1,11 +1,11 @@
 part of track_list;
 
 const _rowHeight = 60.0;
-const _artworkSize = 46.0;
+const _artworkSize = 64.0;
 const _forwardIconSize = 11.0;
 const _forwardIconVerticalSpace = _forwardIconSize * (6.5 / 24.0);
 
-class TrackListItem extends StatelessWidget {
+class TrackListItem extends ConsumerWidget {
   const TrackListItem({
     Key? key,
     required this.track,
@@ -14,12 +14,14 @@ class TrackListItem extends StatelessWidget {
   final AmTrack track;
 
   @override
-  Widget build(BuildContext context) {
-    final horizontalPadding = UiConstants.of(context).horizontalPadding;
-
-    final titleTextStyle = Theme.of(context).textTheme.bodyMedium;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final constants = ref.watch(uiConstantsProvider);
+    final titleTextStyle = Theme.of(context).textTheme.bodyMedium!.copyWith(
+          overflow: TextOverflow.ellipsis,
+        );
     final subtitleTextStyle = Theme.of(context).textTheme.bodySmall!.copyWith(
-          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+          color: constants.color.subtitle(context),
+          overflow: TextOverflow.ellipsis,
         );
 
     final titlePainter = TextPainter(
@@ -42,80 +44,78 @@ class TrackListItem extends StatelessWidget {
           _artworkSize * (track.artwork.width / track.artwork.height);
     }
 
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: horizontalPadding,
-            vertical: _verticalPadding,
+    return OutlinedCard(
+      margin: EdgeInsets.fromLTRB(
+        constants.size.insetsLarge,
+        0,
+        constants.size.insetsMedium,
+        constants.size.insetsLarge,
+      ),
+      child: Row(
+        children: [
+          SizedBox(
+            width: artworkWidth,
+            height: artworkHeight,
+            child: Image.network(
+              track.artwork.url100,
+            ),
           ),
-          child: Row(
-            children: [
-              RoundedImage.network(
-                url: track.artwork.url100,
-                width: artworkWidth,
-                height: artworkHeight,
-              ),
-              SizedBox(
-                width: horizontalPadding,
-                height: _rowHeight,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    EllipsisText(
-                      track.name,
-                      style: titleTextStyle,
-                    ),
-                    LayoutBuilder(
-                      builder: (context, constraints) {
-                        return Row(
-                          children: [
-                            Container(
-                              constraints: BoxConstraints(
-                                maxWidth: constraints.maxWidth / 2,
-                              ),
-                              child: EllipsisText(
-                                track.artistName,
-                                style: subtitleTextStyle,
-                              ),
-                            ),
-                            Container(
-                              constraints: BoxConstraints(
-                                maxWidth: constraints.maxWidth / 2,
-                              ),
-                              // Display composer name label
-                              child: EllipsisText(
-                                track.hasComposer
-                                    ? " / Composer: ${track.composerName!}"
-                                    : " / No Composer Data",
-                                style: subtitleTextStyle,
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ],
+          SizedBox(
+            width: constants.size.insetsLarge,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  track.name,
+                  style: titleTextStyle,
                 ),
-              ),
-              SizedBox(width: horizontalPadding - _forwardIconVerticalSpace),
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
-                size: _forwardIconSize,
-              ),
-            ],
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    return Row(
+                      children: [
+                        Container(
+                          constraints: BoxConstraints(
+                            maxWidth: constraints.maxWidth / 2,
+                          ),
+                          child: Text(
+                            track.artistName,
+                            style: subtitleTextStyle,
+                          ),
+                        ),
+                        Container(
+                          constraints: BoxConstraints(
+                            maxWidth: constraints.maxWidth / 2,
+                          ),
+                          // Display composer name label
+                          child: Text(
+                            track.hasComposer
+                                ? " / Composer: ${track.composerName!}"
+                                : " / No Composer Data",
+                            style: subtitleTextStyle,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
-        ),
-        Divider(
-          height: 1,
-          thickness: 1,
-          indent: horizontalPadding * 2 + _artworkSize,
-          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
-        ),
-      ],
+          SizedBox(width: constants.size.insetsMedium),
+          Icon(
+            Icons.arrow_forward_ios_rounded,
+            // color: Theme.of(context)
+            //     .colorScheme
+            //     .onSurface
+            //     .withOpacity(1 - constants.opacity.focus),
+            color: Theme.of(context).colorScheme.onSurface,
+            size: 16.5,
+          ),
+          SizedBox(width: constants.size.insetsMedium),
+        ],
+      ),
     );
   }
 }

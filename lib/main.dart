@@ -5,7 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../utils/app_logger.dart';
 import 'app.dart';
-import 'widgets/ui_constants.dart';
 
 void main() {
   AppLogger.init();
@@ -17,9 +16,7 @@ void main() {
 
   runApp(
     const ProviderScope(
-      child: UiConstants.scope(
-        child: App(),
-      ),
+      child: App(),
     ),
   );
 }

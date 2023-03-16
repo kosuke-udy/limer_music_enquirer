@@ -1,51 +1,90 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class OutlinedCard extends StatelessWidget {
-  const OutlinedCard({
+import '../../ui_constants/ui_constants.dart';
+
+class FilledCard extends ConsumerWidget {
+  final Widget child;
+  final EdgeInsets margin;
+
+  const FilledCard({
     Key? key,
     required this.child,
-    this.padding = const EdgeInsets.symmetric(
-      horizontal: 8.0,
-      vertical: 8.0,
-    ),
+    this.margin = const EdgeInsets.all(0),
   }) : super(key: key);
 
-  final Widget child;
-  final EdgeInsetsGeometry padding;
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final constants = ref.watch(uiConstantsProvider);
     return Card(
-      elevation: 0,
+      margin: margin,
       shape: RoundedRectangleBorder(
         side: BorderSide(
-          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
-          width: 1,
-        ),
-        borderRadius: BorderRadius.circular(8.0),
+            color: Theme.of(context)
+                .colorScheme
+                .outline
+                .withOpacity(constants.opacity.normal)),
+        borderRadius: BorderRadius.circular(constants.radius.medium),
       ),
-      child: Padding(
-        padding: padding,
-        child: child,
-      ),
+      color: Theme.of(context)
+          .colorScheme
+          .onSurface
+          .withOpacity(constants.opacity.focus),
+      child: child,
     );
   }
 }
 
-class FilledCard extends StatelessWidget {
-  const FilledCard({
+class OutlinedCard extends ConsumerWidget {
+  final Widget child;
+  final EdgeInsets margin;
+
+  const OutlinedCard({
     Key? key,
     required this.child,
+    this.margin = const EdgeInsets.all(0),
   }) : super(key: key);
 
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final constants = ref.watch(uiConstantsProvider);
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      margin: margin,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+            color: Theme.of(context)
+                .colorScheme
+                .outline
+                .withOpacity(constants.opacity.normal)),
+        borderRadius: BorderRadius.circular(constants.radius.medium),
+      ),
+      color: Theme.of(context).colorScheme.surface,
+      child: child,
+    );
+  }
+}
+
+class ElevatedCard extends ConsumerWidget {
   final Widget child;
+  final EdgeInsets margin;
+
+  const ElevatedCard({
+    Key? key,
+    required this.child,
+    this.margin = const EdgeInsets.all(0),
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final constants = ref.watch(uiConstantsProvider);
     return Card(
-      elevation: 0,
-      margin: const EdgeInsets.all(0),
+      margin: margin,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(constants.radius.medium),
+      ),
       color: Theme.of(context).colorScheme.surfaceVariant,
+      elevation: 8,
       child: child,
     );
   }

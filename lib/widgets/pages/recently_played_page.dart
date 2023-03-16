@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../components/track_detail_card.dart';
-import '../components/track_list.dart';
+import '../components/components.dart';
 import '../data_widgets/am_recently_played.dart';
 import '../layout/app_layout.dart';
 
@@ -12,17 +11,18 @@ class RecentlyPlayedPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AppBody(
-      topBar: const AppTopBar(
-        titleData: 'Recently Played',
-      ),
       contents: AppContents(
         child: AmRecentlyPlayed(
           ok: (tracks) {
             final lastPlayed = tracks.first;
+            final list = tracks.sublist(1);
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Headline("Last Played Track"),
                 TrackDetailCard(track: lastPlayed),
-                TrackList(tracks: tracks),
+                const Headline("Recently Played"),
+                TrackList(tracks: list),
               ],
             );
           },

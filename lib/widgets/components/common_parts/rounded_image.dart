@@ -43,7 +43,7 @@ class RoundedImage extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
         border: Border.all(
-          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.08),
+          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.12),
           width: 1,
         ),
       ),
