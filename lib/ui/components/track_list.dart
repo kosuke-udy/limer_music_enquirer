@@ -32,7 +32,7 @@ class TrackList extends ConsumerWidget {
                 height: 1,
                 thickness: 1,
                 indent: constants.size.insetsLarge,
-                color: constants.color.divider(context),
+                color: constants.color.divider,
               )
             : Container(),
         ...tracks.map((e) => TrackListItem(track: e)).toList(),

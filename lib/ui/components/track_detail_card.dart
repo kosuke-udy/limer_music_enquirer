@@ -66,7 +66,7 @@ class TrackDetailCard extends ConsumerWidget {
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium!
-                            .copyWith(color: constants.color.subtitle(context)),
+                            .copyWith(color: constants.color.subtitle),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),

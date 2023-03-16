@@ -20,7 +20,7 @@ class TrackListItem extends ConsumerWidget {
           overflow: TextOverflow.ellipsis,
         );
     final subtitleTextStyle = Theme.of(context).textTheme.bodySmall!.copyWith(
-          color: constants.color.subtitle(context),
+          color: constants.color.subtitle,
           overflow: TextOverflow.ellipsis,
         );
 

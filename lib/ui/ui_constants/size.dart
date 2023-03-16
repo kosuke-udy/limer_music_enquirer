@@ -1,4 +1,14 @@
-class SizeConstants {
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'size.g.dart';
+
+@riverpod
+class SizeConstants extends _$SizeConstants {
+  @override
+  SizeConstantsModel build() => SizeConstantsModel();
+}
+
+class SizeConstantsModel {
   // Insets
   final double insetsSmall = 4.0;
   final double insetsMedium = 8.0;
