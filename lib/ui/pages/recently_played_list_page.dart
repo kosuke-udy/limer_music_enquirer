@@ -6,8 +6,8 @@ import '../../../providers/apple_music/apple_music.dart';
 import '../../../router/routes.dart';
 import '../components/components.dart';
 
-class RecentlyPlayedSongsPage extends ConsumerWidget {
-  const RecentlyPlayedSongsPage({Key? key}) : super(key: key);
+class RecentlyPlayedListPage extends ConsumerWidget {
+  const RecentlyPlayedListPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

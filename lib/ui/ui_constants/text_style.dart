@@ -20,7 +20,7 @@ class TextStyleConstants extends _$TextStyleConstants {
         color: colorScheme.onSurface,
       )
       ..subtitleGray = textTheme.headlineSmall!.copyWith(
-        color: colorScheme.onSurface.withOpacity(0.8),
+        color: colorScheme.onSurface.withOpacity(0.6),
       );
   }
 }

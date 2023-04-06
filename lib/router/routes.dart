@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../api/apple_music_api/apple_music_api.dart';
 import '../ui/pages/home_page.dart';
 import '../ui/pages/loading_page.dart';
-import '../ui/pages/recently_played_songs_page.dart';
+import '../ui/pages/recently_played_list_page.dart';
 
 part 'routes.g.dart';
 
@@ -56,6 +56,6 @@ class HomePageRoute extends GoRouteData {
 class RecentlyPlayedSongsPageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const RecentlyPlayedSongsPage();
+    return const RecentlyPlayedListPage();
   }
 }

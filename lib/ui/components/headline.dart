@@ -16,13 +16,13 @@ class Headline extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final constants = ref.watch(uiConstantsProvider);
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: constants.size.insetsLarge,
-        vertical: constants.size.insetsSmall,
-      ),
-      child: GestureDetector(
-        onTap: onTap,
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: constants.size.insetsLarge,
+          vertical: constants.size.insetsSmall,
+        ),
         child: Row(
           children: [
             Text(

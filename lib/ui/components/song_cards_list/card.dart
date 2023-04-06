@@ -9,7 +9,7 @@ import '../../ui_constants/ui_constants.dart';
 class SongCard extends ConsumerWidget {
   /* ---------- Statics ---------- */
 
-  static const _artworkSize = 68.0;
+  static const _artworkSize = 76.0;
   static const _fontSize = 14.0;
 
   /* ---------- Properties ---------- */
@@ -64,13 +64,11 @@ class SongCard extends ConsumerWidget {
               context,
               ref,
               constants,
-              topCardHeight: topCardHeight,
             ),
             _topCard(
               context,
               ref,
               constants,
-              height: topCardHeight,
             ),
           ],
         ),
@@ -83,56 +81,48 @@ class SongCard extends ConsumerWidget {
   Widget _topCard(
     BuildContext context,
     WidgetRef ref,
-    UiConstantsModel constants, {
-    required double height,
-  }) {
+    UiConstantsModel constants,
+  ) {
     final songNameTextStyle = constants.textStyle.title.copyWith(
       fontSize: 14,
     );
 
-    return Container(
-      constraints: BoxConstraints(
-        minHeight: height,
-        maxHeight: height,
-      ),
-      child: FilledCard(
-        elevation: 0.1,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            /* ---------- Artwork ---------- */
+    return FilledCard(
+      elevation: 0.1,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          /* ---------- Artwork ---------- */
 
-            SizedBox(width: constants.size.insetsSmall),
-            RoundedImage.network(
-              artworkUrl,
-              size: _artworkSize,
+          RoundedImage.network(
+            artworkUrl,
+            size: _artworkSize,
+          ),
+          SizedBox(width: constants.size.insetsLarge),
+
+          /* ---------- Song Name ---------- */
+
+          Expanded(
+            child: Text(
+              songName,
+              style: songNameTextStyle,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
-            SizedBox(width: constants.size.insetsLarge),
+          ),
 
-            /* ---------- Song Name ---------- */
+          /* ---------- Ellipsis Icon ---------- */
 
-            Expanded(
-              child: Text(
-                songName,
-                style: songNameTextStyle,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
+          Container(
+            padding: EdgeInsets.all(
+              constants.size.insetsSmall,
             ),
-
-            /* ---------- Ellipsis Icon ---------- */
-
-            Container(
-              padding: EdgeInsets.all(
-                constants.size.insetsSmall,
-              ),
-              child: const Icon(
-                Icons.more_horiz,
-              ),
+            child: const Icon(
+              Icons.more_horiz,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -142,38 +132,21 @@ class SongCard extends ConsumerWidget {
   Widget _bottomCard(
     BuildContext context,
     WidgetRef ref,
-    UiConstantsModel constants, {
-    required double topCardHeight,
-  }) {
-    final keyTextStyle =
-        constants.textStyle.subtitleGray.copyWith(fontSize: 12);
-    final valueTextStyle = constants.textStyle.subtitle.copyWith(fontSize: 14);
-
-    const attributeCount = 1;
-    final painter = _getTextPainter(keyTextStyle);
-    final attributeTextHeight = painter.preferredLineHeight;
-    final attributeRowHeight = attributeTextHeight + constants.size.insetsSmall;
-    final bodyHeight = topCardHeight + attributeRowHeight * attributeCount;
-
+    UiConstantsModel constants,
+  ) {
     final attributeRows = <String, String?>{
       "Artist": artistName,
       "Album": albumName,
       "Composer": composerName,
     }
         .entries
-        .map((e) => Container(
-            constraints: BoxConstraints(
-              maxHeight: bodyHeight,
-            ),
-            child: _tableRow(
+        .map((e) => _tableRow(
               context,
               ref,
               constants,
               keyText: e.key,
-              keyTextStyle: keyTextStyle,
               valueText: e.value,
-              valueTextStyle: valueTextStyle,
-            )))
+            ))
         .toList();
 
     return FilledCard(
@@ -183,7 +156,7 @@ class SongCard extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: topCardHeight + constants.size.insetsSmall),
+          SizedBox(height: _artworkSize + constants.size.insetsSmall),
           ...attributeRows,
         ],
       ),
@@ -197,11 +170,16 @@ class SongCard extends ConsumerWidget {
     WidgetRef ref,
     UiConstantsModel constants, {
     required String keyText,
-    required TextStyle keyTextStyle,
     required String? valueText,
-    required TextStyle valueTextStyle,
   }) {
     final constants = ref.watch(uiConstantsProvider);
+
+    final keyTextStyle =
+        constants.textStyle.subtitleGray.copyWith(fontSize: 12);
+    final valueTextStyle = (valueText == null
+            ? constants.textStyle.subtitleGray
+            : constants.textStyle.subtitle)
+        .copyWith(fontSize: 14);
 
     return Padding(
       padding: EdgeInsets.only(
@@ -214,11 +192,11 @@ class SongCard extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            width: _artworkSize,
+            width: _artworkSize - constants.size.insetsSmall,
             child: Text(
               keyText,
               style: keyTextStyle,
-              maxLines: 2,
+              maxLines: 1,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.right,
             ),
@@ -235,19 +213,5 @@ class SongCard extends ConsumerWidget {
         ],
       ),
     );
-  }
-
-  TextPainter _getTextPainter(TextStyle textStyle) {
-    final textPainter = TextPainter(
-      text: TextSpan(
-        text: "A",
-        style: textStyle,
-      ),
-      textDirection: TextDirection.ltr,
-    );
-
-    textPainter.layout();
-
-    return textPainter;
   }
 }
