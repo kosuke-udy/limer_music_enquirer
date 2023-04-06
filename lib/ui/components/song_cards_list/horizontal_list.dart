@@ -3,7 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
 import 'card.dart';
-import 'card_v2.dart';
 
 class SongCardListHorizontal extends ConsumerWidget {
   final List<SongKind> songs;
