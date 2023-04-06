@@ -51,7 +51,7 @@ class HomePageRoute extends GoRouteData {
 }
 
 @TypedGoRoute<RecentlyPlayedSongsPageRoute>(
-  path: "/recently-played-songs",
+  path: "/recently-played",
 )
 class RecentlyPlayedSongsPageRoute extends GoRouteData {
   @override
