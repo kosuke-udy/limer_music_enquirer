@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
-import '../../../router/routes.dart';
+import '../../common_methods/apt_bg_color.dart';
 import '../../common_parts/common_parts.dart';
 import '../../ui_constants/ui_constants.dart';
 
@@ -19,7 +19,7 @@ class SongCard extends ConsumerWidget {
   late final String songName, artistName;
   late final String? composerName, albumName;
   late final String artworkUrl;
-  late final Color? bgColor, textColor1, textColor2, textColor3, textColor4;
+  late final Color? bgColor;
 
   /* ---------- Constructor ---------- */
 
@@ -39,10 +39,6 @@ class SongCard extends ConsumerWidget {
     }
 
     bgColor = song.attributes?.artwork.bgColor;
-    textColor1 = song.attributes?.artwork.textColor1;
-    textColor2 = song.attributes?.artwork.textColor2;
-    textColor3 = song.attributes?.artwork.textColor3;
-    textColor4 = song.attributes?.artwork.textColor4;
   }
 
   /* ---------- Build ---------- */
@@ -50,8 +46,6 @@ class SongCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final constants = ref.watch(uiConstantsProvider);
-
-    final topCardHeight = _artworkSize + constants.size.insetsSmall * 2;
 
     return Container(
       padding: EdgeInsets.symmetric(
@@ -84,11 +78,12 @@ class SongCard extends ConsumerWidget {
     UiConstantsModel constants,
   ) {
     final songNameTextStyle = constants.textStyle.title.copyWith(
-      fontSize: 14,
+      fontSize: _fontSize,
     );
 
     return FilledCard(
-      elevation: 0.1,
+      elevation: 4,
+      color: bgColor?.aptBgColor(context),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -175,11 +170,11 @@ class SongCard extends ConsumerWidget {
     final constants = ref.watch(uiConstantsProvider);
 
     final keyTextStyle =
-        constants.textStyle.subtitleGray.copyWith(fontSize: 12);
+        constants.textStyle.subtitleGray.copyWith(fontSize: _fontSize - 2);
     final valueTextStyle = (valueText == null
             ? constants.textStyle.subtitleGray
             : constants.textStyle.subtitle)
-        .copyWith(fontSize: 14);
+        .copyWith(fontSize: _fontSize);
 
     return Padding(
       padding: EdgeInsets.only(
