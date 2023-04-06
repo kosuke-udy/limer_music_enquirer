@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
-import '../../common_methods/apt_bg_color.dart';
+import '../../common_methods/color_extension.dart';
 import '../../common_parts/common_parts.dart';
 import '../../ui_constants/ui_constants.dart';
 
@@ -83,7 +83,7 @@ class SongCard extends ConsumerWidget {
 
     return FilledCard(
       elevation: 4,
-      color: bgColor?.aptBgColor(context),
+      color: bgColor?.aptCardBgFront(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -146,6 +146,7 @@ class SongCard extends ConsumerWidget {
 
     return FilledCard(
       elevation: 0,
+      color: bgColor?.aptCardBgBack(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
