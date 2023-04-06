@@ -21,7 +21,7 @@ class RecentlyPlayedListPage extends ConsumerWidget {
         stretch: true,
         title: const Text("Recently Played"),
       ),
-      body: ListView(
+      body: RefreshableListView(
         children: [
           Area(
             content: recentlyPlayedSongs.when(
