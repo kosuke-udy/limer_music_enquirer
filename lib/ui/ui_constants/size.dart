@@ -5,17 +5,30 @@ part 'size.g.dart';
 @riverpod
 class SizeConstants extends _$SizeConstants {
   @override
-  SizeConstantsModel build() => SizeConstantsModel();
+  SizeConstantsModel build() {
+    return SizeConstantsModel()
+      ..insetsSmall = 8.0
+      ..insetsMedium = 12.0
+      ..insetsLarge = 16.0
+      ..artworkSmall = 46.0
+      ..artworkMedium = 80.0
+      ..artworkLarge = 120.0
+      ..moreIconWidth = 14.0
+      ..songCardHeight = 134.0;
+  }
 }
 
 class SizeConstantsModel {
   // Insets
-  final double insetsSmall = 4.0;
-  final double insetsMedium = 8.0;
-  final double insetsLarge = 16.0;
+  late final double insetsSmall, insetsMedium, insetsLarge;
 
   // Artwork
-  final double artworkSmall = 40.0;
-  final double artworkMedium = 60.0;
-  final double artworkLarge = 80.0;
+  late final double artworkSmall, artworkMedium, artworkLarge;
+
+  // Icon
+  // late final double infoIcon = 12.0;
+  late final double moreIconWidth;
+
+  // Card
+  late final double songCardHeight;
 }

@@ -7,9 +7,9 @@ import Flutter
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    // Related to Flutter
+    // Pigeon setup
     let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
-    AmNativeApiSetup.setUp(binaryMessenger: controller.binaryMessenger, api: AmSwiftApi())
+    AppleMusicNativeApiSetup.setUp(binaryMessenger: controller.binaryMessenger, api: AppleMusicNativeApiImpl())
 
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)

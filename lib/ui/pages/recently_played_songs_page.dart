@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:udy_flutter_layout/udy_flutter_layout.dart';
+
+import '../../../providers/apple_music/apple_music.dart';
+import '../../../router/routes.dart';
+import '../components/components.dart';
+
+class RecentlyPlayedSongsPage extends ConsumerWidget {
+  const RecentlyPlayedSongsPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final recentlyPlayedSongs = ref.watch(recentlyPlayedSongsProvider);
+
+    return PageScaffold(
+      topBar: SliverAppBar.medium(
+        floating: true,
+        pinned: true,
+        snap: true,
+        stretch: true,
+        title: const Text("Recently Played"),
+      ),
+      body: ListView(
+        children: [
+          Area(
+            content: recentlyPlayedSongs.when(
+              data: (songs) {
+                return SongCardListVertical(songs);
+              },
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              error: (err, stack) => Center(
+                child: Text(err.toString()),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

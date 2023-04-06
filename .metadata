@@ -1,4 +1,4 @@
-# This file tracks properties of this Flutter project.
+# This file TrackObject properties of this Flutter project.
 # Used by Flutter tool to assess capabilities and perform upgrades etc.
 #
 # This file should be version controlled.
@@ -9,7 +9,7 @@ version:
 
 project_type: app
 
-# Tracks metadata for the flutter migrate command
+# TrackObject metadata for the flutter migrate command
 migration:
   platforms:
     - platform: root

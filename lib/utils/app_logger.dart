@@ -19,7 +19,8 @@ class AppLogger {
       // logger info
       final dateFormat = DateFormat('MM/dd HH:mm:ss');
       _log(
-          '${record.loggerName} [${record.level.name} (${dateFormat.format(record.time)})]');
+        '${record.loggerName} [${record.level.name} (${dateFormat.format(record.time)})]',
+      );
 
       // message
       appPrint(record.message, object: record.object, indent: 1);
