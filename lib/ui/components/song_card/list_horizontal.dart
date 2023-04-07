@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
-import 'card.dart';
+import 'list_card.dart';
 
 class SongCardListHorizontal extends ConsumerWidget {
   final List<SongKind> songs;
@@ -19,7 +19,7 @@ class SongCardListHorizontal extends ConsumerWidget {
         ),
         child: PageView(
           controller: PageController(viewportFraction: 0.9),
-          children: songs.map((e) => SongCard(song: e)).toList(),
+          children: songs.map((e) => SongListCard(song: e)).toList(),
         ),
       ),
     );

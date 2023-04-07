@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
+import '../../../router/routes.dart';
 import '../../common_methods/color_extension.dart';
 import '../../common_parts/common_parts.dart';
 import '../../ui_constants/ui_constants.dart';
 
-class SongCard extends ConsumerWidget {
+class SongListCard extends ConsumerWidget {
   /* ---------- Statics ---------- */
 
   static const _artworkSize = 76.0;
@@ -23,7 +24,7 @@ class SongCard extends ConsumerWidget {
 
   /* ---------- Constructor ---------- */
 
-  SongCard({
+  SongListCard({
     Key? key,
     required this.song,
   }) : super(key: key) {
@@ -81,43 +82,46 @@ class SongCard extends ConsumerWidget {
       fontSize: _fontSize,
     );
 
-    return FilledCard(
-      elevation: 4,
-      color: bgColor?.aptCardBgFront(),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          /* ---------- Artwork ---------- */
+    return GestureDetector(
+      onTap: () => SongKindDetailPageRoute(song.id, $extra: song).push(context),
+      child: FilledCard(
+        elevation: 4,
+        color: bgColor?.aptCardBgFront(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            /* ---------- Artwork ---------- */
 
-          RoundedImage.network(
-            artworkUrl,
-            size: _artworkSize,
-          ),
-          SizedBox(width: constants.size.insetsLarge),
-
-          /* ---------- Song Name ---------- */
-
-          Expanded(
-            child: Text(
-              songName,
-              style: songNameTextStyle,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+            RoundedImage.network(
+              artworkUrl,
+              size: _artworkSize,
             ),
-          ),
+            SizedBox(width: constants.size.insetsLarge),
 
-          /* ---------- Ellipsis Icon ---------- */
+            /* ---------- Song Name ---------- */
 
-          Container(
-            padding: EdgeInsets.all(
-              constants.size.insetsSmall,
+            Expanded(
+              child: Text(
+                songName,
+                style: songNameTextStyle,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-            child: const Icon(
-              Icons.more_horiz,
+
+            /* ---------- Ellipsis Icon ---------- */
+
+            Container(
+              padding: EdgeInsets.all(
+                constants.size.insetsSmall,
+              ),
+              child: const Icon(
+                Icons.more_horiz,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

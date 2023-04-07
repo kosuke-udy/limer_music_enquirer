@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../ui_constants/ui_constants.dart';
-import 'card.dart';
+import 'list_card.dart';
 
 class SongCardListVertical extends ConsumerWidget {
   final List<SongKind> songs;
@@ -20,7 +20,7 @@ class SongCardListVertical extends ConsumerWidget {
                 horizontal: constants.size.insetsLarge,
                 vertical: constants.size.insetsSmall,
               ),
-              child: SongCard(song: e)))
+              child: SongListCard(song: e)))
           .toList(),
     );
   }
