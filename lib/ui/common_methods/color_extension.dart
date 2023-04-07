@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 extension ColorConverter on Color {
   Color aptCardBgFront() {
-    return _adjustHSLDarker(
+    return adjustHSLDarker(
       saturation: 0.4,
       lightness: 0.3,
     );
   }
 
   Color aptCardBgBack() {
-    return _adjustHSLDarker(
+    return adjustHSLDarker(
       saturation: 0.3,
       lightness: 0.15,
     );
   }
 
-  Color _adjustHSLDarker({
+  Color adjustHSLDarker({
     required double saturation,
     required double lightness,
   }) {
