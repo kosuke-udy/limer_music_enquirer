@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../ui_constants/ui_constants.dart';
+import '../../common_values/common_values.dart';
 import 'row.dart';
 
 class AttributesTable extends ConsumerWidget {
@@ -29,7 +29,7 @@ class AttributesTable extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
+    final common = ref.watch(commonValuesProvider);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -41,7 +41,7 @@ class AttributesTable extends ConsumerWidget {
                 ? maxLines == null
                     ? Divider(
                         height: _spacingLarge,
-                        color: constants.color.divider.withOpacity(0),
+                        color: common.color.divider.withOpacity(0),
                       )
                     : const SizedBox(height: _spacingSmall)
                 : const SizedBox.shrink(),

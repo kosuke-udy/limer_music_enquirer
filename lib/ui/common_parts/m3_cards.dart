@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../ui_constants/ui_constants.dart';
+import '../common_values/common_values.dart';
 
 class FilledCard extends ConsumerWidget {
   final Widget child;
@@ -19,7 +19,7 @@ class FilledCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
+    final common = ref.watch(commonValuesProvider);
 
     return Card(
       elevation: elevation,
@@ -29,14 +29,14 @@ class FilledCard extends ConsumerWidget {
             color: Theme.of(context)
                 .colorScheme
                 .outline
-                .withOpacity(constants.opacity.outline)),
-        borderRadius: BorderRadius.circular(constants.radius.medium),
+                .withOpacity(common.opacity.outline)),
+        borderRadius: BorderRadius.circular(common.radius.medium),
       ),
       color: color ??
           Theme.of(context)
               .colorScheme
               .onSurface
-              .withOpacity(constants.opacity.focus),
+              .withOpacity(common.opacity.focus),
       child: child,
     );
   }
@@ -58,7 +58,7 @@ class OutlinedCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
+    final common = ref.watch(commonValuesProvider);
     return Card(
       clipBehavior: Clip.antiAlias,
       margin: margin,
@@ -69,8 +69,8 @@ class OutlinedCard extends ConsumerWidget {
             color: Theme.of(context)
                 .colorScheme
                 .outline
-                .withOpacity(constants.opacity.outline)),
-        borderRadius: BorderRadius.circular(constants.radius.medium),
+                .withOpacity(common.opacity.outline)),
+        borderRadius: BorderRadius.circular(common.radius.medium),
       ),
       child: child,
     );
@@ -89,11 +89,11 @@ class ElevatedCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
+    final common = ref.watch(commonValuesProvider);
     return Card(
       margin: margin,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(constants.radius.medium),
+        borderRadius: BorderRadius.circular(common.radius.medium),
       ),
       color: Theme.of(context).colorScheme.surfaceVariant,
       elevation: 8,

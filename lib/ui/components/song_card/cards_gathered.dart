@@ -5,7 +5,7 @@ import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../../router/routes.dart';
 import '../../common_methods/color_extension.dart';
 import '../../common_parts/common_parts.dart';
-import '../../ui_constants/ui_constants.dart';
+import '../../common_values/common_values.dart';
 import '../attributes_table/table.dart';
 import 'card_title.dart';
 
@@ -47,7 +47,7 @@ class SongListCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
+    final common = ref.watch(commonValuesProvider);
 
     return SizedBox(
       child: Stack(
@@ -55,7 +55,7 @@ class SongListCard extends ConsumerWidget {
           _bottomCard(
             context,
             ref,
-            constants,
+            common,
           ),
           GestureDetector(
             onTap: () =>
@@ -80,7 +80,7 @@ class SongListCard extends ConsumerWidget {
   Widget _bottomCard(
     BuildContext context,
     WidgetRef ref,
-    UiConstantsModel constants,
+    CommonValuesModel common,
   ) {
     final attributes = <String, String?>{
       "Artist": artistName,
@@ -96,13 +96,13 @@ class SongListCard extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: _artworkSize + constants.size.insetsSmall),
+          SizedBox(height: _artworkSize + common.size.insetsSmall),
           AttributesTable(
             maxLines: 1,
             attributes: attributes,
             keyAreaWidth: _artworkSize,
           ),
-          SizedBox(height: constants.size.insetsSmall),
+          SizedBox(height: common.size.insetsSmall),
         ],
       ),
     );

@@ -3,10 +3,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'size.g.dart';
 
 @riverpod
-class SizeConstants extends _$SizeConstants {
+class SizeCommon extends _$SizeCommon {
   @override
-  SizeConstantsModel build() {
-    return SizeConstantsModel()
+  SizeCommonModel build() {
+    return SizeCommonModel()
       ..insetsSmall = 8.0
       ..insetsMedium = 12.0
       ..insetsLarge = 16.0
@@ -18,7 +18,7 @@ class SizeConstants extends _$SizeConstants {
   }
 }
 
-class SizeConstantsModel {
+class SizeCommonModel {
   // Insets
   late final double insetsSmall, insetsMedium, insetsLarge;
 

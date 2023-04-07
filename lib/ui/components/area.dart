@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../ui_constants/ui_constants.dart';
+import '../common_values/common_values.dart';
 import 'headline.dart';
 
 class Area extends ConsumerWidget {
@@ -22,12 +22,12 @@ class Area extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
+    final common = ref.watch(commonValuesProvider);
 
     return Container(
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.only(
-        bottom: constants.size.insetsMedium,
+        bottom: common.size.insetsMedium,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

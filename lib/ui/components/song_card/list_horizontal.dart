@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
-import '../../ui_constants/ui_constants.dart';
+import '../../common_values/common_values.dart';
 import 'cards_gathered.dart';
 
 class SongCardListHorizontal extends ConsumerWidget {
@@ -23,7 +23,7 @@ class SongCardListHorizontal extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
+    final common = ref.watch(commonValuesProvider);
 
     return LayoutBuilder(
       builder: (context, constraints) => ConstrainedBox(
@@ -38,7 +38,7 @@ class SongCardListHorizontal extends ConsumerWidget {
           children: songs.map((e) {
             return Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: constants.size.insetsSmall,
+                horizontal: common.size.insetsSmall,
               ),
               child: SongListCard(song: e),
             );

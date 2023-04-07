@@ -4,16 +4,16 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'animation.g.dart';
 
 @riverpod
-class AnimationConstants extends _$AnimationConstants {
+class AnimationCommon extends _$AnimationCommon {
   @override
-  AnimationConstantsModel build() {
-    return AnimationConstantsModel()
+  AnimationCommonModel build() {
+    return AnimationCommonModel()
       ..animationDuration = const Duration(milliseconds: 300)
       ..transitionBuilder = AnimatedSwitcher.defaultTransitionBuilder;
   }
 }
 
-class AnimationConstantsModel {
+class AnimationCommonModel {
   late final Duration animationDuration;
   late final AnimatedSwitcherTransitionBuilder transitionBuilder;
 }

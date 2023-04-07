@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../ui_constants/ui_constants.dart';
+import '../common_values/common_values.dart';
 
 class RoundedImage extends ConsumerWidget {
   late final ImageProvider<Object>? imageProvider;
@@ -28,8 +28,8 @@ class RoundedImage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
-    final radius = constants.radius.medium;
+    final common = ref.watch(commonValuesProvider);
+    final radius = common.radius.medium;
 
     return Container(
       width: size,

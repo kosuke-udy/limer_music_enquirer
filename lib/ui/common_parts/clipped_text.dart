@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../ui_constants/ui_constants.dart';
+import '../common_values/common_values.dart';
 
 class ClippedText extends ConsumerWidget {
   final String data;
@@ -15,8 +15,8 @@ class ClippedText extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
-    final textColor = style?.color ?? constants.theme.colorScheme.onSurface;
+    final common = ref.watch(commonValuesProvider);
+    final textColor = style?.color ?? common.theme.colorScheme.onSurface;
     return LayoutBuilder(
       builder: (context, constraints) {
         return SizedBox(

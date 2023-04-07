@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
-import '../../ui_constants/ui_constants.dart';
+import '../../common_values/common_values.dart';
 import 'cards_gathered.dart';
 
 class SongCardListVertical extends ConsumerWidget {
@@ -22,13 +22,13 @@ class SongCardListVertical extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
+    final common = ref.watch(commonValuesProvider);
     return Column(
       children: songs
           .map((e) => Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: _paddingHorizontal,
-                vertical: constants.size.insetsMedium,
+                vertical: common.size.insetsMedium,
               ),
               child: SongListCard(song: e)))
           .toList(),

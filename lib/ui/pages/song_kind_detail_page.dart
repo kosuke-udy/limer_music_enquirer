@@ -7,7 +7,7 @@ import '../../providers/apple_music/apple_music.dart';
 import '../common_methods/color_extension.dart';
 import '../common_parts/common_parts.dart';
 import '../components/components.dart';
-import '../ui_constants/ui_constants.dart';
+import '../common_values/common_values.dart';
 
 class SongKindDetailPage extends ConsumerWidget {
   /* ---------- Statics ---------- */
@@ -33,7 +33,7 @@ class SongKindDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
+    final common = ref.watch(commonValuesProvider);
     final data = ref.watch(detailProvider);
 
     return PageScaffold(
@@ -54,7 +54,7 @@ class SongKindDetailPage extends ConsumerWidget {
               data: (data) {
                 return Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: constants.size.insetsLarge,
+                    horizontal: common.size.insetsLarge,
                   ),
                   child: Column(
                     children: [

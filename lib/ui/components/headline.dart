@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../ui_constants/ui_constants.dart';
+import '../common_values/common_values.dart';
 
 class Headline extends ConsumerWidget {
   final String text;
@@ -15,13 +15,13 @@ class Headline extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
+    final common = ref.watch(commonValuesProvider);
     return GestureDetector(
       onTap: onTap,
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: constants.size.insetsLarge,
-          vertical: constants.size.insetsSmall,
+          horizontal: common.size.insetsLarge,
+          vertical: common.size.insetsSmall,
         ),
         child: Row(
           children: [
@@ -29,9 +29,9 @@ class Headline extends ConsumerWidget {
               text,
               style: Theme.of(context).textTheme.titleLarge,
             ),
-            SizedBox(width: constants.size.insetsSmall),
+            SizedBox(width: common.size.insetsSmall),
             onTap != null && onTap != () {}
-                ? Icon(Icons.chevron_right, color: constants.color.infoIcon)
+                ? Icon(Icons.chevron_right, color: common.color.infoIcon)
                 : const SizedBox.shrink(),
           ],
         ),

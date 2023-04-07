@@ -6,16 +6,16 @@ import 'theme.dart';
 part 'color.g.dart';
 
 @riverpod
-class ColorConstants extends _$ColorConstants {
+class ColorCommon extends _$ColorCommon {
   @override
-  ColorConstantsModel build() {
-    final colorScheme = ref.watch(themeDataConstantsProvider).colorScheme;
-    return ColorConstantsModel()
+  ColorCommonModel build() {
+    final colorScheme = ref.watch(themeDataCommonProvider).colorScheme;
+    return ColorCommonModel()
       ..divider = colorScheme.onSurface.withOpacity(0.12)
       ..infoIcon = colorScheme.onSurface.withOpacity(0.6);
   }
 }
 
-class ColorConstantsModel {
+class ColorCommonModel {
   late final Color divider, infoIcon;
 }

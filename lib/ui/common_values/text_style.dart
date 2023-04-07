@@ -6,13 +6,13 @@ import 'theme.dart';
 part 'text_style.g.dart';
 
 @riverpod
-class TextStyleConstants extends _$TextStyleConstants {
+class TextStyleCommon extends _$TextStyleCommon {
   @override
-  TextStyleConstantsModel build() {
-    final textTheme = ref.watch(themeDataConstantsProvider).textTheme;
-    final colorScheme = ref.watch(themeDataConstantsProvider).colorScheme;
+  TextStyleCommonModel build() {
+    final textTheme = ref.watch(themeDataCommonProvider).textTheme;
+    final colorScheme = ref.watch(themeDataCommonProvider).colorScheme;
 
-    return TextStyleConstantsModel()
+    return TextStyleCommonModel()
       ..title = textTheme.displaySmall!.copyWith(
         fontWeight: FontWeight.w600,
       )
@@ -25,7 +25,7 @@ class TextStyleConstants extends _$TextStyleConstants {
   }
 }
 
-class TextStyleConstantsModel {
+class TextStyleCommonModel {
   late final TextStyle title;
   late final TextStyle subtitle, subtitleGray;
 }

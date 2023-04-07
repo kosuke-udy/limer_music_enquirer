@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'theme.g.dart';
 
 @riverpod
-class ThemeDataConstants extends _$ThemeDataConstants {
+class ThemeDataCommon extends _$ThemeDataCommon {
   @override
   ThemeData build() {
     final ret = ThemeData(

@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common_methods/color_extension.dart';
 import '../../common_parts/common_parts.dart';
-import '../../ui_constants/ui_constants.dart';
+import '../../common_values/common_values.dart';
 
 class SongTitleCard extends ConsumerWidget {
   /* ---------- Statics ---------- */
@@ -35,12 +35,12 @@ class SongTitleCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
+    final common = ref.watch(commonValuesProvider);
 
-    final nameTextStyle = constants.textStyle.title.copyWith(
+    final nameTextStyle = common.textStyle.title.copyWith(
       fontSize: _fontSize,
     );
-    final artistTextStyle = constants.textStyle.subtitle.copyWith(
+    final artistTextStyle = common.textStyle.subtitle.copyWith(
       fontSize: _fontSize - 1,
     );
 
@@ -57,7 +57,7 @@ class SongTitleCard extends ConsumerWidget {
             artworkUrl,
             size: artworkSize,
           ),
-          SizedBox(width: constants.size.insetsLarge),
+          SizedBox(width: common.size.insetsLarge),
 
           /* ---------- Song Name ---------- */
 
@@ -87,7 +87,7 @@ class SongTitleCard extends ConsumerWidget {
 
           Container(
             padding: EdgeInsets.all(
-              constants.size.insetsSmall,
+              common.size.insetsSmall,
             ),
             child: const Icon(
               Icons.more_horiz,

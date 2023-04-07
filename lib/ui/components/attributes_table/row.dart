@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../ui_constants/ui_constants.dart';
+import '../../common_values/common_values.dart';
 
 class AttributesTableRow extends ConsumerWidget {
   /* ---------- Statics ---------- */
@@ -30,13 +30,13 @@ class AttributesTableRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final constants = ref.watch(uiConstantsProvider);
+    final common = ref.watch(commonValuesProvider);
 
     final keyTextStyle =
-        constants.textStyle.subtitleGray.copyWith(fontSize: _fontSize - 2);
+        common.textStyle.subtitleGray.copyWith(fontSize: _fontSize - 2);
     final valueTextStyle = (valueText == null
-            ? constants.textStyle.subtitleGray
-            : constants.textStyle.subtitle)
+            ? common.textStyle.subtitleGray
+            : common.textStyle.subtitle)
         .copyWith(fontSize: _fontSize);
 
     return Row(
@@ -44,9 +44,9 @@ class AttributesTableRow extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.alphabetic,
       children: [
-        SizedBox(width: constants.size.insetsSmall),
+        SizedBox(width: common.size.insetsSmall),
         SizedBox(
-          width: keyAreaWidth - _spacingTweak - constants.size.insetsSmall,
+          width: keyAreaWidth - _spacingTweak - common.size.insetsSmall,
           child: Text(
             keyText,
             style: keyTextStyle,
@@ -55,7 +55,7 @@ class AttributesTableRow extends ConsumerWidget {
             overflow: maxLines != null ? TextOverflow.ellipsis : null,
           ),
         ),
-        SizedBox(width: constants.size.insetsLarge + _spacingTweak),
+        SizedBox(width: common.size.insetsLarge + _spacingTweak),
         Expanded(
           child: Text(
             valueText ?? "No data",
@@ -64,7 +64,7 @@ class AttributesTableRow extends ConsumerWidget {
             overflow: maxLines != null ? TextOverflow.ellipsis : null,
           ),
         ),
-        SizedBox(width: constants.size.insetsSmall),
+        SizedBox(width: common.size.insetsSmall),
       ],
     );
   }
