@@ -23,6 +23,7 @@ class RecentlyPlayedSongs extends _$RecentlyPlayedSongs {
         "offset": "",
         "types": "songs,library-songs",
         "include[library-songs]": "catalog",
+        "include[songs]": "albums,artists,composers,library",
       },
     );
   }

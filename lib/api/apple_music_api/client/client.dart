@@ -18,7 +18,7 @@ class AppleMusicApiClient {
   final Dio dio = Dio();
 
   bool logEnabled = false;
-  void Function(Object response) logger =
+  void Function(Response response) logger =
       (response) => log(response.toString());
 
   bool _isInitialized = false;
@@ -38,14 +38,16 @@ class AppleMusicApiClient {
   void initialize({
     required String devToken,
     String? userToken,
+    Map<String, dynamic>? queryParameters,
     bool logEnabled = false,
-    void Function(Object response)? logger,
+    void Function(Response response)? logger,
   }) {
     dio.options = BaseOptions(
       headers: {
         "Authorization": "Bearer $devToken",
         "Music-User-Token": userToken,
       },
+      queryParameters: queryParameters,
     );
 
     _isInitialized = true;
@@ -65,6 +67,9 @@ class AppleMusicApiClient {
       path,
       queryParameters: queryParameters,
     );
+
+    if (logEnabled) logger(response);
+
     return convertToList(response.data);
   }
 }

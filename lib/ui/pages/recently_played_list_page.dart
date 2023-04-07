@@ -14,14 +14,16 @@ class RecentlyPlayedListPage extends ConsumerWidget {
     final recentlyPlayedSongs = ref.watch(recentlyPlayedSongsProvider);
 
     return PageScaffold(
-      topBar: SliverAppBar.medium(
-        floating: true,
-        pinned: true,
-        snap: true,
-        stretch: true,
-        title: const Text("Recently Played"),
-      ),
+      // topBar: SliverAppBar.medium(
+      //   floating: true,
+      //   pinned: true,
+      //   snap: true,
+      //   stretch: true,
+      //   title: const Text("Recently Played"),
+      // ),
+      appBarTitle: const Text("Recently Played"),
       body: RefreshableListView(
+        onRefresh: () async => ref.invalidate(recentlyPlayedSongsProvider),
         children: [
           Area(
             content: recentlyPlayedSongs.when(

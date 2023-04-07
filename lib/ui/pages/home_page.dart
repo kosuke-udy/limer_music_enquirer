@@ -11,17 +11,18 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var recentlySongs = ref.watch(recentlyPlayedSongsProvider);
-    final recentlyResources = ref.watch(recentlyPlayedResourcesProvider);
+    final recentlySongs = ref.watch(recentlyPlayedSongsProvider);
+    // final recentlyResources = ref.watch(recentlyPlayedResourcesProvider);
 
     return PageScaffold(
-      topBar: SliverAppBar.medium(
-        floating: true,
-        pinned: true,
-        snap: true,
-        stretch: false,
-        title: const Text("Home"),
-      ),
+      // topBar: SliverAppBar.medium(
+      //   floating: true,
+      //   pinned: true,
+      //   snap: true,
+      //   stretch: false,
+      //   title: const Text("Home"),
+      // ),
+      appBarTitle: const Text("Home"),
       body: RefreshableListView(
         onRefresh: () async {
           ref.invalidate(recentlyPlayedSongsProvider);
