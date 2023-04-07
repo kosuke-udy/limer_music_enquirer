@@ -11,6 +11,6 @@ export 'recently_played/songs.dart';
 export 'recently_played/resources.dart';
 export 'init_client.dart';
 
-part 'requests/album_from_track_id.dart';
+part 'detail/album_from_track_id.dart';
 
 final _client = AppleMusicApiClient();
