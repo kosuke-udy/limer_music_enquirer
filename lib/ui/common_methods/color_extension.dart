@@ -1,32 +1,38 @@
 import 'package:flutter/material.dart';
 
 extension ColorConverter on Color {
-  Color aptCardBgFront() {
-    return adjustHSLDarker(
-      saturation: 0.4,
-      lightness: 0.3,
-    );
-  }
+  static const _baseMaxSaturation = 0.3;
+  static const _baseMinSaturation = 0.2;
+  static const _baseMaxLightness = 0.10;
+  static const _baseMinLightness = 0.05;
 
-  Color aptCardBgBack() {
+  Color aptCardBgColor(double lightnessLevel) {
     return adjustHSLDarker(
-      saturation: 0.3,
-      lightness: 0.15,
+      maxSaturation: _baseMaxSaturation,
+      minSaturation: _baseMinSaturation,
+      maxLightness: _baseMaxLightness + lightnessLevel * 0.1,
+      minLightness: _baseMinLightness + lightnessLevel * 0.1,
     );
   }
 
   Color adjustHSLDarker({
-    required double saturation,
-    required double lightness,
+    required double maxSaturation,
+    required double minSaturation,
+    required double maxLightness,
+    required double minLightness,
   }) {
     HSLColor hslColor = HSLColor.fromColor(this);
 
-    if (hslColor.lightness > lightness) {
-      hslColor = hslColor.withLightness(lightness);
+    if (hslColor.saturation > maxSaturation) {
+      hslColor = hslColor.withSaturation(maxSaturation);
+    } else if (hslColor.saturation < minSaturation) {
+      hslColor = hslColor.withSaturation(minSaturation);
     }
 
-    if (hslColor.saturation > saturation) {
-      hslColor = hslColor.withSaturation(saturation);
+    if (hslColor.lightness > maxLightness) {
+      hslColor = hslColor.withLightness(maxLightness);
+    } else if (hslColor.lightness < minLightness) {
+      hslColor = hslColor.withLightness(minLightness);
     }
 
     return hslColor.toColor();

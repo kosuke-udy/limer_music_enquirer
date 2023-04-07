@@ -1,0 +1,153 @@
+import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:udy_flutter_layout/udy_flutter_layout.dart';
+
+import '../../providers/apple_music/apple_music.dart';
+// import '../../router/routes.dart';
+import '../common_methods/color_extension.dart';
+import '../common_parts/common_parts.dart';
+import '../components/components.dart';
+import '../ui_constants/ui_constants.dart';
+
+class SongKindDetailPage extends ConsumerWidget {
+  /* ---------- Statics ---------- */
+
+  static const _artworkSize = 100.0;
+
+  /* ---------- Properties ---------- */
+
+  final String id;
+  late final SongKindDetailProvider detailProvider;
+
+  /* ---------- Constructor ---------- */
+
+  SongKindDetailPage(
+    this.id, {
+    Key? key,
+    SongKind? data,
+  }) : super(key: key) {
+    detailProvider = songKindDetailProvider(id, data: data);
+  }
+
+  /* ---------- Build ---------- */
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final constants = ref.watch(uiConstantsProvider);
+    final data = ref.watch(detailProvider);
+
+    return PageScaffold(
+      appBarTitle: Text(
+        data.when(
+          data: (data) => data.attributes!.name,
+          loading: () => 'Loading...',
+          error: (err, stack) => 'Error',
+        ),
+      ),
+      body: RefreshableListView(
+        onRefresh: () async {
+          ref.invalidate(detailProvider);
+        },
+        children: [
+          Area(
+            child: data.when(
+              data: (data) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: constants.size.insetsLarge,
+                  ),
+                  child: Column(
+                    children: [
+                      Area(
+                        child: SongTitleCard(
+                          name: data.attributes!.name,
+                          artistName: data.attributes!.artistName,
+                          artworkUrl: data.attributes!.artwork.url300,
+                          artworkSize: _artworkSize,
+                          bgColorBase: data.attributes!.artwork.bgColor,
+                          fullDisplayed: true,
+                        ),
+                      ),
+                      AttributesTableCard(
+                        keyAreaWidth: _artworkSize,
+                        attributes: _getAttributesMap(data),
+                        bgColorBase: data.attributes!.artwork.bgColor,
+                      ),
+                    ],
+                  ),
+                );
+              },
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              error: (err, stack) => Center(
+                child: Text(err.toString()),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+Map<String, String?> _getAttributesMap(SongKind songKind) {
+  if (songKind.type == ResourceType.songs) {
+//     required String albumName,
+//     required String artistName,
+//     String? attribution, // Classical only
+//     List<String>? audioVariants, // Extended
+//     String? composerName,
+//     String? contentRating,
+//     int? discNumber,
+//     required int durationInMillis,
+//     EditorialNotes? editorialNotes,
+//     required List<String> genreNames,
+//     required bool hasLyrics,
+//     required bool isAppleDigitalMaster,
+//     String? isrc,
+//     int? movementCount, // Classical only
+//     String? movementName, // Classical only
+//     int? movementNumber, // Classical only
+//     required String name,
+//     PlayParameters? playParams,
+//     String? releaseDate,
+//     int? trackNumber,
+//     String? workName, // Classical only
+    final song = songKind as Songs;
+    return {
+      'Album': song.attributes!.albumName,
+      'Artist': song.attributes!.artistName,
+      'Composer': song.attributes!.composerName,
+      // 'Duration': song.attributes!.durationInMillis.toString(),
+      'Duration': Duration(milliseconds: song.attributes!.durationInMillis)
+          .toString()
+          .split('.')
+          .first,
+      'Genres': song.attributes!.genreNames.join(', '),
+      'Lyrics': song.attributes!.hasLyrics.toString(),
+      'Apple Digital Master': song.attributes!.isAppleDigitalMaster.toString(),
+      'Track Number': song.attributes!.trackNumber.toString(),
+    };
+  } else {
+    // String? albumName,
+    // required String artistName,
+    // required Artwork artwork,
+    // String? contentRating,
+    // int? discNumber,
+    // required int durationInMillis,
+    // required List<String> genreNames,
+    // required String name,
+    // PlayParameters? playParams,
+    // String? releaseDate,
+    // int? trackNumber,
+    final song = songKind as LibrarySongs;
+    return {
+      'Album': song.attributes!.albumName,
+      'Artist': song.attributes!.artistName,
+      'Duration': song.attributes!.durationInMillis.toString(),
+      'Genres': song.attributes!.genreNames.join(', '),
+      'Track Number': song.attributes!.trackNumber.toString(),
+    };
+  }
+}
