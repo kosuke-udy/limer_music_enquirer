@@ -8,14 +8,14 @@ class Area extends ConsumerWidget {
   /* ---------- Properties ---------- */
 
   final Widget? headline;
-  final Widget content;
+  final Widget child;
 
   /* ---------- Constructor ---------- */
 
   const Area({
     Key? key,
     this.headline,
-    required this.content,
+    required this.child,
   }) : super(key: key);
 
   /* ---------- Build ---------- */
@@ -34,7 +34,7 @@ class Area extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (headline != null) headline!,
-          content,
+          child,
         ],
       ),
     );

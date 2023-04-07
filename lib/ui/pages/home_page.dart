@@ -33,7 +33,7 @@ class HomePage extends ConsumerWidget {
               "Recently Played Songs",
               onTap: () => RecentlyPlayedSongsPageRoute().push(context),
             ),
-            content: recentlySongs.when(
+            child: recentlySongs.when(
               data: (songs) {
                 return SongCardListHorizontal(songs.sublist(0, 10));
               },
@@ -47,7 +47,7 @@ class HomePage extends ConsumerWidget {
           ),
           // Area(
           //   headline: const Headline("Recently Played Resources"),
-          //   content: recentlyResources.when(
+          //   child: recentlyResources.when(
           //     data: (resources) {
           //       // return AlbumCardList(
           //       //   albums.map((e) => AlbumCard(album: e)).toList(),

@@ -26,7 +26,7 @@ class RecentlyPlayedListPage extends ConsumerWidget {
         onRefresh: () async => ref.invalidate(recentlyPlayedSongsProvider),
         children: [
           Area(
-            content: recentlyPlayedSongs.when(
+            child: recentlyPlayedSongs.when(
               data: (songs) {
                 return SongCardListVertical(songs);
               },
