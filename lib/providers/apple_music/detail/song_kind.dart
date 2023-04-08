@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../api/apple_music_api/apple_music_api.dart';
-import '../../db/settings/ap_storefront.dart';
 
 part 'song_kind.g.dart';
 
@@ -10,29 +9,26 @@ class SongKindDetail extends _$SongKindDetail {
   final _client = AppleMusicApiClient();
 
   @override
-  Future<SongKind> build(
-    String id, {
+  Future<SongKind> build({
+    required String id,
+    required String storefront,
+    required languageTag,
     SongKind? data,
-    String? storefront,
   }) async {
     if (data == null) {
       state = const AsyncValue.loading();
     } else {
       state = AsyncData(data);
     }
-    return await _fetch(
-      id,
-      storefront ?? await ref.watch(userMainApStorefrontProvider.future),
-    );
-  }
 
-  Future<SongKind> _fetch(String id, String storefront) async {
-    final result = await _client.fetch<SongKind>(
+    final result = await _client.fetchResource<SongKind>(
       "https://api.music.apple.com/v1/catalog/$storefront/songs/$id",
       queryParameters: <String, dynamic>{
+        "l": languageTag,
         "include": "albums,artists,composers,library",
       },
     );
+    state = AsyncData(result[0]);
     return result[0];
   }
 }

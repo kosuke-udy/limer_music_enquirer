@@ -7,6 +7,7 @@ import '../../common_methods/color_extension.dart';
 import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
 import '../attributes_table/table.dart';
+import 'card_attributes.dart';
 import 'card_title.dart';
 
 class SongListCard extends ConsumerWidget {
@@ -49,13 +50,19 @@ class SongListCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final common = ref.watch(commonValuesProvider);
 
+    final attributes = <String, String?>{
+      "Artist": artistName,
+      "Album": albumName,
+      "Composer": composerName,
+    };
+
     return SizedBox(
       child: Stack(
         children: [
-          _bottomCard(
-            context,
-            ref,
-            common,
+          SongAttributesCard(
+            attributes: attributes,
+            keyAreaWidth: _artworkSize,
+            bgColorBase: bgColor,
           ),
           GestureDetector(
             onTap: () =>
@@ -70,39 +77,6 @@ class SongListCard extends ConsumerWidget {
               bgColorBase: bgColor,
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  /* ---------- Bottom Card ---------- */
-
-  Widget _bottomCard(
-    BuildContext context,
-    WidgetRef ref,
-    CommonValuesModel common,
-  ) {
-    final attributes = <String, String?>{
-      "Artist": artistName,
-      "Album": albumName,
-      "Composer": composerName,
-    };
-
-    return FilledCard(
-      elevation: 1,
-      color: bgColor?.aptCardBgColor(0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: _artworkSize + common.size.insetsSmall),
-          AttributesTable(
-            maxLines: 1,
-            attributes: attributes,
-            keyAreaWidth: _artworkSize,
-          ),
-          SizedBox(height: common.size.insetsSmall),
         ],
       ),
     );

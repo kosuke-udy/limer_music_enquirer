@@ -15,7 +15,7 @@ class RecentlyPlayedSongs extends _$RecentlyPlayedSongs {
   }
 
   Future<List<SongKind>> fetch() async {
-    return _client.fetch(
+    return _client.fetchResource(
       "https://api.music.apple.com/v1/me/recent/played/tracks",
       queryParameters: <String, dynamic>{
         "l": "",

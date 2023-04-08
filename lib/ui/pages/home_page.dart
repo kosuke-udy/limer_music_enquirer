@@ -4,7 +4,7 @@ import 'package:limer_music_enquirer/router/routes.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
 import '../components/components.dart';
-import '../../providers/apple_music/apple_music.dart';
+import '../../providers/apple_music/providers.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);

@@ -11,6 +11,7 @@ void main() {
 
   final logger = AppLogger.get("main.dart");
 
+  // Log the operating system.
   final osName = Platform.operatingSystem;
   logger.info("Running on $osName");
 

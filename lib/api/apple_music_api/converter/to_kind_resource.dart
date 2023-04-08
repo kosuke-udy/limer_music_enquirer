@@ -17,6 +17,8 @@ T convertToResourceKind<T extends ResourceKind>(
     return convertToPlaylistKind(json) as T;
   } else if (T == SongKind) {
     return convertToSongKind(json) as T;
+  } else if (T == Storefronts) {
+    return Storefronts.fromJson(json) as T;
   } else if (json["type"] == "albums") {
     return Albums.fromJson(json) as T;
   } else if (json["type"] == "library-albums") {
@@ -37,18 +39,6 @@ T convertToResourceKind<T extends ResourceKind>(
     return Songs.fromJson(json) as T;
   } else if (json["type"] == "library-songs") {
     return LibrarySongs.fromJson(json) as T;
-    // } else if (json["type"] == "tracks") {
-    //   return convertToTrackKind(json) as T;
-    // } else if (json["type"] == "album") {
-    //   return convertToAlbumKind(json) as T;
-    // } else if (json["type"] == "artist") {
-    //   return convertToArtistKind(json) as T;
-    // } else if (json["type"] == "music-video") {
-    //   return convertToMusicVideoKind(json) as T;
-    // } else if (json["type"] == "playlist") {
-    //   return convertToPlaylistKind(json) as T;
-    // } else if (json["type"] == "song") {
-    //   return convertToSongKind(json) as T;
   } else {
     throw NotSupportedTypeError(json["type"]);
   }

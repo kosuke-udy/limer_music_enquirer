@@ -2,7 +2,7 @@
 
 // final recentlyPlayedResourcesProvider =
 //     FutureProvider.autoDispose<List<ResourceKind>>((ref) async {
-//   return await _client.fetch(
+//   return await _client.fetchResource(
 //     "https://api.music.apple.com/v1/me/recent/played",
 //     queryParameters: <String, dynamic>{
 //       "include": 'albums,library-albums',
@@ -27,7 +27,7 @@ class RecentlyPlayedResources extends _$RecentlyPlayedResources {
   }
 
   Future<List<ResourceKind>> fetch() async {
-    return _client.fetch(
+    return _client.fetchResource(
       "https://api.music.apple.com/v1/me/recent/played",
       queryParameters: <String, dynamic>{
         "include": 'albums,library-albums',

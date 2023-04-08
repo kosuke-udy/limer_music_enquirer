@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
-import '../../providers/apple_music/apple_music.dart';
+import '../../providers/apple_music/providers.dart';
+import '../../providers/db/providers.dart';
 // import '../../router/routes.dart';
 import '../common_methods/color_extension.dart';
 import '../common_parts/common_parts.dart';
 import '../components/components.dart';
 import '../common_values/common_values.dart';
 
-class SongKindDetailPage extends ConsumerWidget {
+class SongKindDetailPage extends HookConsumerWidget {
   /* ---------- Statics ---------- */
 
   static const _artworkSize = 100.0;
@@ -17,28 +18,35 @@ class SongKindDetailPage extends ConsumerWidget {
   /* ---------- Properties ---------- */
 
   final String id;
-  late final SongKindDetailProvider detailProvider;
+  final SongKind? data;
 
   /* ---------- Constructor ---------- */
 
-  SongKindDetailPage(
+  const SongKindDetailPage(
     this.id, {
     Key? key,
-    SongKind? data,
-  }) : super(key: key) {
-    detailProvider = songKindDetailProvider(id, data: data);
-  }
+    this.data,
+  }) : super(key: key);
 
   /* ---------- Build ---------- */
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final common = ref.watch(commonValuesProvider);
-    final data = ref.watch(detailProvider);
+
+    final storefronts = ref.watch(userStorefrontsProvider);
+    final detailProvider = songKindDetailProvider(
+      id: id,
+      storefront: "us",
+      languageTag: "en-US",
+      data: data,
+    );
+
+    final songDetail = ref.watch(detailProvider);
 
     return PageScaffold(
       appBarTitle: Text(
-        data.when(
+        songDetail.when(
           data: (data) => data.attributes!.name,
           loading: () => 'Loading...',
           error: (err, stack) => 'Error',
@@ -50,8 +58,8 @@ class SongKindDetailPage extends ConsumerWidget {
         },
         children: [
           Area(
-            child: data.when(
-              data: (data) {
+            child: songDetail.when(
+              data: (song) {
                 return Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: common.size.insetsLarge,
@@ -60,18 +68,18 @@ class SongKindDetailPage extends ConsumerWidget {
                     children: [
                       Area(
                         child: SongTitleCard(
-                          name: data.attributes!.name,
-                          artistName: data.attributes!.artistName,
-                          artworkUrl: data.attributes!.artwork.url300,
+                          name: song.attributes!.name,
+                          artistName: song.attributes!.artistName,
+                          artworkUrl: song.attributes!.artwork.url300,
                           artworkSize: _artworkSize,
-                          bgColorBase: data.attributes!.artwork.bgColor,
+                          bgColorBase: song.attributes!.artwork.bgColor,
                           fullDisplayed: true,
                         ),
                       ),
                       AttributesTableCard(
                         keyAreaWidth: _artworkSize,
-                        attributes: _getAttributesMap(data),
-                        bgColorBase: data.attributes!.artwork.bgColor,
+                        attributes: _getAttributesMap(song),
+                        bgColorBase: song.attributes!.artwork.bgColor,
                       ),
                     ],
                   ),

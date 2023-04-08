@@ -1,6 +1,9 @@
 import 'models.dart';
 
 enum ResourceType {
+  // Storefronts
+  storefronts("storefronts", Storefronts),
+
   // Albums
   albums("albums", Albums),
   libraryAlbums("library-albums", LibraryAlbums),
@@ -44,6 +47,7 @@ enum ResourceType {
   // personalRecommendations("personal-recommendations");
 
   static const classes = [
+    Storefronts,
     Albums,
     LibraryAlbums,
     Artists,
@@ -65,6 +69,7 @@ enum ResourceType {
   ];
 
   static const jsonValues = [
+    "storefronts",
     "albums",
     "library-albums",
     "artists",

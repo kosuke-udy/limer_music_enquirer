@@ -29,15 +29,19 @@ class SongAttributesCard extends ConsumerWidget {
     return FilledCard(
       elevation: 1,
       color: bgColorBase?.aptCardBgColor(0),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          // horizontal: common.size.insetsSmall,
-          vertical: common.size.insetsMedium,
-        ),
-        child: AttributesTable(
-          keyAreaWidth: keyAreaWidth,
-          attributes: attributes,
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: keyAreaWidth + common.size.insetsSmall),
+          AttributesTable(
+            maxLines: 1,
+            attributes: attributes,
+            keyAreaWidth: keyAreaWidth,
+          ),
+          SizedBox(height: common.size.insetsSmall),
+        ],
       ),
     );
   }

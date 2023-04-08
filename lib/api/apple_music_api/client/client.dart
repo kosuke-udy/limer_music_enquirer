@@ -61,15 +61,35 @@ class AppleMusicApiClient {
     _client.dio.options.queryParameters = queryParameters;
   }
 
-  Future<List<T>> fetch<T extends ResourceKind>(String path,
+  Future<List<T>> fetchResource<T extends ResourceKind>(String path,
       {Map<String, dynamic>? queryParameters}) async {
-    final response = await dio.get(
-      path,
-      queryParameters: queryParameters,
-    );
+    try {
+      final response = await dio.get(
+        path,
+        queryParameters: queryParameters,
+      );
 
-    if (logEnabled) logger(response);
+      if (logEnabled) logger(response);
 
-    return convertToList(response.data);
+      return convertToList(response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<List<dynamic>> fetch(String path,
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response = await dio.get(
+        path,
+        queryParameters: queryParameters,
+      );
+
+      if (logEnabled) logger(response);
+
+      return response.data["data"] as List<Map<String, dynamic>>;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

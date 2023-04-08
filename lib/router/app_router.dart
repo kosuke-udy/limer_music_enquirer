@@ -10,8 +10,6 @@ part 'app_router.g.dart';
 
 @Riverpod(keepAlive: true)
 class AppRouter extends _$AppRouter {
-  final _apClient = AppleMusicApiClient();
-
   @override
   GoRouter build() {
     return GoRouter(
@@ -26,13 +24,6 @@ class AppRouter extends _$AppRouter {
           },
         ),
       ],
-      redirect: (context, state) {
-        if (_apClient.isInitialized && _apClient.isAuthorizedByUser) {
-          return null;
-        } else {
-          return "/loading";
-        }
-      },
     );
   }
 }
