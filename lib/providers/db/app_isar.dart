@@ -48,7 +48,6 @@ class AppIsar extends _$AppIsar {
         ));
 
       if (const String.fromEnvironment("flavor") == "dev") {
-        print(0);
         await _isar.storefrontSettings.put(StorefrontSettings()
           ..storefronts.add(
             Storefront()
