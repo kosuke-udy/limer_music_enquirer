@@ -6,12 +6,18 @@ import 'providers/db/providers.dart';
 import 'ui/common_values/common_values.dart';
 import 'router/app_router.dart';
 
+final initProvider = FutureProvider((ref) async {
+  await initClient();
+  await ref.watch(appIsarProvider.notifier).ensureInitialized();
+  return;
+});
+
 class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(init).when(
+    return ref.watch(initProvider).when(
           data: (data) => MaterialApp.router(
             title: 'Limer',
             routerConfig: ref.watch(appRouterProvider),
@@ -26,9 +32,3 @@ class App extends ConsumerWidget {
         );
   }
 }
-
-final init = FutureProvider((ref) async {
-  await initClient();
-  await ref.watch(appIsarProvider.notifier).ensureInitialized();
-  return;
-});
