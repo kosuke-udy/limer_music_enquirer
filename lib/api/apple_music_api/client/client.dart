@@ -87,7 +87,7 @@ class AppleMusicApiClient {
 
       if (logEnabled) logger(response);
 
-      return response.data["data"] as List<Map<String, dynamic>>;
+      return response.data["data"] as List<dynamic>;
     } catch (e) {
       rethrow;
     }

@@ -15,19 +15,16 @@ class AppIsar extends _$AppIsar {
 
   @override
   Isar build() {
-    if (!_isInitialized) {
-      ensureInitialized();
-    }
     return _isar;
   }
 
   Future<void> ensureInitialized() async {
-    final allStorefronts = await _isar.storefrontSettings.where().findAll();
+    if (_isInitialized) return;
 
-    if (allStorefronts.isEmpty) {
+    final allStorefronts = await _isar.storefrontSettings.where().findAll();
+    if (allStorefronts.isEmpty || kDebugMode) {
       init();
     }
-
     _isInitialized = true;
   }
 
@@ -39,20 +36,20 @@ class AppIsar extends _$AppIsar {
     final userStorefront = Storefronts.fromJson(response[0]);
 
     await _isar.writeTxn(() async {
-      _isar.clear();
+      await _isar.clear();
 
-      _isar.displayMetadataSettings.put(DisplayMetadataSettings());
+      await _isar.displayMetadataSettings.put(DisplayMetadataSettings());
 
-      _isar.storefrontSettings.put(StorefrontSettings()
+      await _isar.storefrontSettings.put(StorefrontSettings()
         ..storefronts.add(
           Storefront()
             ..country = userStorefront.id
             ..language = userStorefront.attributes!.defaultLanguageTag,
         ));
 
-      if (kDebugMode) {
+      if (const String.fromEnvironment("flavor") == "dev") {
         print(0);
-        _isar.storefrontSettings.put(StorefrontSettings()
+        await _isar.storefrontSettings.put(StorefrontSettings()
           ..storefronts.add(
             Storefront()
               ..country = "us"
