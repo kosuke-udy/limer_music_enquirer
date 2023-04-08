@@ -7,21 +7,18 @@
             "type": "dart",
             "args": [
                 "--enable-impeller",
-                // "-d",
-                // "`just booted-ios-sim-id`"
+                "--dart-define-from-file=dart_defines/dev.json",
             ]
-        },
-        {
-            "name": "songs_inspector (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
         },
         {
             "name": "songs_inspector (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "args": [
+                "--enable-impeller",
+                "--dart-define-from-file=dart_defines/prod.json",
+            ]
         }
     ],
 }

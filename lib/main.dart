@@ -15,6 +15,10 @@ void main() {
   final osName = Platform.operatingSystem;
   logger.info("Running on $osName");
 
+  // Log the flavor.
+  const flavor = String.fromEnvironment("flavor");
+  logger.info("Running in $flavor flavor");
+
   runApp(
     const ProviderScope(
       child: App(),
