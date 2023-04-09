@@ -2,7 +2,6 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
-import '../api/apple_music_api/apple_music_api.dart';
 import 'nav_destinations.dart';
 import 'routes.dart';
 
