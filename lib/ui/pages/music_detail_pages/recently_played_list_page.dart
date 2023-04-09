@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
-import '../../providers/apple_music/providers.dart';
-import '../../../router/routes.dart';
-import '../components/components.dart';
+import '../../../providers/apple_music/providers.dart';
+import '../../../../router/routes.dart';
+import '../../components/components.dart';
 
 class RecentlyPlayedListPage extends ConsumerWidget {
   const RecentlyPlayedListPage({Key? key}) : super(key: key);
