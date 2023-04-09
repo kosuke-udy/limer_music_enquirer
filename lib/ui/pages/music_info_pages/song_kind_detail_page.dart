@@ -1,15 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
 import '../../../providers/apple_music/providers.dart';
 import '../../../providers/db/providers.dart';
-// import '../../router/routes.dart';
-import '../../common_methods/color_extension.dart';
-import '../../common_parts/common_parts.dart';
-import '../../components/components.dart';
 import '../../common_values/common_values.dart';
+import '../../components/components.dart';
 
 class SongKindDetailPage extends HookConsumerWidget {
   /* ---------- Statics ---------- */
