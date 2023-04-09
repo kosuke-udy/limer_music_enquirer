@@ -27,7 +27,10 @@ class Headline extends ConsumerWidget {
           children: [
             Text(
               text,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall!
+                  .copyWith(fontSize: 22),
             ),
             SizedBox(width: common.size.insetsSmall),
             onTap != null && onTap != () {}
