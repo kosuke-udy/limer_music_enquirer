@@ -1,7 +1,8 @@
 import 'package:isar/isar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../db/schemas.dart';
+import '../../../db/settings/metadata_locale.dart';
+export '../../../db/settings/metadata_locale.dart';
 import '../app_isar.dart';
 
 part 'metadata_locales.g.dart';

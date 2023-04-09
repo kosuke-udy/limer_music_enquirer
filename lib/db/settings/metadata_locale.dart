@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 
 part 'metadata_locale.g.dart';
@@ -14,6 +15,10 @@ class MetadataLocaleSetting {
 
 @embedded
 class MetadataLocale {
+  MetadataLocale();
+
   String countryCode = "";
   String languageCode = "";
+
+  Locale toLocale() => Locale(languageCode, countryCode.toUpperCase());
 }
