@@ -9,8 +9,8 @@ part 'app_isar.g.dart';
 
 @Riverpod(keepAlive: true)
 class AppIsar extends _$AppIsar {
-  static final _isar =
-      Isar.openSync([StorefrontSettingsSchema, DisplayMetadataSettingsSchema]);
+  static final _isar = Isar.openSync(
+      [MetadataLocaleSettingSchema, MetadataDisplaySettingsSchema]);
   bool _isInitialized = false;
 
   @override
@@ -21,8 +21,9 @@ class AppIsar extends _$AppIsar {
   Future<void> ensureInitialized() async {
     if (_isInitialized) return;
 
-    final allStorefronts = await _isar.storefrontSettings.where().findAll();
-    if (allStorefronts.isEmpty || kDebugMode) {
+    final allUserMetadataLocales =
+        await _isar.metadataLocaleSettings.where().findAll();
+    if (allUserMetadataLocales.isEmpty || kDebugMode) {
       init();
     }
     _isInitialized = true;
@@ -38,21 +39,21 @@ class AppIsar extends _$AppIsar {
     await _isar.writeTxn(() async {
       await _isar.clear();
 
-      await _isar.displayMetadataSettings.put(DisplayMetadataSettings());
+      await _isar.metadataDisplaySettings.put(MetadataDisplaySettings());
 
-      await _isar.storefrontSettings.put(StorefrontSettings()
-        ..storefronts.add(
-          Storefront()
-            ..country = userStorefront.id
-            ..language = userStorefront.attributes!.defaultLanguageTag,
+      await _isar.metadataLocaleSettings.put(MetadataLocaleSetting()
+        ..list.add(
+          MetadataLocale()
+            ..countryCode = userStorefront.id
+            ..languageCode = userStorefront.attributes!.defaultLanguageTag,
         ));
 
       if (const String.fromEnvironment("flavor") == "dev") {
-        await _isar.storefrontSettings.put(StorefrontSettings()
-          ..storefronts.add(
-            Storefront()
-              ..country = "us"
-              ..language = "en-US",
+        await _isar.metadataLocaleSettings.put(MetadataLocaleSetting()
+          ..list.add(
+            MetadataLocale()
+              ..countryCode = "us"
+              ..languageCode = "en-US",
           ));
       }
     });

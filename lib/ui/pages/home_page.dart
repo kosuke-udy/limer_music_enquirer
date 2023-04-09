@@ -15,13 +15,6 @@ class HomePage extends ConsumerWidget {
     // final recentlyResources = ref.watch(recentlyPlayedResourcesProvider);
 
     return PageScaffold(
-      // topBar: SliverAppBar.medium(
-      //   floating: true,
-      //   pinned: true,
-      //   snap: true,
-      //   stretch: false,
-      //   title: const Text("Home"),
-      // ),
       appBarTitle: const Text("Home"),
       body: RefreshableListView(
         onRefresh: () async {
@@ -45,25 +38,6 @@ class HomePage extends ConsumerWidget {
               ),
             ),
           ),
-          // Area(
-          //   headline: const Headline("Recently Played Resources"),
-          //   child: recentlyResources.when(
-          //     data: (resources) {
-          //       // return AlbumCardList(
-          //       //   albums.map((e) => AlbumCard(album: e)).toList(),
-          //       // );
-          //       return const Center(
-          //         child: Text("Not implemented yet"),
-          //       );
-          //     },
-          //     loading: () => const Center(
-          //       child: CircularProgressIndicator(),
-          //     ),
-          //     error: (err, stack) => Center(
-          //       child: Text(err.toString()),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

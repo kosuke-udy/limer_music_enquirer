@@ -5,20 +5,20 @@ import '../../../api/apple_music_api/apple_music_api.dart';
 part 'ap_song_metadata.g.dart';
 
 @embedded
-class ApSongDisplayMetadataSettings {
-  const ApSongDisplayMetadataSettings({
-    this.order = SongMetadata.catalogValues,
-    this.classicalOrder = SongMetadata.classicalValues,
+class ApSongMetadataDisplaySettings {
+  const ApSongMetadataDisplaySettings({
+    this.order = ApSongMetadata.catalogValues,
+    this.classicalOrder = ApSongMetadata.classicalValues,
   });
 
   @Enumerated(EnumType.ordinal)
-  final List<SongMetadata> order;
+  final List<ApSongMetadata> order;
 
   @Enumerated(EnumType.ordinal)
-  final List<SongMetadata> classicalOrder;
+  final List<ApSongMetadata> classicalOrder;
 }
 
-enum SongMetadata {
+enum ApSongMetadata {
   albumName,
   artistName,
   attribution,
@@ -39,7 +39,7 @@ enum SongMetadata {
   trackNumber,
   workName;
 
-  static const List<SongMetadata> libraryValues = [
+  static const List<ApSongMetadata> libraryValues = [
     albumName,
     artistName,
     contentRating,
@@ -51,7 +51,7 @@ enum SongMetadata {
     trackNumber,
   ];
 
-  static const List<SongMetadata> catalogValues = [
+  static const List<ApSongMetadata> catalogValues = [
     albumName,
     artistName,
     contentRating,
@@ -66,7 +66,7 @@ enum SongMetadata {
     trackNumber,
   ];
 
-  static const List<SongMetadata> classicalValues = [
+  static const List<ApSongMetadata> classicalValues = [
     attribution,
     composerName,
     movementCount,
@@ -78,43 +78,43 @@ enum SongMetadata {
   String? getStringFromSongs(SongsAttributes atr) {
     if (catalogValues.contains(this) || classicalValues.contains(this)) {
       switch (this) {
-        case SongMetadata.albumName:
+        case ApSongMetadata.albumName:
           return atr.albumName;
-        case SongMetadata.artistName:
+        case ApSongMetadata.artistName:
           return atr.artistName;
-        case SongMetadata.attribution:
+        case ApSongMetadata.attribution:
           return atr.attribution;
-        case SongMetadata.audioVariants:
+        case ApSongMetadata.audioVariants:
           return atr.audioVariants?.join(", ");
-        case SongMetadata.composerName:
+        case ApSongMetadata.composerName:
           return atr.composerName;
-        case SongMetadata.contentRating:
+        case ApSongMetadata.contentRating:
           return atr.contentRating;
-        case SongMetadata.discNumber:
+        case ApSongMetadata.discNumber:
           return atr.discNumber?.toString();
-        case SongMetadata.durationInMillis:
+        case ApSongMetadata.durationInMillis:
           return _durationInMillisToString(atr.durationInMillis);
-        case SongMetadata.genreNames:
+        case ApSongMetadata.genreNames:
           return atr.genreNames.join(", ");
-        case SongMetadata.hasLyrics:
+        case ApSongMetadata.hasLyrics:
           return atr.hasLyrics ? "Yes" : "No";
-        case SongMetadata.isAppleDigitalMaster:
+        case ApSongMetadata.isAppleDigitalMaster:
           return atr.isAppleDigitalMaster ? "Yes" : "No";
-        case SongMetadata.isrc:
+        case ApSongMetadata.isrc:
           return atr.isrc;
-        case SongMetadata.movementCount:
+        case ApSongMetadata.movementCount:
           return atr.movementCount?.toString();
-        case SongMetadata.movementName:
+        case ApSongMetadata.movementName:
           return atr.movementName;
-        case SongMetadata.movementNumber:
+        case ApSongMetadata.movementNumber:
           return atr.movementNumber?.toString();
-        case SongMetadata.name:
+        case ApSongMetadata.name:
           return atr.name;
-        case SongMetadata.releaseDate:
+        case ApSongMetadata.releaseDate:
           return atr.releaseDate;
-        case SongMetadata.trackNumber:
+        case ApSongMetadata.trackNumber:
           return atr.trackNumber?.toString();
-        case SongMetadata.workName:
+        case ApSongMetadata.workName:
           return atr.workName;
         default:
           return null;
@@ -126,23 +126,23 @@ enum SongMetadata {
   String? getStringFromLibrarySongs(LibrarySongsAttributes atr) {
     if (libraryValues.contains(this)) {
       switch (this) {
-        case SongMetadata.albumName:
+        case ApSongMetadata.albumName:
           return atr.albumName;
-        case SongMetadata.artistName:
+        case ApSongMetadata.artistName:
           return atr.artistName;
-        case SongMetadata.contentRating:
+        case ApSongMetadata.contentRating:
           return atr.contentRating;
-        case SongMetadata.discNumber:
+        case ApSongMetadata.discNumber:
           return atr.discNumber?.toString();
-        case SongMetadata.durationInMillis:
+        case ApSongMetadata.durationInMillis:
           return _durationInMillisToString(atr.durationInMillis);
-        case SongMetadata.genreNames:
+        case ApSongMetadata.genreNames:
           return atr.genreNames.join(", ");
-        case SongMetadata.name:
+        case ApSongMetadata.name:
           return atr.name;
-        case SongMetadata.releaseDate:
+        case ApSongMetadata.releaseDate:
           return atr.releaseDate;
-        case SongMetadata.trackNumber:
+        case ApSongMetadata.trackNumber:
           return atr.trackNumber?.toString();
         default:
           return null;

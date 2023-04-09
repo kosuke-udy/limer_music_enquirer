@@ -4,13 +4,13 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../db/schemas.dart';
 import '../app_isar.dart';
 
-part 'storefront.g.dart';
+part 'metadata_locales.g.dart';
 
 @Riverpod(keepAlive: true)
-class UserStorefronts extends _$UserStorefronts {
+class UserMetadataLocales extends _$UserMetadataLocales {
   @override
-  List<Storefront> build() {
+  List<MetadataLocale> build() {
     final appIsar = ref.watch(appIsarProvider);
-    return appIsar.storefrontSettings.where().findAllSync()[0].storefronts;
+    return appIsar.metadataLocaleSettings.where().findAllSync()[0].list;
   }
 }
