@@ -1,5 +1,5 @@
 {
-    "flavor": "prod",
-    "appName": "Limer",
-    "appIdSuffix": ""
+    "FLAVOR": "prod",
+    "APP_NAME": "Limer",
+    "APP_ID_SUFFIX": ""
 }
