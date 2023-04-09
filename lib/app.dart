@@ -7,7 +7,7 @@ import 'ui/common_values/common_values.dart';
 import 'router/app_router.dart';
 
 final initProvider = FutureProvider((ref) async {
-  await initClient();
+  await initAppleMusicApiClient();
   await ref.watch(appIsarProvider.notifier).ensureInitialized();
   return;
 });

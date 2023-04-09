@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../utils/app_logger.dart';
 
-Future<void> initClient() async {
+Future<void> initAppleMusicApiClient() async {
   // Get Tokens
   // devToken = await generateDeveloperToken();
   // userToken = await requestUserToken(devToken);
