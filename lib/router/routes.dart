@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../providers/apple_music/providers.dart';
+import '../ui/pages/settings_sub_pages/metadata_locale_setting_page.dart';
 import '../ui/pages/home_page.dart';
 import '../ui/pages/music_info_pages/recently_played_list_page.dart';
 import '../ui/pages/music_info_pages/song_kind_detail_page.dart';
@@ -41,28 +42,6 @@ class HomePageRoute extends GoRouteData {
   }
 }
 
-@TypedGoRoute<SettingsPageRoute>(
-  path: "/settings",
-)
-class SettingsPageRoute extends GoRouteData {
-  final String? from;
-
-  SettingsPageRoute({this.from});
-
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) {
-    if (from == "nav") {
-      return const NoTransitionPage<void>(
-        child: SettingsPage(),
-      );
-    } else {
-      return const MaterialPage<void>(
-        child: SettingsPage(),
-      );
-    }
-  }
-}
-
 @TypedGoRoute<RecentlyPlayedSongsPageRoute>(
   path: "/recently-played",
 )
@@ -88,5 +67,39 @@ class SongKindDetailPageRoute extends GoRouteData {
       id,
       data: $extra,
     );
+  }
+}
+
+@TypedGoRoute<SettingsPageRoute>(
+  path: "/settings",
+  routes: [
+    TypedGoRoute<MetadataLocaleSettingPageRoute>(
+      path: "metadata-locale",
+    )
+  ],
+)
+class SettingsPageRoute extends GoRouteData {
+  final String? from;
+
+  SettingsPageRoute({this.from});
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    if (from == "nav") {
+      return const NoTransitionPage<void>(
+        child: SettingsPage(),
+      );
+    } else {
+      return const MaterialPage<void>(
+        child: SettingsPage(),
+      );
+    }
+  }
+}
+
+class MetadataLocaleSettingPageRoute extends GoRouteData {
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const MetadataLocaleSettingPage();
   }
 }
