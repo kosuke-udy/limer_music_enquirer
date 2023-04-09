@@ -48,7 +48,7 @@ class AppIsar extends _$AppIsar {
             ..languageCode = userStorefront.attributes!.defaultLanguageTag,
         ));
 
-      if (const String.fromEnvironment("flavor") == "dev") {
+      if (const String.fromEnvironment("FLAVOR") == "dev") {
         await _isar.metadataLocaleSettings.put(MetadataLocaleSetting()
           ..list.add(
             MetadataLocale()
