@@ -1,11 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../providers/apple_music/providers.dart';
 import '../ui/pages/home_page.dart';
 import '../ui/pages/recently_played_list_page.dart';
+import '../ui/pages/settings_page.dart';
 import '../ui/pages/song_kind_detail_page.dart';
 
 part 'routes.g.dart';
@@ -24,9 +23,43 @@ class RootRoute extends GoRouteData {
   path: "/home",
 )
 class HomePageRoute extends GoRouteData {
+  final String? from;
+
+  HomePageRoute({this.from});
+
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const HomePage();
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    if (from != null && from == "nav") {
+      return const NoTransitionPage<void>(
+        child: HomePage(),
+      );
+    } else {
+      return const MaterialPage<void>(
+        child: HomePage(),
+      );
+    }
+  }
+}
+
+@TypedGoRoute<SettingsPageRoute>(
+  path: "/settings",
+)
+class SettingsPageRoute extends GoRouteData {
+  final String? from;
+
+  SettingsPageRoute({this.from});
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    if (from == "nav") {
+      return const NoTransitionPage<void>(
+        child: SettingsPage(),
+      );
+    } else {
+      return const MaterialPage<void>(
+        child: SettingsPage(),
+      );
+    }
   }
 }
 

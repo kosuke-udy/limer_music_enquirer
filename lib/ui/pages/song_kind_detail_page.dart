@@ -34,24 +34,18 @@ class SongKindDetailPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final common = ref.watch(commonValuesProvider);
 
-    final storefronts = ref.watch(userStorefrontsProvider);
+    final storefront = ref.watch(userStorefrontsProvider)[0];
     final detailProvider = songKindDetailProvider(
       id: id,
-      storefront: "us",
-      languageTag: "en-US",
+      storefront: storefront.country,
+      languageTag: storefront.language,
       data: data,
     );
 
     final songDetail = ref.watch(detailProvider);
 
     return PageScaffold(
-      appBarTitle: Text(
-        songDetail.when(
-          data: (data) => data.attributes!.name,
-          loading: () => 'Loading...',
-          error: (err, stack) => 'Error',
-        ),
-      ),
+      appBarTitle: const Text("Detail"),
       body: RefreshableListView(
         onRefresh: () async {
           ref.invalidate(detailProvider);

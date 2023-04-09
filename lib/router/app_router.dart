@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
@@ -19,6 +20,13 @@ class AppRouter extends _$AppRouter {
             return ScreenScaffold(
               body: child,
               destinations: ref.watch(navDestinationsProvider),
+              onDestinationSelected: (newIndex) {
+                if (newIndex == 0) {
+                  HomePageRoute().go(context);
+                } else if (newIndex == 2) {
+                  SettingsPageRoute().go(context);
+                }
+              },
             );
           },
         ),

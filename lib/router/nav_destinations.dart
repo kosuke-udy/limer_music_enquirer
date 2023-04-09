@@ -14,6 +14,10 @@ class NavDestinations extends _$NavDestinations {
         labelText: 'Home',
       ),
       NavWidgetDestination(
+        icon: const Icon(Icons.search),
+        labelText: 'Search',
+      ),
+      NavWidgetDestination(
         icon: const Icon(Icons.settings),
         labelText: 'Settings',
       ),

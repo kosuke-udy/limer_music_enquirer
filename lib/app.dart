@@ -21,7 +21,9 @@ class App extends ConsumerWidget {
           data: (data) => MaterialApp.router(
             title: 'Limer',
             routerConfig: ref.watch(appRouterProvider),
-            theme: ref.watch(commonValuesProvider).theme,
+            theme: ref.watch(commonValuesProvider).theme.copyWith(
+                  splashFactory: NoSplash.splashFactory,
+                ),
             debugShowCheckedModeBanner: false,
           ),
           loading: () => Container(),
