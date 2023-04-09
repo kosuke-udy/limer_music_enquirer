@@ -5,17 +5,17 @@ import '../../../api/apple_music_api/apple_music_api.dart';
 part 'ap_song_metadata.g.dart';
 
 @embedded
-class ApSongMetadataDisplaySettings {
-  const ApSongMetadataDisplaySettings({
-    this.order = ApSongMetadata.catalogValues,
-    this.classicalOrder = ApSongMetadata.classicalValues,
+class ApSongMetadataOrderSetting {
+  const ApSongMetadataOrderSetting({
+    this.catalog = ApSongMetadata.catalogValues,
+    this.classical = ApSongMetadata.classicalValues,
   });
 
   @Enumerated(EnumType.ordinal)
-  final List<ApSongMetadata> order;
+  final List<ApSongMetadata> catalog;
 
   @Enumerated(EnumType.ordinal)
-  final List<ApSongMetadata> classicalOrder;
+  final List<ApSongMetadata> classical;
 }
 
 enum ApSongMetadata {
