@@ -3,9 +3,9 @@ import 'package:go_router/go_router.dart';
 
 import '../providers/apple_music/providers.dart';
 import '../ui/pages/home_page.dart';
-import '../ui/pages/recently_played_list_page.dart';
+import '../ui/pages/music_info_pages/recently_played_list_page.dart';
+import '../ui/pages/music_info_pages/song_kind_detail_page.dart';
 import '../ui/pages/settings_page.dart';
-import '../ui/pages/song_kind_detail_page.dart';
 
 part 'routes.g.dart';
 
