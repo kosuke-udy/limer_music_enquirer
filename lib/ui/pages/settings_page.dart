@@ -5,7 +5,6 @@ import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 import '../../router/routes.dart';
 import '../common_parts/common_parts.dart';
 import '../common_values/common_values.dart';
-import '../components/components.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({Key? key}) : super(key: key);

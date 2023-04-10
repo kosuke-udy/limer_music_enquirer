@@ -6,5 +6,3 @@ export 'song_card/cards_gathered.dart';
 export 'song_card/list_horizontal.dart';
 export 'song_card/list_vertical_list.dart';
 export 'song_card/card_title.dart';
-export 'area.dart';
-export 'headline.dart';
