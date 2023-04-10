@@ -34,6 +34,7 @@ dependencies:
   udy_flutter_layout:
     git: 
       url: https://github.com/kosuke-udy/udy_flutter_layout.git
+  reorderables: ^0.6.0
 
 dev_dependencies:
   build_runner: ^2.3.3
