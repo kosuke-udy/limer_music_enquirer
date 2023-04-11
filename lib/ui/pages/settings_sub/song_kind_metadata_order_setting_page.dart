@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:reorderables/reorderables.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
@@ -18,11 +17,11 @@ class SongKindMetadataOrderSettingPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final standardResult = useFuture(
-      ref.read(apSongStandardMetadataOrderProvider.future),
+      ref.read(apSongStandardMetadataOrderSettingProvider.future),
     );
 
     final classicalResult = useFuture(
-      ref.read(apSongClassicalMetadataOrderProvider.future),
+      ref.read(apSongClassicalMetadataOrderSettingProvider.future),
     );
 
     return PageScaffold(
@@ -69,7 +68,7 @@ class SongKindMetadataOrderSettingPage extends HookConsumerWidget {
                 final item = standardList.removeAt(oldIndex);
                 standardList.insert(newIndex, item);
                 ref
-                    .watch(apSongStandardMetadataOrderProvider.notifier)
+                    .watch(apSongStandardMetadataOrderSettingProvider.notifier)
                     .updateList(standardList);
               },
               children: standardList.map(
