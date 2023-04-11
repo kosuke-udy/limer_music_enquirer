@@ -76,6 +76,9 @@ class SongKindDetailPageRoute extends GoRouteData {
   routes: [
     TypedGoRoute<MetadataLocaleSettingPageRoute>(
       path: "metadata-locale",
+    ),
+    TypedGoRoute<SongKindMetadataOrderSettingPageRoute>(
+      path: "song-metadata-order",
     )
   ],
 )
@@ -102,5 +105,12 @@ class MetadataLocaleSettingPageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return const MetadataLocaleSettingPage();
+  }
+}
+
+class SongKindMetadataOrderSettingPageRoute extends GoRouteData {
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const SongKindMetadataOrderSettingPage();
   }
 }

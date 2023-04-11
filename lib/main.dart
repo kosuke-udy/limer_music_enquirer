@@ -16,7 +16,7 @@ void main() {
   logger.info("Running on $osName");
 
   // Log the flavor.
-  const flavor = String.fromEnvironment("flavor");
+  const flavor = String.fromEnvironment("FLAVOR");
   logger.info("Running in $flavor flavor");
 
   runApp(

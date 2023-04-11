@@ -1,154 +1,123 @@
 import 'package:isar/isar.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
+import 'metadata_info.dart';
+
+export 'metadata_info.dart';
 
 part 'ap_song_metadata.g.dart';
 
-@embedded
+typedef ApSongStandardMetadataInfo = MetadataInfo<ApSongStandardMetadata>;
+typedef ApSongClassicalMetadataInfo = MetadataInfo<ApSongClassicalMetadata>;
+
+@collection
 class ApSongMetadataOrderSetting {
-  const ApSongMetadataOrderSetting({
-    this.catalog = ApSongMetadata.catalogValues,
-    this.classical = ApSongMetadata.classicalValues,
-  });
+  ApSongMetadataOrderSetting();
+
+  Id? id;
+
+  bool classicalFirst = false;
 
   @Enumerated(EnumType.ordinal)
-  final List<ApSongMetadata> catalog;
+  List<ApSongStandardMetadata> standardValues = ApSongStandardMetadata.values;
+  List<bool> standardVisibilities =
+      List.filled(ApSongStandardMetadata.values.length, true);
 
   @Enumerated(EnumType.ordinal)
-  final List<ApSongMetadata> classical;
+  List<ApSongClassicalMetadata> classicalValues =
+      ApSongClassicalMetadata.values;
+  List<bool> classicalVisibilities =
+      List.filled(ApSongClassicalMetadata.values.length, true);
+
+  @ignore
+  List<MetadataInfo<ApSongStandardMetadata>> get standardInfoList =>
+      getMetadataInfoList<ApSongStandardMetadata>(
+          standardValues, standardVisibilities);
+
+  @ignore
+  List<MetadataInfo<ApSongClassicalMetadata>> get classicalInfoList =>
+      getMetadataInfoList<ApSongClassicalMetadata>(
+          classicalValues, classicalVisibilities);
 }
 
-enum ApSongMetadata {
-  albumName,
-  artistName,
-  attribution,
-  audioVariants,
-  composerName,
-  contentRating,
-  discNumber,
-  durationInMillis,
-  genreNames,
-  hasLyrics,
-  isAppleDigitalMaster,
-  isrc,
-  movementCount,
-  movementName,
-  movementNumber,
-  name,
-  releaseDate,
-  trackNumber,
-  workName;
+enum ApSongStandardMetadata {
+  albumName(true),
+  artistName(true),
+  audioVariants(false),
+  composerName(false),
+  contentRating(true),
+  discNumber(true),
+  durationInMillis(true),
+  genreNames(true),
+  hasLyrics(false),
+  isAppleDigitalMaster(false),
+  isrc(false),
+  name(true),
+  releaseDate(true),
+  trackNumber(true);
 
-  static const List<ApSongMetadata> libraryValues = [
-    albumName,
-    artistName,
-    contentRating,
-    discNumber,
-    durationInMillis,
-    genreNames,
-    name,
-    releaseDate,
-    trackNumber,
-  ];
+  final bool isLibrary;
 
-  static const List<ApSongMetadata> catalogValues = [
-    albumName,
-    artistName,
-    contentRating,
-    discNumber,
-    durationInMillis,
-    genreNames,
-    hasLyrics,
-    isAppleDigitalMaster,
-    isrc,
-    name,
-    releaseDate,
-    trackNumber,
-  ];
-
-  static const List<ApSongMetadata> classicalValues = [
-    attribution,
-    composerName,
-    movementCount,
-    movementName,
-    movementNumber,
-    workName,
-  ];
+  const ApSongStandardMetadata(this.isLibrary);
 
   String? getStringFromSongs(SongsAttributes atr) {
-    if (catalogValues.contains(this) || classicalValues.contains(this)) {
-      switch (this) {
-        case ApSongMetadata.albumName:
-          return atr.albumName;
-        case ApSongMetadata.artistName:
-          return atr.artistName;
-        case ApSongMetadata.attribution:
-          return atr.attribution;
-        case ApSongMetadata.audioVariants:
-          return atr.audioVariants?.join(", ");
-        case ApSongMetadata.composerName:
-          return atr.composerName;
-        case ApSongMetadata.contentRating:
-          return atr.contentRating;
-        case ApSongMetadata.discNumber:
-          return atr.discNumber?.toString();
-        case ApSongMetadata.durationInMillis:
-          return _durationInMillisToString(atr.durationInMillis);
-        case ApSongMetadata.genreNames:
-          return atr.genreNames.join(", ");
-        case ApSongMetadata.hasLyrics:
-          return atr.hasLyrics ? "Yes" : "No";
-        case ApSongMetadata.isAppleDigitalMaster:
-          return atr.isAppleDigitalMaster ? "Yes" : "No";
-        case ApSongMetadata.isrc:
-          return atr.isrc;
-        case ApSongMetadata.movementCount:
-          return atr.movementCount?.toString();
-        case ApSongMetadata.movementName:
-          return atr.movementName;
-        case ApSongMetadata.movementNumber:
-          return atr.movementNumber?.toString();
-        case ApSongMetadata.name:
-          return atr.name;
-        case ApSongMetadata.releaseDate:
-          return atr.releaseDate;
-        case ApSongMetadata.trackNumber:
-          return atr.trackNumber?.toString();
-        case ApSongMetadata.workName:
-          return atr.workName;
-        default:
-          return null;
-      }
+    switch (this) {
+      case albumName:
+        return atr.albumName;
+      case artistName:
+        return atr.artistName;
+      case audioVariants:
+        return atr.audioVariants?.join(", ");
+      case composerName:
+        return atr.composerName;
+      case contentRating:
+        return atr.contentRating;
+      case discNumber:
+        return atr.discNumber?.toString();
+      case durationInMillis:
+        return _durationInMillisToString(atr.durationInMillis);
+      case genreNames:
+        return atr.genreNames.join(", ");
+      case hasLyrics:
+        return atr.hasLyrics ? "Yes" : "No";
+      case isAppleDigitalMaster:
+        return atr.isAppleDigitalMaster ? "Yes" : "No";
+      case isrc:
+        return atr.isrc;
+      case name:
+        return atr.name;
+      case releaseDate:
+        return atr.releaseDate;
+      case trackNumber:
+        return atr.trackNumber?.toString();
+      default:
+        return null;
     }
-    return null;
   }
 
   String? getStringFromLibrarySongs(LibrarySongsAttributes atr) {
-    if (libraryValues.contains(this)) {
-      switch (this) {
-        case ApSongMetadata.albumName:
-          return atr.albumName;
-        case ApSongMetadata.artistName:
-          return atr.artistName;
-        case ApSongMetadata.contentRating:
-          return atr.contentRating;
-        case ApSongMetadata.discNumber:
-          return atr.discNumber?.toString();
-        case ApSongMetadata.durationInMillis:
-          return _durationInMillisToString(atr.durationInMillis);
-        case ApSongMetadata.genreNames:
-          return atr.genreNames.join(", ");
-        case ApSongMetadata.name:
-          return atr.name;
-        case ApSongMetadata.releaseDate:
-          return atr.releaseDate;
-        case ApSongMetadata.trackNumber:
-          return atr.trackNumber?.toString();
-        default:
-          return null;
-      }
+    switch (this) {
+      case albumName:
+        return atr.albumName;
+      case artistName:
+        return atr.artistName;
+      case contentRating:
+        return atr.contentRating;
+      case discNumber:
+        return atr.discNumber?.toString();
+      case durationInMillis:
+        return _durationInMillisToString(atr.durationInMillis);
+      case genreNames:
+        return atr.genreNames.join(", ");
+      case name:
+        return atr.name;
+      case releaseDate:
+        return atr.releaseDate;
+      case trackNumber:
+        return atr.trackNumber?.toString();
+      default:
+        return null;
     }
-    return null;
   }
 
   String _durationInMillisToString(int durationInMillis) {
@@ -161,6 +130,31 @@ enum ApSongMetadata {
       return "${hours.toString()}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
     } else {
       return "${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
+    }
+  }
+}
+
+enum ApSongClassicalMetadata {
+  attribution,
+  movementCount,
+  movementName,
+  movementNumber,
+  workName;
+
+  String? getStringFromSongs(SongsAttributes atr) {
+    switch (this) {
+      case attribution:
+        return atr.attribution;
+      case movementCount:
+        return atr.movementCount?.toString();
+      case movementName:
+        return atr.movementName;
+      case movementNumber:
+        return atr.movementNumber?.toString();
+      case workName:
+        return atr.workName;
+      default:
+        return null;
     }
   }
 }

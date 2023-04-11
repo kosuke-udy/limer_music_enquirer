@@ -9,8 +9,10 @@ part 'app_isar.g.dart';
 
 @Riverpod(keepAlive: true)
 class AppIsar extends _$AppIsar {
-  static final _isar = Isar.openSync(
-      [MetadataLocaleSettingSchema, MetadataDisplaySettingsSchema]);
+  static final _isar = Isar.openSync([
+    MetadataLocaleSettingSchema,
+    ApSongMetadataOrderSettingSchema,
+  ]);
   bool _isInitialized = false;
 
   @override
@@ -39,8 +41,7 @@ class AppIsar extends _$AppIsar {
     await _isar.writeTxn(() async {
       await _isar.clear();
 
-      await _isar.metadataDisplaySettings.put(MetadataDisplaySettings());
-
+      // Default locale
       await _isar.metadataLocaleSettings.put(MetadataLocaleSetting()
         ..list.add(
           MetadataLocale()
@@ -48,6 +49,7 @@ class AppIsar extends _$AppIsar {
             ..languageCode = userStorefront.attributes!.defaultLanguageTag,
         ));
 
+      // Default locale for dev
       if (const String.fromEnvironment("FLAVOR") == "dev") {
         await _isar.metadataLocaleSettings.put(MetadataLocaleSetting()
           ..list.add(
@@ -56,6 +58,9 @@ class AppIsar extends _$AppIsar {
               ..languageCode = "en-US",
           ));
       }
+
+      // Default display settings (defined in db/)
+      await _isar.apSongMetadataOrderSettings.put(ApSongMetadataOrderSetting());
     });
   }
 }

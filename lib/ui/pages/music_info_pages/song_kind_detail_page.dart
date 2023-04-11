@@ -32,7 +32,7 @@ class SongKindDetailPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final common = ref.watch(commonValuesProvider);
 
-    final metadataLocale = ref.watch(userMetadataLocalesProvider)[0];
+    final metadataLocale = ref.watch(metadataLocalesProvider)[0];
     final detailProvider = songKindDetailProvider(
       id: id,
       storefront: metadataLocale.countryCode,

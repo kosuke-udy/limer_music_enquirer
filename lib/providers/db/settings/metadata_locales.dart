@@ -8,7 +8,7 @@ import '../app_isar.dart';
 part 'metadata_locales.g.dart';
 
 @Riverpod(keepAlive: true)
-class UserMetadataLocales extends _$UserMetadataLocales {
+class MetadataLocales extends _$MetadataLocales {
   @override
   List<MetadataLocale> build() {
     final appIsar = ref.watch(appIsarProvider);

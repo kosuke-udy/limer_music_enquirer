@@ -26,7 +26,7 @@ class MetadataLocaleSettingPage extends ConsumerWidget {
                 horizontal: common.size.insetsLarge,
               ),
               child: Column(
-                children: ref.watch(userMetadataLocalesProvider).map((e) {
+                children: ref.watch(metadataLocalesProvider).map((e) {
                   return ListTile(
                     title: Text(
                       "${e.countryCode.toUpperCase()}: ${e.languageCode}",

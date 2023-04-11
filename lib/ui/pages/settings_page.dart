@@ -17,6 +17,7 @@ class SettingsPage extends ConsumerWidget {
       appBarTitle: const Text("Settings"),
       body: RefreshableListView(children: [
         Area(
+          headline: const Headline("General"),
           child: FilledCard(
             margin: EdgeInsets.symmetric(
               horizontal: common.size.insetsLarge,
@@ -29,6 +30,23 @@ class SettingsPage extends ConsumerWidget {
                 size: common.size.infoIcon,
               ),
               onTap: () => MetadataLocaleSettingPageRoute().go(context),
+            ),
+          ),
+        ),
+        Area(
+          headline: const Headline("Metadata Order"),
+          child: FilledCard(
+            margin: EdgeInsets.symmetric(
+              horizontal: common.size.insetsLarge,
+              vertical: common.size.insetsSmall,
+            ),
+            child: ListTile(
+              title: const Text("Song"),
+              trailing: Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: common.size.infoIcon,
+              ),
+              onTap: () => SongKindMetadataOrderSettingPageRoute().go(context),
             ),
           ),
         ),
