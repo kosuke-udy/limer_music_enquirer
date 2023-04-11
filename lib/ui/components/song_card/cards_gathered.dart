@@ -47,7 +47,7 @@ class SongListCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final common = ref.watch(commonValuesProvider);
 
-    final attributes = <String, String?>{
+    final metadataMap = <String, String?>{
       "Artist": artistName,
       "Album": albumName,
       "Composer": composerName,
@@ -57,7 +57,7 @@ class SongListCard extends ConsumerWidget {
       child: Stack(
         children: [
           SongMetadataCard(
-            attributes: attributes,
+            metadataMap: metadataMap,
             keyAreaWidth: _artworkSize,
             bgColorBase: bgColor,
           ),

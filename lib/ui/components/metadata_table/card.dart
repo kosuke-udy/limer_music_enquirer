@@ -9,7 +9,7 @@ import 'table.dart';
 class MetadataTableCard extends ConsumerWidget {
   /* ---------- Properties ---------- */
 
-  final Map<String, String?> attributes;
+  final Map<String, String?> metadataMap;
   final double keyAreaWidth;
   final Color? bgColorBase;
 
@@ -17,7 +17,7 @@ class MetadataTableCard extends ConsumerWidget {
 
   const MetadataTableCard({
     Key? key,
-    required this.attributes,
+    required this.metadataMap,
     required this.keyAreaWidth,
     this.bgColorBase,
   }) : super(key: key);
@@ -36,7 +36,7 @@ class MetadataTableCard extends ConsumerWidget {
         ),
         child: MetadataTable(
           keyAreaWidth: keyAreaWidth,
-          attributes: attributes,
+          metadataMap: metadataMap,
         ),
       ),
     );

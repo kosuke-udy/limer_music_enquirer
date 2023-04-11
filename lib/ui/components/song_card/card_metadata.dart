@@ -9,7 +9,7 @@ import '../metadata_table/table.dart';
 class SongMetadataCard extends ConsumerWidget {
   /* ---------- Properties ---------- */
 
-  final Map<String, String?> attributes;
+  final Map<String, String?> metadataMap;
   final double keyAreaWidth;
   final Color? bgColorBase;
 
@@ -17,7 +17,7 @@ class SongMetadataCard extends ConsumerWidget {
 
   const SongMetadataCard({
     Key? key,
-    required this.attributes,
+    required this.metadataMap,
     required this.keyAreaWidth,
     this.bgColorBase,
   }) : super(key: key);
@@ -37,7 +37,7 @@ class SongMetadataCard extends ConsumerWidget {
           SizedBox(height: keyAreaWidth + common.size.insetsSmall),
           MetadataTable(
             maxLines: 1,
-            attributes: attributes,
+            metadataMap: metadataMap,
             keyAreaWidth: keyAreaWidth,
           ),
           SizedBox(height: common.size.insetsSmall),

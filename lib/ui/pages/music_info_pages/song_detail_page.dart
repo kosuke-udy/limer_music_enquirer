@@ -109,7 +109,7 @@ class SongDetailPage extends HookConsumerWidget {
                       ),
                       MetadataTableCard(
                         keyAreaWidth: _artworkSize,
-                        attributes: _getMetadataMap(song),
+                        metadataMap: _getMetadataMap(song),
                         bgColorBase: song.attributes!.artwork.bgColor,
                       ),
                     ],

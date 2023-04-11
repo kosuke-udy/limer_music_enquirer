@@ -14,7 +14,7 @@ class MetadataTable extends ConsumerWidget {
 
   final double keyAreaWidth;
   final int? maxLines;
-  final Map<String, String?> attributes;
+  final Map<String, String?> metadataMap;
 
   /* ---------- Constructor ---------- */
 
@@ -22,7 +22,7 @@ class MetadataTable extends ConsumerWidget {
     Key? key,
     required this.keyAreaWidth,
     this.maxLines,
-    required this.attributes,
+    required this.metadataMap,
   }) : super(key: key);
 
   /* ---------- Build ---------- */
@@ -34,10 +34,10 @@ class MetadataTable extends ConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: attributes.entries.map((entry) {
+      children: metadataMap.entries.map((entry) {
         return Column(
           children: [
-            entry.key != attributes.keys.first
+            entry.key != metadataMap.keys.first
                 ? maxLines == null
                     ? Divider(
                         height: _spacingLarge,
