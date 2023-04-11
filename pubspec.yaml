@@ -8,7 +8,6 @@ environment:
   flutter: ">=3.0.0"
 
 dependencies:
-  country_codes: ^2.2.0
   cupertino_icons: ^1.0.2
   dart_jsonwebtoken: ^2.7.1
   dio: ^5.0.0
