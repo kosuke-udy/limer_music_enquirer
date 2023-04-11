@@ -7,7 +7,7 @@ class MetadataInfo<T> {
   MetadataInfo(this.value, this.isVisible);
 }
 
-List<MetadataInfo<T>> getMetadataInfoList<T>(
+List<MetadataInfo<T>> getMetadataInfoList<T extends Enum>(
     List<T> values, List<bool> visibilities) {
   return values
       .asMap()
