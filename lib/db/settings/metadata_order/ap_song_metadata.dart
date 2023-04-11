@@ -11,8 +11,8 @@ typedef ApSongStandardMetadataInfo = MetadataInfo<ApSongStandardMetadata>;
 typedef ApSongClassicalMetadataInfo = MetadataInfo<ApSongClassicalMetadata>;
 
 @collection
-class ApSongMetadataOrderSetting {
-  ApSongMetadataOrderSetting();
+class ApSongMetadataOrderSettingCollection {
+  ApSongMetadataOrderSettingCollection();
 
   Id? id;
 
