@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../common_values/common_values.dart';
 import 'row.dart';
 
-class AttributesTable extends ConsumerWidget {
+class MetadataTable extends ConsumerWidget {
   /* ---------- Statics ---------- */
 
   static const _spacingSmall = 6.0;
@@ -18,7 +18,7 @@ class AttributesTable extends ConsumerWidget {
 
   /* ---------- Constructor ---------- */
 
-  const AttributesTable({
+  const MetadataTable({
     Key? key,
     required this.keyAreaWidth,
     this.maxLines,
@@ -45,7 +45,7 @@ class AttributesTable extends ConsumerWidget {
                       )
                     : const SizedBox(height: _spacingSmall)
                 : const SizedBox.shrink(),
-            AttributesTableRow(
+            MetadataTableRow(
               keyAreaWidth: keyAreaWidth,
               maxLines: maxLines,
               keyText: entry.key,

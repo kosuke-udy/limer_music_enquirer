@@ -3,10 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../../router/routes.dart';
-import '../../common_methods/color_extension.dart';
-import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
-import '../attributes_table/table.dart';
 import 'card_attributes.dart';
 import 'card_title.dart';
 

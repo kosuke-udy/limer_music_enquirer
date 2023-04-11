@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common_values/common_values.dart';
 
-class AttributesTableRow extends ConsumerWidget {
+class MetadataTableRow extends ConsumerWidget {
   /* ---------- Statics ---------- */
 
   static const _fontSize = 13.0;
@@ -18,7 +18,7 @@ class AttributesTableRow extends ConsumerWidget {
 
   /* ---------- Constructor ---------- */
 
-  const AttributesTableRow({
+  const MetadataTableRow({
     Key? key,
     required this.keyAreaWidth,
     this.maxLines,

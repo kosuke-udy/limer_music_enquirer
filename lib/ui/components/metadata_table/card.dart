@@ -6,7 +6,7 @@ import '../../common_values/common_values.dart';
 import '../../common_methods/common_methods.dart';
 import 'table.dart';
 
-class AttributesTableCard extends ConsumerWidget {
+class MetadataTableCard extends ConsumerWidget {
   /* ---------- Properties ---------- */
 
   final Map<String, String?> attributes;
@@ -15,7 +15,7 @@ class AttributesTableCard extends ConsumerWidget {
 
   /* ---------- Constructor ---------- */
 
-  const AttributesTableCard({
+  const MetadataTableCard({
     Key? key,
     required this.attributes,
     required this.keyAreaWidth,
@@ -34,7 +34,7 @@ class AttributesTableCard extends ConsumerWidget {
           // horizontal: common.size.insetsSmall,
           vertical: common.size.insetsMedium,
         ),
-        child: AttributesTable(
+        child: MetadataTable(
           keyAreaWidth: keyAreaWidth,
           attributes: attributes,
         ),

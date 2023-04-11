@@ -107,7 +107,7 @@ class SongDetailPage extends HookConsumerWidget {
                           fullDisplayed: true,
                         ),
                       ),
-                      AttributesTableCard(
+                      MetadataTableCard(
                         keyAreaWidth: _artworkSize,
                         attributes: _getAttributesMap(song),
                         bgColorBase: song.attributes!.artwork.bgColor,

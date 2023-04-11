@@ -1,5 +1,5 @@
-export 'attributes_table/table.dart';
-export 'attributes_table/card.dart';
+export 'metadata_table/table.dart';
+export 'metadata_table/card.dart';
 export 'resource_cards_list/card.dart';
 export 'resource_cards_list/list.dart';
 export 'song_card/cards_gathered.dart';

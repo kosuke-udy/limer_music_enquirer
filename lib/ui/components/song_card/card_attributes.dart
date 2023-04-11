@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
 import '../../common_methods/common_methods.dart';
-import '../attributes_table/table.dart';
+import '../metadata_table/table.dart';
 
 class SongAttributesCard extends ConsumerWidget {
   /* ---------- Properties ---------- */
@@ -35,7 +35,7 @@ class SongAttributesCard extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: keyAreaWidth + common.size.insetsSmall),
-          AttributesTable(
+          MetadataTable(
             maxLines: 1,
             attributes: attributes,
             keyAreaWidth: keyAreaWidth,
