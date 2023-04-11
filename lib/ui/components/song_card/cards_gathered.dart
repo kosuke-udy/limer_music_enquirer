@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../../router/routes.dart';
 import '../../common_values/common_values.dart';
-import 'card_attributes.dart';
+import 'card_metadata.dart';
 import 'card_title.dart';
 
 class SongListCard extends ConsumerWidget {
@@ -56,7 +56,7 @@ class SongListCard extends ConsumerWidget {
     return SizedBox(
       child: Stack(
         children: [
-          SongAttributesCard(
+          SongMetadataCard(
             attributes: attributes,
             keyAreaWidth: _artworkSize,
             bgColorBase: bgColor,
