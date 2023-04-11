@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../providers/apple_music/providers.dart';
-import '../ui/pages/settings_sub/metadata_locale_setting_page.dart';
+import '../ui/pages/settings_sub/ap_storefront_setting_page.dart';
 import '../ui/pages/settings_sub/song_kind_metadata_order_setting_page.dart';
 import '../ui/pages/home_page.dart';
 import '../ui/pages/music_info_pages/recently_played_list_page.dart';
@@ -74,8 +74,8 @@ class SongKindDetailPageRoute extends GoRouteData {
 @TypedGoRoute<SettingsPageRoute>(
   path: "/settings",
   routes: [
-    TypedGoRoute<MetadataLocaleSettingPageRoute>(
-      path: "metadata-locale",
+    TypedGoRoute<ApStorefrontSettingPageRoute>(
+      path: "apple-music-storefront",
     ),
     TypedGoRoute<SongKindMetadataOrderSettingPageRoute>(
       path: "song-metadata-order",
@@ -101,10 +101,10 @@ class SettingsPageRoute extends GoRouteData {
   }
 }
 
-class MetadataLocaleSettingPageRoute extends GoRouteData {
+class ApStorefrontSettingPageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const MetadataLocaleSettingPage();
+    return const ApStorefrontSettingPage();
   }
 }
 

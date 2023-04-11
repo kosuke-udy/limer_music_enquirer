@@ -43,9 +43,9 @@ class SongKindDetailPage extends HookConsumerWidget {
   Widget _build(
     BuildContext context,
     WidgetRef ref,
-    List<ApStorefront> apStorefronts,
+    ApStorefrontSettingCollection storefrontSetting,
   ) {
-    final apStorefront = apStorefronts[0];
+    final apStorefront = storefrontSetting.list[0];
     final detailProvider = songKindDetailProvider(
       id: id,
       storefront: apStorefront.countryId,

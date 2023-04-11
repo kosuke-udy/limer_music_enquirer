@@ -24,12 +24,12 @@ class SettingsPage extends ConsumerWidget {
               vertical: common.size.insetsSmall,
             ),
             child: ListTile(
-              title: const Text("Metadata Locale"),
+              title: const Text("Apple Music Storefront"),
               trailing: Icon(
                 Icons.arrow_forward_ios_rounded,
                 size: common.size.infoIcon,
               ),
-              onTap: () => MetadataLocaleSettingPageRoute().go(context),
+              onTap: () => ApStorefrontSettingPageRoute().go(context),
             ),
           ),
         ),
