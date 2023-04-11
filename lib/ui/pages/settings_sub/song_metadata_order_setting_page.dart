@@ -11,8 +11,8 @@ import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
 import '../../components/components.dart';
 
-class SongKindMetadataOrderSettingPage extends HookConsumerWidget {
-  const SongKindMetadataOrderSettingPage({Key? key}) : super(key: key);
+class SongMetadataOrderSettingPage extends HookConsumerWidget {
+  const SongMetadataOrderSettingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
