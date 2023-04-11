@@ -31,6 +31,9 @@ class Headline extends ConsumerWidget {
                   .textTheme
                   .headlineSmall!
                   .copyWith(fontSize: 22),
+              textHeightBehavior: const TextHeightBehavior(
+                  applyHeightToFirstAscent: false,
+                  applyHeightToLastDescent: true),
             ),
             SizedBox(width: common.size.insetsSmall),
             onTap != null && onTap != () {}
