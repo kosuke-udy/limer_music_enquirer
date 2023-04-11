@@ -1,25 +1,19 @@
 PODS:
-  - country_codes (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
   - isar_flutter_libs (1.0.0):
     - Flutter
 
 DEPENDENCIES:
-  - country_codes (from `.symlinks/plugins/country_codes/ios`)
   - Flutter (from `Flutter`)
   - isar_flutter_libs (from `.symlinks/plugins/isar_flutter_libs/ios`)
 
 EXTERNAL SOURCES:
-  country_codes:
-    :path: ".symlinks/plugins/country_codes/ios"
   Flutter:
     :path: Flutter
   isar_flutter_libs:
     :path: ".symlinks/plugins/isar_flutter_libs/ios"
 
 SPEC CHECKSUMS:
-  country_codes: b0900f46ad686281d5dab438e354e44ad10f5941
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   isar_flutter_libs: b69f437aeab9c521821c3f376198c4371fa21073
 
