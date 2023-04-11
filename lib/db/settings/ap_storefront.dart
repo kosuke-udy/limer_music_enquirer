@@ -1,6 +1,6 @@
 import 'package:isar/isar.dart';
 
-part 'storefront.g.dart';
+part 'ap_storefront.g.dart';
 
 @collection
 class ApStorefrontSettingCollection {

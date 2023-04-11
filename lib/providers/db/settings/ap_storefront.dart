@@ -1,8 +1,8 @@
 import 'package:isar/isar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../db/settings/storefront.dart';
-export '../../../db/settings/storefront.dart';
+import '../../../db/settings/ap_storefront.dart';
+export '../../../db/settings/ap_storefront.dart';
 import '../app_isar.dart';
 
 part 'ap_storefront.g.dart';
