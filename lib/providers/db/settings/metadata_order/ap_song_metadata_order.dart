@@ -48,7 +48,7 @@ class ApSongClassicalMetadataOrder extends _$ApSongClassicalMetadataOrder {
 @riverpod
 class _CurrentSetting extends _$CurrentSetting {
   @override
-  Future<ApSongMetadataOrderSetting> build() async {
+  Future<ApSongMetadataOrderSettingCollection> build() async {
     return ref.watch(_settingsProvider.future).then((value) => value.last);
   }
 }
@@ -56,10 +56,10 @@ class _CurrentSetting extends _$CurrentSetting {
 @riverpod
 class _Settings extends _$Settings {
   @override
-  Future<List<ApSongMetadataOrderSetting>> build() async {
+  Future<List<ApSongMetadataOrderSettingCollection>> build() async {
     final list = await ref
         .watch(appIsarProvider)
-        .apSongMetadataOrderSettings
+        .apSongMetadataOrderSettingCollections
         .where()
         .findAll();
     return list;
@@ -92,14 +92,15 @@ class _Settings extends _$Settings {
 
     final appIsar = ref.watch(appIsarProvider);
     appIsar.writeTxn(() async {
-      appIsar.apSongMetadataOrderSettings.put(ApSongMetadataOrderSetting()
-        ..id = index
-        ..standardValues = newStandard?.first ?? current.standardValues
-        ..standardVisibilities =
-            newStandard?.second ?? current.standardVisibilities
-        ..classicalValues = newClassical?.first ?? current.classicalValues
-        ..classicalVisibilities =
-            newClassical?.second ?? current.classicalVisibilities);
+      appIsar.apSongMetadataOrderSettingCollections.put(
+          ApSongMetadataOrderSettingCollection()
+            ..id = index
+            ..standardValues = newStandard?.first ?? current.standardValues
+            ..standardVisibilities =
+                newStandard?.second ?? current.standardVisibilities
+            ..classicalValues = newClassical?.first ?? current.classicalValues
+            ..classicalVisibilities =
+                newClassical?.second ?? current.classicalVisibilities);
     });
     ref.invalidateSelf();
   }
