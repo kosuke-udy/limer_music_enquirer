@@ -5,14 +5,14 @@ import '../../../db/settings/storefront.dart';
 export '../../../db/settings/storefront.dart';
 import '../app_isar.dart';
 
-part 'metadata_locales.g.dart';
+part 'ap_storefront.g.dart';
 
 @Riverpod(keepAlive: true)
-class MetadataLocales extends _$MetadataLocales {
+class ApStorefrontSetting extends _$ApStorefrontSetting {
   @override
-  Future<List<MetadataLocale>> build() async {
+  Future<List<ApStorefront>> build() async {
     final appIsar = ref.watch(appIsarProvider);
-    return appIsar.metadataLocaleSettings
+    return appIsar.apStorefrontSettingCollections
         .where()
         .findAll()
         .then((value) => value[0].list);
