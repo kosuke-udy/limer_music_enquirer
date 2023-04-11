@@ -8,12 +8,12 @@ import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
 import '../../components/components.dart';
 
-class MetadataLocaleSettingPage extends ConsumerWidget {
-  const MetadataLocaleSettingPage({Key? key}) : super(key: key);
+class ApStorefrontSettingPage extends ConsumerWidget {
+  const ApStorefrontSettingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(metadataLocalesProvider).when(
+    return ref.watch(apStorefrontSettingProvider).when(
           data: (data) => _build(context, ref, data),
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (error, stackTrace) => const Center(child: Text("Error")),
@@ -23,8 +23,10 @@ class MetadataLocaleSettingPage extends ConsumerWidget {
   Widget _build(
     BuildContext context,
     WidgetRef ref,
-    List<MetadataLocale> userLocales,
+    ApStorefrontSettingCollection setting,
   ) {
+    final userLocales = setting.list;
+
     final common = ref.watch(commonValuesProvider);
 
     return PageScaffold(
@@ -41,7 +43,7 @@ class MetadataLocaleSettingPage extends ConsumerWidget {
                 children: userLocales.map((e) {
                   return ListTile(
                     title: Text(
-                      "${e.countryCode.toUpperCase()}: ${e.languageCode}",
+                      "${e.countryId.toUpperCase()}: ${e.languageTag}",
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   );
