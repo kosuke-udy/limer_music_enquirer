@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
@@ -11,7 +9,7 @@ import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
 import '../../components/components.dart';
 
-class SongKindDetailPage extends HookConsumerWidget {
+class SongDetailPage extends HookConsumerWidget {
   /* ---------- Statics ---------- */
 
   static const _artworkSize = 100.0;
@@ -23,7 +21,7 @@ class SongKindDetailPage extends HookConsumerWidget {
 
   /* ---------- Constructor ---------- */
 
-  const SongKindDetailPage(
+  const SongDetailPage(
     this.id, {
     Key? key,
     this.data,
