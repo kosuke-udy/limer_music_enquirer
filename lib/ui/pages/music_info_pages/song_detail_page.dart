@@ -31,17 +31,43 @@ class SongDetailPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(apStorefrontSettingProvider).hasValue
-        ? _build(context, ref, ref.watch(apStorefrontSettingProvider).value!)
-        : const Center(
+    final asyncStorefrontSetting = ref.watch(apStorefrontSettingProvider);
+    final asyncStandardMetadataSetting =
+        ref.watch(apSongStandardMetadataOrderSettingProvider);
+    final asyncClassicalMetadataSetting =
+        ref.watch(apSongClassicalMetadataOrderSettingProvider);
+
+    final isLoading = asyncStorefrontSetting.isLoading ||
+        asyncStandardMetadataSetting.isLoading ||
+        asyncClassicalMetadataSetting.isLoading;
+
+    final hasError = asyncStorefrontSetting.hasError ||
+        asyncStandardMetadataSetting.hasError ||
+        asyncClassicalMetadataSetting.hasError;
+
+    return isLoading
+        ? const Center(
             child: CircularProgressIndicator(),
-          );
+          )
+        : hasError
+            ? Center(
+                child: Text(asyncStorefrontSetting.error.toString()),
+              )
+            : _build(
+                context,
+                ref,
+                asyncStorefrontSetting.value!,
+                asyncStandardMetadataSetting.value!,
+                asyncClassicalMetadataSetting.value!,
+              );
   }
 
   Widget _build(
     BuildContext context,
     WidgetRef ref,
     ApStorefrontSettingCollection storefrontSetting,
+    List<ApSongStandardMetadataInfo> standardMetadataOrder,
+    List<ApSongClassicalMetadataInfo> classicalMetadataOrder,
   ) {
     final apStorefront = storefrontSetting.list[0];
     final detailProvider = songKindDetailProvider(
