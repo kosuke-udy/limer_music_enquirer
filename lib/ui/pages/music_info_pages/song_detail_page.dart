@@ -109,7 +109,7 @@ class SongDetailPage extends HookConsumerWidget {
                       ),
                       MetadataTableCard(
                         keyAreaWidth: _artworkSize,
-                        attributes: _getAttributesMap(song),
+                        attributes: _getMetadataMap(song),
                         bgColorBase: song.attributes!.artwork.bgColor,
                       ),
                     ],
@@ -130,7 +130,7 @@ class SongDetailPage extends HookConsumerWidget {
   }
 }
 
-Map<String, String?> _getAttributesMap(SongKind songKind) {
+Map<String, String?> _getMetadataMap(SongKind songKind) {
   if (songKind.type == ResourceType.songs) {
     final song = songKind as Songs;
     return {
