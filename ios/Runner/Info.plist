@@ -10,6 +10,13 @@
 	<key>NSAppleMusicUsageDescription</key>
 	<string>The app requires Apple Music Library access</string>
 
+	<!-- Localizations  -->
+	<key>CFBundleLocalizations</key>
+	<array>
+	<string>en</string>
+	<string>ja</string>
+	</array>
+
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

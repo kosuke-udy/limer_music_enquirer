@@ -3,9 +3,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:limer_music_enquirer/router/routes.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
+import '../../providers/apple_music/providers.dart';
+import '../../translations.g.dart';
 import '../common_parts/common_parts.dart';
 import '../components/components.dart';
-import '../../providers/apple_music/providers.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class HomePage extends ConsumerWidget {
     // final recentlyResources = ref.watch(recentlyPlayedResourcesProvider);
 
     return PageScaffold(
-      appBarTitle: const Text("Home"),
+      appBarTitle: Text(t.home.home),
       body: RefreshableListView(
         onRefresh: () async {
           ref.invalidate(recentlyPlayedSongsProvider);
@@ -24,7 +25,7 @@ class HomePage extends ConsumerWidget {
         children: [
           Area(
             headline: Headline(
-              "Recently Played Songs",
+              t.home.recentlyPlayedSongs,
               onTap: () => RecentlyPlayedSongsPageRoute().push(context),
             ),
             child: recentlySongs.when(

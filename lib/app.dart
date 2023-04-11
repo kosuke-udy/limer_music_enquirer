@@ -1,11 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'translations.g.dart';
 import 'providers/apple_music/init_client.dart';
 import 'providers/db/providers.dart';
-import 'ui/common_values/common_values.dart';
 import 'router/app_router.dart';
+import 'ui/common_values/common_values.dart';
 
 final initProvider = FutureProvider((ref) async {
   await initAppleMusicApiClient();
@@ -24,20 +26,16 @@ class App extends ConsumerWidget {
     return ref.watch(initProvider).when(
           data: (data) => MaterialApp.router(
             title: const String.fromEnvironment("APP_NAME"),
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('en', 'US'),
-              Locale('ja', 'JP'),
-            ],
+            routerConfig: ref.watch(appRouterProvider),
             theme: ref.watch(commonValuesProvider).theme.copyWith(
                   splashFactory: NoSplash.splashFactory,
                 ),
-            routerConfig: ref.watch(appRouterProvider),
+            debugShowCheckedModeBanner: false,
+            locale: !kDebugMode
+                ? TranslationProvider.of(context).flutterLocale
+                : const Locale("ja", "JP"),
+            supportedLocales: AppLocaleUtils.supportedLocales,
+            localizationsDelegates: GlobalMaterialLocalizations.delegates,
           ),
           loading: () => Container(),
           error: (error, stack) => Container(

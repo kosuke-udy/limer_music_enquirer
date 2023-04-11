@@ -3,25 +3,32 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../utils/app_logger.dart';
+import 'translations.g.dart';
+import 'utils/app_logger.dart';
 import 'app.dart';
 
 void main() {
-  AppLogger.init();
+  // Ensure that the binding is initialized.
+  WidgetsFlutterBinding.ensureInitialized();
 
+  // Initialize the logger.
+  AppLogger.init();
   final logger = AppLogger.get("main.dart");
 
-  // Log the operating system.
-  final osName = Platform.operatingSystem;
-  logger.info("Running on $osName");
+  // Log some information about the environment.
+  logger.info([
+    "Locale: ${Platform.localeName}",
+    "Running on ${Platform.operatingSystem}",
+    "Running in ${const String.fromEnvironment("FLAVOR")} flavor",
+  ]);
 
-  // Log the flavor.
-  const flavor = String.fromEnvironment("FLAVOR");
-  logger.info("Running in $flavor flavor");
+  LocaleSettings.useDeviceLocale();
 
   runApp(
-    const ProviderScope(
-      child: App(),
+    ProviderScope(
+      child: TranslationProvider(
+        child: const App(),
+      ),
     ),
   );
 }
