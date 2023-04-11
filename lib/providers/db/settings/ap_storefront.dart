@@ -10,11 +10,11 @@ part 'ap_storefront.g.dart';
 @Riverpod(keepAlive: true)
 class ApStorefrontSetting extends _$ApStorefrontSetting {
   @override
-  Future<List<ApStorefront>> build() async {
+  Future<ApStorefrontSettingCollection> build() async {
     final appIsar = ref.watch(appIsarProvider);
     return appIsar.apStorefrontSettingCollections
         .where()
         .findAll()
-        .then((value) => value[0].list);
+        .then((value) => value[0]);
   }
 }
