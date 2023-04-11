@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../common_values/common_values.dart';
-import 'cards_list.dart';
+import 'list_card.dart';
 
 class SongCardListVertical extends ConsumerWidget {
   /* ---------- Statics ---------- */
