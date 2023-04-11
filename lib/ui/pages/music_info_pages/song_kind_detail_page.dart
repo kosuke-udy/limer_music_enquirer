@@ -6,7 +6,7 @@ import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
 import '../../../providers/apple_music/providers.dart';
 import '../../../providers/db/settings/metadata_order/ap_song_metadata_order.dart';
-import '../../../providers/db/settings/metadata_locales.dart';
+import '../../../providers/db/settings/ap_storefront.dart';
 import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
 import '../../components/components.dart';
