@@ -33,8 +33,8 @@ class SongKindDetailPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(metadataLocalesProvider).hasValue
-        ? _build(context, ref, ref.watch(metadataLocalesProvider).value!)
+    return ref.watch(apStorefrontSettingProvider).hasValue
+        ? _build(context, ref, ref.watch(apStorefrontSettingProvider).value!)
         : const Center(
             child: CircularProgressIndicator(),
           );
@@ -43,13 +43,13 @@ class SongKindDetailPage extends HookConsumerWidget {
   Widget _build(
     BuildContext context,
     WidgetRef ref,
-    List<MetadataLocale> metadataLocales,
+    List<ApStorefront> apStorefronts,
   ) {
-    final metadataLocale = metadataLocales[0];
+    final apStorefront = apStorefronts[0];
     final detailProvider = songKindDetailProvider(
       id: id,
-      storefront: metadataLocale.countryCode,
-      languageTag: metadataLocale.languageCode,
+      storefront: apStorefront.countryId,
+      languageTag: apStorefront.languageTag,
       data: data,
     );
 
