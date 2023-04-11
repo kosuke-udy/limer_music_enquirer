@@ -14,7 +14,8 @@ export '../../../../db/settings/metadata_order/ap_song_metadata.dart'
 part 'ap_song_metadata_order.g.dart';
 
 @riverpod
-class ApSongStandardMetadataOrder extends _$ApSongStandardMetadataOrder {
+class ApSongStandardMetadataOrderSetting
+    extends _$ApSongStandardMetadataOrderSetting {
   @override
   Future<List<ApSongStandardMetadataInfo>> build() async {
     return ref
@@ -30,7 +31,8 @@ class ApSongStandardMetadataOrder extends _$ApSongStandardMetadataOrder {
 }
 
 @riverpod
-class ApSongClassicalMetadataOrder extends _$ApSongClassicalMetadataOrder {
+class ApSongClassicalMetadataOrderSetting
+    extends _$ApSongClassicalMetadataOrderSetting {
   @override
   Future<List<ApSongClassicalMetadataInfo>> build() async {
     return ref
