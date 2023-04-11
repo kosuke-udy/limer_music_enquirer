@@ -46,7 +46,7 @@ class SettingsPage extends ConsumerWidget {
                 Icons.arrow_forward_ios_rounded,
                 size: common.size.infoIcon,
               ),
-              onTap: () => SongKindMetadataOrderSettingPageRoute().go(context),
+              onTap: () => SongMetadataOrderSettingPageRoute().go(context),
             ),
           ),
         ),

@@ -66,7 +66,7 @@ class SongListCard extends ConsumerWidget {
           ),
           GestureDetector(
             onTap: () =>
-                SongKindDetailPageRoute(song.id, $extra: song).push(context),
+                SongDetailPageRoute(song.id, $extra: song).push(context),
             child: SongTitleCard(
               name: songName,
               artistName: artistName,

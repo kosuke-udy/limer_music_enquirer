@@ -3,10 +3,10 @@ import 'package:go_router/go_router.dart';
 
 import '../providers/apple_music/providers.dart';
 import '../ui/pages/settings_sub/ap_storefront_setting_page.dart';
-import '../ui/pages/settings_sub/song_kind_metadata_order_setting_page.dart';
+import '../ui/pages/settings_sub/song_metadata_order_setting_page.dart';
 import '../ui/pages/home_page.dart';
 import '../ui/pages/music_info_pages/recently_played_list_page.dart';
-import '../ui/pages/music_info_pages/song_kind_detail_page.dart';
+import '../ui/pages/music_info_pages/song_detail_page.dart';
 import '../ui/pages/settings_page.dart';
 
 part 'routes.g.dart';
@@ -53,18 +53,18 @@ class RecentlyPlayedSongsPageRoute extends GoRouteData {
   }
 }
 
-@TypedGoRoute<SongKindDetailPageRoute>(
+@TypedGoRoute<SongDetailPageRoute>(
   path: "/song-detail/:id",
 )
-class SongKindDetailPageRoute extends GoRouteData {
+class SongDetailPageRoute extends GoRouteData {
   final String id;
   final SongKind? $extra;
 
-  SongKindDetailPageRoute(this.id, {this.$extra});
+  SongDetailPageRoute(this.id, {this.$extra});
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return SongKindDetailPage(
+    return SongDetailPage(
       id,
       data: $extra,
     );
@@ -77,7 +77,7 @@ class SongKindDetailPageRoute extends GoRouteData {
     TypedGoRoute<ApStorefrontSettingPageRoute>(
       path: "apple-music-storefront",
     ),
-    TypedGoRoute<SongKindMetadataOrderSettingPageRoute>(
+    TypedGoRoute<SongMetadataOrderSettingPageRoute>(
       path: "song-metadata-order",
     )
   ],
@@ -108,9 +108,9 @@ class ApStorefrontSettingPageRoute extends GoRouteData {
   }
 }
 
-class SongKindMetadataOrderSettingPageRoute extends GoRouteData {
+class SongMetadataOrderSettingPageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const SongKindMetadataOrderSettingPage();
+    return const SongMetadataOrderSettingPage();
   }
 }
