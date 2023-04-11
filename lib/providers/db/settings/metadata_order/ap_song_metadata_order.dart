@@ -71,38 +71,31 @@ class _Settings extends _$Settings {
     List<ApSongStandardMetadataInfo>? standardInfoList,
     List<ApSongClassicalMetadataInfo>? classicalInfoList,
   }) async {
+    final current = await ref.read(_currentSettingProvider.future);
     put(
+      id: current.id,
       standardInfoList: standardInfoList,
       classicalInfoList: classicalInfoList,
     );
   }
 
   Future<void> put({
-    int? index,
+    int? id,
+    bool? classicalFirst,
     List<ApSongStandardMetadataInfo>? standardInfoList,
     List<ApSongClassicalMetadataInfo>? classicalInfoList,
   }) async {
     final current = await ref.read(_currentSettingProvider.future);
 
-    final newStandard = standardInfoList != null
-        ? getMetadataValuesAndVisibilities(standardInfoList)
-        : null;
-
-    final newClassical = classicalInfoList != null
-        ? getMetadataValuesAndVisibilities(classicalInfoList)
-        : null;
-
     final appIsar = ref.watch(appIsarProvider);
     appIsar.writeTxn(() async {
       appIsar.apSongMetadataOrderSettingCollections.put(
           ApSongMetadataOrderSettingCollection()
-            ..id = index
-            ..standardValues = newStandard?.first ?? current.standardValues
-            ..standardVisibilities =
-                newStandard?.second ?? current.standardVisibilities
-            ..classicalValues = newClassical?.first ?? current.classicalValues
-            ..classicalVisibilities =
-                newClassical?.second ?? current.classicalVisibilities);
+            ..id = id
+            ..classicalFirst = classicalFirst ?? current.classicalFirst
+            ..standardInfoList = standardInfoList ?? current.standardInfoList
+            ..classicalInfoList =
+                classicalInfoList ?? current.classicalInfoList);
     });
     ref.invalidateSelf();
   }

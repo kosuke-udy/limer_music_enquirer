@@ -74,8 +74,8 @@ class SongMetadataOrderSettingPage extends HookConsumerWidget {
               children: standardList.map(
                 (e) {
                   return ListTile(
-                    key: Key(e.value.index.toString()),
-                    title: Text(e.value.name),
+                    key: Key(e.data.index.toString()),
+                    title: Text(e.data.name),
                     trailing: Platform.isIOS || Platform.isMacOS
                         ? Icon(
                             Icons.drag_handle_rounded,
