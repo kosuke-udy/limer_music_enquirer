@@ -10,7 +10,7 @@ part 'app_isar.g.dart';
 @Riverpod(keepAlive: true)
 class AppIsar extends _$AppIsar {
   static final _isar = Isar.openSync([
-    MetadataLocaleSettingSchema,
+    ApStorefrontSettingCollectionSchema,
     ApSongMetadataOrderSettingSchema,
   ]);
   bool _isInitialized = false;
@@ -24,7 +24,7 @@ class AppIsar extends _$AppIsar {
     if (_isInitialized) return;
 
     final allUserMetadataLocales =
-        await _isar.metadataLocaleSettings.where().findAll();
+        await _isar.apStorefrontSettingCollections.where().findAll();
     if (allUserMetadataLocales.isEmpty || kDebugMode) {
       init();
     }
@@ -42,21 +42,23 @@ class AppIsar extends _$AppIsar {
       await _isar.clear();
 
       // Default locale
-      await _isar.metadataLocaleSettings.put(MetadataLocaleSetting()
-        ..list.add(
-          MetadataLocale()
-            ..countryCode = userStorefront.id
-            ..languageCode = userStorefront.attributes!.defaultLanguageTag,
-        ));
+      await _isar.apStorefrontSettingCollections
+          .put(ApStorefrontSettingCollection()
+            ..list.add(
+              ApStorefront()
+                ..countryId = userStorefront.id
+                ..languageTag = userStorefront.attributes!.defaultLanguageTag,
+            ));
 
       // Default locale for dev
       if (const String.fromEnvironment("FLAVOR") == "dev") {
-        await _isar.metadataLocaleSettings.put(MetadataLocaleSetting()
-          ..list.add(
-            MetadataLocale()
-              ..countryCode = "us"
-              ..languageCode = "en-US",
-          ));
+        await _isar.apStorefrontSettingCollections
+            .put(ApStorefrontSettingCollection()
+              ..list.add(
+                ApStorefront()
+                  ..countryId = "us"
+                  ..languageTag = "en-US",
+              ));
       }
 
       // Default display settings (defined in db/)
