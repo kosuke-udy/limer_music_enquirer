@@ -1,0 +1,10 @@
+{
+    "home": {
+        "base": "Home",
+        "ja": "ホーム"
+    },
+    "recentlyPlayedSongs": {
+        "base": "Recently Played Songs",
+        "ja": "最近再生された曲"
+    }
+}

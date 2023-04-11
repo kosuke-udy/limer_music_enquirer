@@ -1,0 +1,14 @@
+{
+    "home": {
+        "base": "Home",
+        "ja": "ホーム"
+    },
+    "search": {
+        "base": "Search",
+        "ja": "検索"
+    },
+    "settings": {
+        "base": "Settings",
+        "ja": "設定"
+    }
+}
