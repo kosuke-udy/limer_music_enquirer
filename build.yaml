@@ -1,0 +1,11 @@
+targets:
+  $default:
+    builders:
+      slang_build_runner:
+        options:
+          input_directory: assets/i18n
+          output_directory: lib/i18n
+      slang_i18n_generator:
+        options:
+          additional_locales:
+            - jp
