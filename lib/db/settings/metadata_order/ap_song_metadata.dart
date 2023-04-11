@@ -12,27 +12,6 @@ class ApSongMetadataOrderSettingCollection {
 
   bool classicalFirst = false;
 
-  // @Enumerated(EnumType.ordinal)
-  // List<ApSongStandardMetadata> standardValues = ApSongStandardMetadata.values;
-  // List<bool> standardVisibilities =
-  //     List.filled(ApSongStandardMetadata.values.length, true);
-
-  // @Enumerated(EnumType.ordinal)
-  // List<ApSongClassicalMetadata> classicalValues =
-  //     ApSongClassicalMetadata.values;
-  // List<bool> classicalVisibilities =
-  //     List.filled(ApSongClassicalMetadata.values.length, true);
-
-  // @ignore
-  // List<MetadataInfo<ApSongStandardMetadata>> get standardInfoList =>
-  //     getMetadataInfoList<ApSongStandardMetadata>(
-  //         standardValues, standardVisibilities);
-
-  // @ignore
-  // List<MetadataInfo<ApSongClassicalMetadata>> get classicalInfoList =>
-  //     getMetadataInfoList<ApSongClassicalMetadata>(
-  //         classicalValues, classicalVisibilities);
-
   List<ApSongStandardMetadataInfo> standardInfoList = [];
   List<ApSongClassicalMetadataInfo> classicalInfoList = [];
 }

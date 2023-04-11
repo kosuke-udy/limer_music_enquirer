@@ -3,9 +3,32 @@ targets:
     builders:
       slang_build_runner:
         options:
+          namespaces: true
           input_directory: assets/i18n
-          output_directory: lib/i18n
+          output_directory: lib
+          output_file_name: translations.g.dart
+          imports:
+            - package:limer_music_enquirer/db/settings/metadata_order/ap_song_metadata.dart
+          contexts:
+            ApSongStandardMetadata:
+              enum:
+                - albumName
+                - artistName
+                - audioVariants
+                - composerName
+                - contentRating
+                - discNumber
+                - durationInMillis
+                - genreNames
+                - hasLyrics
+                - isAppleDigitalMaster
+                - isrc
+                - name
+                - releaseDate
+                - trackNumber
+              generate_enum: false
+
       slang_i18n_generator:
         options:
           additional_locales:
-            - jp
+            - ja

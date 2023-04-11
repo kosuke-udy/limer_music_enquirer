@@ -2,6 +2,12 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "slang",
+            "type": "shell",
+            "command": "just slang",
+            "problemMatcher": []
+        },
+        {
             "label": "pigeon build",
             "type": "shell",
             "command": "just pigeon",
