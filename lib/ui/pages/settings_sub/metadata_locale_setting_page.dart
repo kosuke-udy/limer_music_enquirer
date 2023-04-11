@@ -13,6 +13,18 @@ class MetadataLocaleSettingPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    return ref.watch(metadataLocalesProvider).when(
+          data: (data) => _build(context, ref, data),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (error, stackTrace) => const Center(child: Text("Error")),
+        );
+  }
+
+  Widget _build(
+    BuildContext context,
+    WidgetRef ref,
+    List<MetadataLocale> userLocales,
+  ) {
     final common = ref.watch(commonValuesProvider);
 
     return PageScaffold(
@@ -26,7 +38,7 @@ class MetadataLocaleSettingPage extends ConsumerWidget {
                 horizontal: common.size.insetsLarge,
               ),
               child: Column(
-                children: ref.watch(metadataLocalesProvider).map((e) {
+                children: userLocales.map((e) {
                   return ListTile(
                     title: Text(
                       "${e.countryCode.toUpperCase()}: ${e.languageCode}",

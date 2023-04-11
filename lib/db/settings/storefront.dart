@@ -1,24 +1,18 @@
-import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 
 part 'storefront.g.dart';
 
 @collection
-class MetadataLocaleSetting {
+class ApStorefrontSettingCollection {
   Id? id;
 
-  List<MetadataLocale> list = [];
-
-  @ignore
-  get main => list.first;
+  List<ApStorefront> list = [];
 }
 
 @embedded
-class MetadataLocale {
-  MetadataLocale();
+class ApStorefront {
+  ApStorefront();
 
-  String countryCode = "";
-  String languageCode = "";
-
-  Locale toLocale() => Locale(languageCode, countryCode.toUpperCase());
+  String countryId = "";
+  String languageTag = "";
 }
