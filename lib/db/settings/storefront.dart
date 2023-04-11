@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 
-part 'metadata_locale.g.dart';
+part 'storefront.g.dart';
 
 @collection
 class MetadataLocaleSetting {
