@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
-import '../../common_methods/common_methods.dart';
+import '../../functions/color_extension.dart';
 import '../metadata_table/table.dart';
 
 class SongCardMetadataPart extends ConsumerWidget {
