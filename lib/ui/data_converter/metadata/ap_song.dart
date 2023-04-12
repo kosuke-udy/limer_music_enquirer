@@ -1,5 +1,5 @@
 import '../../../api/apple_music_api/models/models.dart';
-import '../../../db/settings/metadata_order/ap_song.dart';
+import '../../../db/settings/metadata/ap_song.dart';
 
 import '../general/duration.dart';
 
