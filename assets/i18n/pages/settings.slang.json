@@ -1,0 +1,22 @@
+{
+    "settings": {
+        "base": "Settings",
+        "ja": "設定"
+    },
+    "general": {
+        "base": "General",
+        "ja": "全般"
+    },
+    "regeonsAndLanguages": {
+        "base": "Regions & Languages",
+        "ja": "地域・言語"
+    },
+    "metadataOrder": {
+        "base": "Metadata Order",
+        "ja": "メタデータの表示順"
+    },
+    "song": {
+        "base": "Song",
+        "ja": "曲"
+    }
+}
