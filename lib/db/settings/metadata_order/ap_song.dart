@@ -51,8 +51,8 @@ enum ApSongMetadataType {
     isrc,
   ];
 
-  bool get isClassical => classicValues.contains(this);
-  static const classicValues = [
+  bool get isClassical => classicalValues.contains(this);
+  static const classicalValues = [
     attribution,
     movementCount,
     movementName,
