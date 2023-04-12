@@ -4,46 +4,17 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../db/settings/metadata_order/ap_song.dart';
 import '../../app_isar.dart';
 
-export '../../../../db/settings/metadata_order/ap_song.dart'
-    show
-        ApSongStandardMetadataInfo,
-        ApSongClassicalMetadataInfo,
-        ApSongStandardMetadataType,
-        ApSongClassicalMetadataType;
-
 part 'ap_song_metadata_order.g.dart';
 
 @riverpod
-class ApSongStandardMetadataOrderSetting
-    extends _$ApSongStandardMetadataOrderSetting {
+class ApSongMetadataOrderSetting extends _$ApSongMetadataOrderSetting {
   @override
-  Future<List<ApSongStandardMetadataInfo>> build() async {
-    return ref
-        .watch(_currentSettingProvider.future)
-        .then((v) => v.standardInfoList);
+  Future<List<ApSongMetadataInfo>> build() async {
+    return ref.watch(_currentSettingProvider.future).then((v) => v.order);
   }
 
-  Future<void> updateList(List<ApSongStandardMetadataInfo> newList) async {
-    ref.watch(_settingsProvider.notifier).updateCurrent(
-          standardInfoList: newList,
-        );
-  }
-}
-
-@riverpod
-class ApSongClassicalMetadataOrderSetting
-    extends _$ApSongClassicalMetadataOrderSetting {
-  @override
-  Future<List<ApSongClassicalMetadataInfo>> build() async {
-    return ref
-        .watch(_currentSettingProvider.future)
-        .then((v) => v.classicalInfoList);
-  }
-
-  Future<void> updateList(List<ApSongClassicalMetadataInfo> newList) async {
-    ref.watch(_settingsProvider.notifier).updateCurrent(
-          classicalInfoList: newList,
-        );
+  Future<void> updateList(List<ApSongMetadataInfo> newOrder) async {
+    ref.watch(_settingsProvider.notifier).updateCurrent(newOrder);
   }
 }
 
@@ -67,35 +38,24 @@ class _Settings extends _$Settings {
     return list;
   }
 
-  Future<void> updateCurrent({
-    List<ApSongStandardMetadataInfo>? standardInfoList,
-    List<ApSongClassicalMetadataInfo>? classicalInfoList,
-  }) async {
+  Future<void> updateCurrent(List<ApSongMetadataInfo> newOrder) async {
     final current = await ref.read(_currentSettingProvider.future);
     put(
       id: current.id,
-      standardInfoList: standardInfoList,
-      classicalInfoList: classicalInfoList,
+      order: newOrder,
     );
   }
 
   Future<void> put({
     int? id,
-    bool? classicalFirst,
-    List<ApSongStandardMetadataInfo>? standardInfoList,
-    List<ApSongClassicalMetadataInfo>? classicalInfoList,
+    required List<ApSongMetadataInfo> order,
   }) async {
-    final current = await ref.read(_currentSettingProvider.future);
-
     final appIsar = ref.watch(appIsarProvider);
     appIsar.writeTxn(() async {
-      appIsar.apSongMetadataOrderSettingCollections.put(
-          ApSongMetadataOrderSettingCollection()
+      appIsar.apSongMetadataOrderSettingCollections
+          .put(ApSongMetadataOrderSettingCollection()
             ..id = id
-            ..classicalFirst = classicalFirst ?? current.classicalFirst
-            ..standardInfoList = standardInfoList ?? current.standardInfoList
-            ..classicalInfoList =
-                classicalInfoList ?? current.classicalInfoList);
+            ..order = order);
     });
     ref.invalidateSelf();
   }
