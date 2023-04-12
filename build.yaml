@@ -11,6 +11,11 @@ targets:
             - package:limer_music_enquirer/db/settings/metadata_order/ap_song.dart
           contexts:
             ApSongMetadataType:
+              generate_enum: false
+              default_parameter: type
+              paths:
+                - assets/i18n/metadata.i18n.json
+                - assets/i18n/metadata_ja.i18n.json
               enum:
                 - albumName
                 - artistName
@@ -31,8 +36,6 @@ targets:
                 - releaseDate
                 - trackNumber
                 - workName
-              generate_enum: false
-
       slang_i18n_generator:
         options:
           additional_locales:

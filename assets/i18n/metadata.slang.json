@@ -1,78 +1,80 @@
 {
-    "song": {
-        "standard(param=apSongMetadataType)": {
-            "albumName": {
-                "base": "Album",
-                "ja": "アルバム"
-            },
-            "artistName": {
-                "base": "Artist",
-                "ja": "アーティスト"
-            },
-            "attribution": {
-                "base": "Attribution",
-                "ja": "アトリビューション"
-            },
-            "audioVariants": {
-                "base": "Audio Variants",
-                "ja": "オーディオの種類"
-            },
-            "composerName": {
-                "base": "Composer Name",
-                "ja": "作曲者"
-            },
-            "contentRating": {
-                "base": "Content Rating",
-                "ja": "コンテンツレーティング"
-            },
-            "discNumber": {
-                "base": "Disc Number",
-                "ja": "ディスク番号"
-            },
-            "durationInMillis": {
-                "base": "Duration",
-                "ja": "再生時間"
-            },
-            "genreNames": {
-                "base": "Genres",
-                "ja": "ジャンル"
-            },
-            "hasLyrics": {
-                "base": "Lyrics",
-                "ja": "歌詞"
-            },
-            "isAppleDigitalMaster": {
-                "base": "Apple Digital Master",
-                "ja": "Apple Digital Master"
-            },
-            "isrc": {
-                "base": "ISRC",
-                "ja": "ISRC"
-            },
-            "movementCount": {
-                "base": "Movement Count",
-                "ja": "楽章数"
-            },
-            "movementName": {
-                "base": "Movement Name",
-                "ja": "楽章名"
-            },
-            "movementNumber": {
-                "base": "Movement Number",
-                "ja": "楽章番号"
-            },
-            "name": {
-                "base": "Name",
-                "ja": "曲名"
-            },
-            "releaseDate": {
-                "base": "Release Date",
-                "ja": "リリース日"
-            },
-            "trackNumber": {
-                "base": "Track Number",
-                "ja": "トラック番号"
-            }
+    "song(context=ApSongMetadataType)": {
+        "albumName": {
+            "base": "Album",
+            "ja": "アルバム"
+        },
+        "artistName": {
+            "base": "Artist",
+            "ja": "アーティスト"
+        },
+        "attribution": {
+            "base": "Attribution",
+            "ja": "アトリビューション"
+        },
+        "audioVariants": {
+            "base": "Audio Variants",
+            "ja": "オーディオの種類"
+        },
+        "composerName": {
+            "base": "Composer Name",
+            "ja": "作曲者"
+        },
+        "contentRating": {
+            "base": "Content Rating",
+            "ja": "コンテンツレーティング"
+        },
+        "discNumber": {
+            "base": "Disc Number",
+            "ja": "ディスク番号"
+        },
+        "durationInMillis": {
+            "base": "Duration",
+            "ja": "再生時間"
+        },
+        "genreNames": {
+            "base": "Genres",
+            "ja": "ジャンル"
+        },
+        "hasLyrics": {
+            "base": "Lyrics",
+            "ja": "歌詞"
+        },
+        "isAppleDigitalMaster": {
+            "base": "Apple Digital Master",
+            "ja": "Apple Digital Master"
+        },
+        "isrc": {
+            "base": "ISRC",
+            "ja": "ISRC"
+        },
+        "movementCount": {
+            "base": "Movement Count",
+            "ja": "楽章数"
+        },
+        "movementName": {
+            "base": "Movement Name",
+            "ja": "楽章名"
+        },
+        "movementNumber": {
+            "base": "Movement Number",
+            "ja": "楽章番号"
+        },
+        "name": {
+            "base": "Name",
+            "ja": "曲名"
+        },
+        "releaseDate": {
+            "base": "Release Date",
+            "ja": "リリース日"
+        },
+        "trackNumber": {
+            "base": "Track Number",
+            "ja": "トラック番号"
+        },
+        "workName": {
+            "base": "Work Name",
+            "ja": "作品名"
         }
     }
 }
