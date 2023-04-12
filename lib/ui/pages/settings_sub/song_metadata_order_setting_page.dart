@@ -9,7 +9,6 @@ import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 import '../../../providers/db/settings/metadata_order/ap_song_metadata_order.dart';
 import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
-import '../../components/components.dart';
 
 class SongMetadataOrderSettingPage extends HookConsumerWidget {
   const SongMetadataOrderSettingPage({Key? key}) : super(key: key);
@@ -74,8 +73,8 @@ class SongMetadataOrderSettingPage extends HookConsumerWidget {
               children: standardList.map(
                 (e) {
                   return ListTile(
-                    key: Key(e.data.index.toString()),
-                    title: Text(e.data.name),
+                    key: Key(e.type.index.toString()),
+                    title: Text(e.type.name),
                     trailing: Platform.isIOS || Platform.isMacOS
                         ? Icon(
                             Icons.drag_handle_rounded,

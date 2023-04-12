@@ -21,7 +21,7 @@ class ApSongStandardMetadataInfo {
   ApSongStandardMetadataInfo();
 
   @Enumerated(EnumType.ordinal)
-  ApSongStandardMetadataType data = ApSongStandardMetadataType.albumName;
+  ApSongStandardMetadataType type = ApSongStandardMetadataType.albumName;
 
   bool isVisible = false;
 }
@@ -31,7 +31,7 @@ class ApSongClassicalMetadataInfo {
   ApSongClassicalMetadataInfo();
 
   @Enumerated(EnumType.ordinal)
-  ApSongClassicalMetadataType data = ApSongClassicalMetadataType.attribution;
+  ApSongClassicalMetadataType type = ApSongClassicalMetadataType.attribution;
 
   bool isVisible = false;
 }
