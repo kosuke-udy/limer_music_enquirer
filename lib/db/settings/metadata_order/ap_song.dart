@@ -2,7 +2,7 @@ import 'package:isar/isar.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
 
-part 'ap_song_metadata.g.dart';
+part 'ap_song.g.dart';
 
 @collection
 class ApSongMetadataOrderSettingCollection {
@@ -21,7 +21,7 @@ class ApSongStandardMetadataInfo {
   ApSongStandardMetadataInfo();
 
   @Enumerated(EnumType.ordinal)
-  ApSongStandardMetadata data = ApSongStandardMetadata.albumName;
+  ApSongStandardMetadataKind data = ApSongStandardMetadataKind.albumName;
 
   bool isVisible = false;
 }
@@ -36,7 +36,7 @@ class ApSongClassicalMetadataInfo {
   bool isVisible = false;
 }
 
-enum ApSongStandardMetadata {
+enum ApSongStandardMetadataKind {
   albumName(true),
   artistName(true),
   audioVariants(false),
@@ -54,7 +54,7 @@ enum ApSongStandardMetadata {
 
   final bool isLibrary;
 
-  const ApSongStandardMetadata(this.isLibrary);
+  const ApSongStandardMetadataKind(this.isLibrary);
 
   String? getStringFromSongs(SongsAttributes atr) {
     switch (this) {

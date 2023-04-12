@@ -8,7 +8,7 @@ export '../../../../db/settings/metadata_order/ap_song.dart'
     show
         ApSongStandardMetadataInfo,
         ApSongClassicalMetadataInfo,
-        ApSongStandardMetadata,
+        ApSongStandardMetadataKind,
         ApSongClassicalMetadata;
 
 part 'ap_song_metadata_order.g.dart';

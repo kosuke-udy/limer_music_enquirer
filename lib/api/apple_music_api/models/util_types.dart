@@ -51,7 +51,9 @@ abstract class SongKind implements TrackKind {
   SongKindRelationships? get relationships;
 }
 
-abstract class SongKindAttributes implements TrackKindAttributes {}
+abstract class SongKindAttributes implements TrackKindAttributes {
+  int? get discNumber;
+}
 
 abstract class SongKindRelationships implements TrackKindRelationships {
   List<AlbumKind>? get albums;

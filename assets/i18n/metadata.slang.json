@@ -1,6 +1,6 @@
 {
     "song": {
-        "standard(param=apSongStandardMetadata)": {
+        "standard(param=apSongStandardMetadataKind)": {
             "albumName": {
                 "base": "Album",
                 "ja": "アルバム"
