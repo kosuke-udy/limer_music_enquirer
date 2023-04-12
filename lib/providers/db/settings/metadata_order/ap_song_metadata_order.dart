@@ -1,7 +1,7 @@
 import 'package:isar/isar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../db/settings/metadata_order/ap_song.dart';
+import '../../../../db/settings/metadata/ap_song.dart';
 import '../../app_isar.dart';
 
 part 'ap_song_metadata_order.g.dart';
@@ -21,7 +21,7 @@ class ApSongMetadataOrderSetting extends _$ApSongMetadataOrderSetting {
 @riverpod
 class _CurrentSetting extends _$CurrentSetting {
   @override
-  Future<ApSongMetadataOrderSettingCollection> build() async {
+  Future<ApSongMetadataSettingCollection> build() async {
     return ref.watch(_settingsProvider.future).then((value) => value.last);
   }
 }
@@ -29,10 +29,10 @@ class _CurrentSetting extends _$CurrentSetting {
 @riverpod
 class _Settings extends _$Settings {
   @override
-  Future<List<ApSongMetadataOrderSettingCollection>> build() async {
+  Future<List<ApSongMetadataSettingCollection>> build() async {
     final list = await ref
         .watch(appIsarProvider)
-        .apSongMetadataOrderSettingCollections
+        .apSongMetadataSettingCollections
         .where()
         .findAll();
     return list;
@@ -52,8 +52,8 @@ class _Settings extends _$Settings {
   }) async {
     final appIsar = ref.watch(appIsarProvider);
     appIsar.writeTxn(() async {
-      appIsar.apSongMetadataOrderSettingCollections
-          .put(ApSongMetadataOrderSettingCollection()
+      appIsar.apSongMetadataSettingCollections
+          .put(ApSongMetadataSettingCollection()
             ..id = id
             ..order = order);
     });

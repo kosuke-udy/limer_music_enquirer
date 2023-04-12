@@ -11,7 +11,7 @@ part 'app_isar.g.dart';
 class AppIsar extends _$AppIsar {
   static final _isar = Isar.openSync([
     ApStorefrontSettingCollectionSchema,
-    ApSongMetadataOrderSettingCollectionSchema,
+    ApSongMetadataSettingCollectionSchema,
   ]);
   bool _isInitialized = false;
 
@@ -62,8 +62,8 @@ class AppIsar extends _$AppIsar {
       }
 
       // Default display settings (defined in db/)
-      await _isar.apSongMetadataOrderSettingCollections
-          .put(ApSongMetadataOrderSettingCollection());
+      await _isar.apSongMetadataSettingCollections
+          .put(ApSongMetadataSettingCollection());
     });
   }
 }
