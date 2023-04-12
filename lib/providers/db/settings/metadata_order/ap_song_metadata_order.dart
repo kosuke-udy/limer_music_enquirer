@@ -13,7 +13,7 @@ class ApSongMetadataOrderSetting extends _$ApSongMetadataOrderSetting {
     return ref.watch(_currentSettingProvider.future).then((v) => v.order);
   }
 
-  Future<void> updateList(List<ApSongMetadataInfo> newOrder) async {
+  Future<void> updateOrder(List<ApSongMetadataInfo> newOrder) async {
     ref.watch(_settingsProvider.notifier).updateCurrent(newOrder);
   }
 }
