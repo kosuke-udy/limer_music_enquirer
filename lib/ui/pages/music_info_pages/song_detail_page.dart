@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
+import '../../../db/settings/metadata_order/ap_song.dart';
 import '../../../providers/apple_music/providers.dart';
 import '../../../providers/db/settings/metadata_order/ap_song_metadata_order.dart';
 import '../../../providers/db/settings/ap_storefront.dart';
@@ -33,17 +34,13 @@ class SongDetailPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final asyncStorefrontSetting = ref.watch(apStorefrontSettingProvider);
     final asyncStandardMetadataSetting =
-        ref.watch(apSongStandardMetadataOrderSettingProvider);
-    final asyncClassicalMetadataSetting =
-        ref.watch(apSongClassicalMetadataOrderSettingProvider);
+        ref.watch(apSongMetadataOrderSettingProvider);
 
     final isLoading = asyncStorefrontSetting.isLoading ||
-        asyncStandardMetadataSetting.isLoading ||
-        asyncClassicalMetadataSetting.isLoading;
+        asyncStandardMetadataSetting.isLoading;
 
     final hasError = asyncStorefrontSetting.hasError ||
-        asyncStandardMetadataSetting.hasError ||
-        asyncClassicalMetadataSetting.hasError;
+        asyncStandardMetadataSetting.hasError;
 
     return isLoading
         ? const Center(
@@ -58,7 +55,6 @@ class SongDetailPage extends HookConsumerWidget {
                 ref,
                 asyncStorefrontSetting.value!,
                 asyncStandardMetadataSetting.value!,
-                asyncClassicalMetadataSetting.value!,
               );
   }
 
@@ -66,8 +62,7 @@ class SongDetailPage extends HookConsumerWidget {
     BuildContext context,
     WidgetRef ref,
     ApStorefrontSettingCollection storefrontSetting,
-    List<ApSongStandardMetadataInfo> standardMetadataOrder,
-    List<ApSongClassicalMetadataInfo> classicalMetadataOrder,
+    List<ApSongMetadataInfo> metadataOrder,
   ) {
     final apStorefront = storefrontSetting.list[0];
     final detailProvider = songKindDetailProvider(
