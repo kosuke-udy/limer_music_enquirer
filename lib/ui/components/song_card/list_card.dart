@@ -4,8 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../../router/routes.dart';
 import '../../common_values/common_values.dart';
-import 'card_metadata.dart';
-import 'card_title.dart';
+import 'part_metadata.dart';
+import 'part_title.dart';
 
 class SongListCard extends ConsumerWidget {
   /* ---------- Statics ---------- */
@@ -56,7 +56,7 @@ class SongListCard extends ConsumerWidget {
     return SizedBox(
       child: Stack(
         children: [
-          SongMetadataCard(
+          SongCardMetadataPart(
             metadataMap: metadataMap,
             keyAreaWidth: _artworkSize,
             bgColorBase: bgColor,
@@ -64,7 +64,7 @@ class SongListCard extends ConsumerWidget {
           GestureDetector(
             onTap: () =>
                 SongDetailPageRoute(song.id, $extra: song).push(context),
-            child: SongTitleCard(
+            child: SongCardTitlePart(
               name: songName,
               artistName: artistName,
               artworkUrl: artworkUrl,

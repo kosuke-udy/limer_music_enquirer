@@ -98,7 +98,7 @@ class SongDetailPage extends HookConsumerWidget {
                   child: Column(
                     children: [
                       Area(
-                        child: SongTitleCard(
+                        child: SongCardTitlePart(
                           name: song.attributes!.name,
                           artistName: song.attributes!.artistName,
                           artworkUrl: song.attributes!.artwork.url300,

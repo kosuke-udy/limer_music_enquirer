@@ -5,7 +5,7 @@ import '../../common_methods/color_extension.dart';
 import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
 
-class SongTitleCard extends ConsumerWidget {
+class SongCardTitlePart extends ConsumerWidget {
   /* ---------- Statics ---------- */
 
   static const _fontSize = 14.0;
@@ -20,7 +20,7 @@ class SongTitleCard extends ConsumerWidget {
 
   /* ---------- Constructor ---------- */
 
-  const SongTitleCard({
+  const SongCardTitlePart({
     Key? key,
     required this.name,
     required this.artistName,

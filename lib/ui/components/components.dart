@@ -5,4 +5,4 @@ export 'resource_cards_list/list.dart';
 export 'song_card/list_card.dart';
 export 'song_card/list_horizontal.dart';
 export 'song_card/list_vertical_list.dart';
-export 'song_card/card_title.dart';
+export 'song_card/part_title.dart';

@@ -6,7 +6,7 @@ import '../../common_values/common_values.dart';
 import '../../common_methods/common_methods.dart';
 import '../metadata_table/table.dart';
 
-class SongMetadataCard extends ConsumerWidget {
+class SongCardMetadataPart extends ConsumerWidget {
   /* ---------- Properties ---------- */
 
   final Map<String, String?> metadataMap;
@@ -15,7 +15,7 @@ class SongMetadataCard extends ConsumerWidget {
 
   /* ---------- Constructor ---------- */
 
-  const SongMetadataCard({
+  const SongCardMetadataPart({
     Key? key,
     required this.metadataMap,
     required this.keyAreaWidth,
