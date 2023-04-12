@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
-import '../../common_methods/color_extension.dart';
+import '../../functions/color_extension.dart';
 import 'table.dart';
 
 class MetadataTableCard extends ConsumerWidget {
