@@ -3,7 +3,7 @@ import '../../../db/settings/metadata_order/ap_song.dart';
 
 import '../general/duration.dart';
 
-String? getApSongMetadata(
+String? getApSongMetadataValue(
   SongKind songKind,
   ApSongMetadataInfo info,
 ) {
