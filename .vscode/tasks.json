@@ -4,6 +4,12 @@
         {
             "label": "slang",
             "type": "shell",
+            "command": "fvm flutter pub run slang",
+            "problemMatcher": []
+        },
+        {
+            "label": "slang (full)",
+            "type": "shell",
             "command": "just slang",
             "problemMatcher": []
         },

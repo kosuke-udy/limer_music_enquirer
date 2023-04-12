@@ -10,10 +10,11 @@ targets:
           imports:
             - package:limer_music_enquirer/db/settings/metadata_order/ap_song.dart
           contexts:
-            ApSongStandardMetadataType:
+            ApSongMetadataType:
               enum:
                 - albumName
                 - artistName
+                - attribution
                 - audioVariants
                 - composerName
                 - contentRating
@@ -23,9 +24,13 @@ targets:
                 - hasLyrics
                 - isAppleDigitalMaster
                 - isrc
+                - movementCount
+                - movementName
+                - movementNumber
                 - name
                 - releaseDate
                 - trackNumber
+                - workName
               generate_enum: false
 
       slang_i18n_generator:

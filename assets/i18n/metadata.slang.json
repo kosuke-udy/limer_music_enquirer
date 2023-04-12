@@ -1,6 +1,6 @@
 {
     "song": {
-        "standard(param=apSongStandardMetadataKind)": {
+        "standard(param=apSongMetadataType)": {
             "albumName": {
                 "base": "Album",
                 "ja": "アルバム"
@@ -8,6 +8,10 @@
             "artistName": {
                 "base": "Artist",
                 "ja": "アーティスト"
+            },
+            "attribution": {
+                "base": "Attribution",
+                "ja": "アトリビューション"
             },
             "audioVariants": {
                 "base": "Audio Variants",
@@ -44,6 +48,18 @@
             "isrc": {
                 "base": "ISRC",
                 "ja": "ISRC"
+            },
+            "movementCount": {
+                "base": "Movement Count",
+                "ja": "楽章数"
+            },
+            "movementName": {
+                "base": "Movement Name",
+                "ja": "楽章名"
+            },
+            "movementNumber": {
+                "base": "Movement Number",
+                "ja": "楽章番号"
             },
             "name": {
                 "base": "Name",
