@@ -37,97 +37,28 @@ class ApSongClassicalMetadataInfo {
 }
 
 enum ApSongStandardMetadataType {
-  albumName(true),
-  artistName(true),
-  audioVariants(false),
-  composerName(false),
-  contentRating(true),
-  discNumber(true),
-  durationInMillis(true),
-  genreNames(true),
-  hasLyrics(false),
-  isAppleDigitalMaster(false),
-  isrc(false),
-  name(true),
-  releaseDate(true),
-  trackNumber(true);
+  albumName,
+  artistName,
+  audioVariants,
+  composerName,
+  contentRating,
+  discNumber,
+  durationInMillis,
+  genreNames,
+  hasLyrics,
+  isAppleDigitalMaster,
+  isrc,
+  name,
+  releaseDate,
+  trackNumber;
 
-  final bool isLibrary;
-
-  const ApSongStandardMetadataType(this.isLibrary);
-
-  String? getStringFromSongs(SongsAttributes atr) {
-    switch (this) {
-      case albumName:
-        return atr.albumName;
-      case artistName:
-        return atr.artistName;
-      case audioVariants:
-        return atr.audioVariants?.join(", ");
-      case composerName:
-        return atr.composerName;
-      case contentRating:
-        return atr.contentRating;
-      case discNumber:
-        return atr.discNumber?.toString();
-      case durationInMillis:
-        return _durationInMillisToString(atr.durationInMillis);
-      case genreNames:
-        return atr.genreNames.join(", ");
-      case hasLyrics:
-        return atr.hasLyrics ? "Yes" : "No";
-      case isAppleDigitalMaster:
-        return atr.isAppleDigitalMaster ? "Yes" : "No";
-      case isrc:
-        return atr.isrc;
-      case name:
-        return atr.name;
-      case releaseDate:
-        return atr.releaseDate;
-      case trackNumber:
-        return atr.trackNumber?.toString();
-      default:
-        return null;
-    }
-  }
-
-  String? getStringFromLibrarySongs(LibrarySongsAttributes atr) {
-    switch (this) {
-      case albumName:
-        return atr.albumName;
-      case artistName:
-        return atr.artistName;
-      case contentRating:
-        return atr.contentRating;
-      case discNumber:
-        return atr.discNumber?.toString();
-      case durationInMillis:
-        return _durationInMillisToString(atr.durationInMillis);
-      case genreNames:
-        return atr.genreNames.join(", ");
-      case name:
-        return atr.name;
-      case releaseDate:
-        return atr.releaseDate;
-      case trackNumber:
-        return atr.trackNumber?.toString();
-      default:
-        return null;
-    }
-  }
-
-  String _durationInMillisToString(int durationInMillis) {
-    int totalSeconds = durationInMillis ~/ 1000;
-    int hours = totalSeconds ~/ 3600;
-    int minutes = (totalSeconds % 3600) ~/ 60;
-    int seconds = totalSeconds % 60;
-
-    if (hours > 0) {
-      return "${hours.toString()}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
-    } else {
-      return "${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
-    }
-  }
+  static const catalogValues = [
+    audioVariants,
+    composerName,
+    hasLyrics,
+    isAppleDigitalMaster,
+    isrc,
+  ];
 }
 
 enum ApSongClassicalMetadataType {
@@ -136,21 +67,4 @@ enum ApSongClassicalMetadataType {
   movementName,
   movementNumber,
   workName;
-
-  String? getStringFromSongs(SongsAttributes atr) {
-    switch (this) {
-      case attribution:
-        return atr.attribution;
-      case movementCount:
-        return atr.movementCount?.toString();
-      case movementName:
-        return atr.movementName;
-      case movementNumber:
-        return atr.movementNumber?.toString();
-      case workName:
-        return atr.workName;
-      default:
-        return null;
-    }
-  }
 }
