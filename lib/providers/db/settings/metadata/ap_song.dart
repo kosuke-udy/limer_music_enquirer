@@ -4,25 +4,19 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../db/settings/metadata/ap_song.dart';
 import '../../app_isar.dart';
 
+export '../../../../db/settings/metadata/ap_song.dart';
+
 part 'ap_song.g.dart';
 
 @riverpod
 class ApSongMetadataSetting extends _$ApSongMetadataSetting {
   @override
-  Future<List<ApSongMetadataInfo>> build() async {
-    return ref.watch(_currentSettingProvider.future).then((v) => v.order);
+  Future<ApSongMetadataSettingCollection> build() async {
+    return ref.watch(_settingsProvider.future).then((value) => value.last);
   }
 
   Future<void> updateOrder(List<ApSongMetadataInfo> newOrder) async {
     ref.watch(_settingsProvider.notifier).updateCurrent(newOrder);
-  }
-}
-
-@riverpod
-class _CurrentSetting extends _$CurrentSetting {
-  @override
-  Future<ApSongMetadataSettingCollection> build() async {
-    return ref.watch(_settingsProvider.future).then((value) => value.last);
   }
 }
 
@@ -39,7 +33,7 @@ class _Settings extends _$Settings {
   }
 
   Future<void> updateCurrent(List<ApSongMetadataInfo> newOrder) async {
-    final current = await ref.read(_currentSettingProvider.future);
+    final current = await ref.read(apSongMetadataSettingProvider.future);
     put(
       id: current.id,
       order: newOrder,
