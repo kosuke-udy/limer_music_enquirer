@@ -41,7 +41,7 @@ class AppIsar extends _$AppIsar {
     await _isar.writeTxn(() async {
       await _isar.clear();
 
-      // Default locale
+      // Default storefront setting
       await _isar.apStorefrontSettingCollections
           .put(ApStorefrontSettingCollection()
             ..list.add(
@@ -50,7 +50,7 @@ class AppIsar extends _$AppIsar {
                 ..languageTag = userStorefront.attributes!.defaultLanguageTag,
             ));
 
-      // Default locale for dev
+      // Default storefront setting for dev
       if (const String.fromEnvironment("FLAVOR") == "dev") {
         await _isar.apStorefrontSettingCollections
             .put(ApStorefrontSettingCollection()
@@ -61,9 +61,15 @@ class AppIsar extends _$AppIsar {
               ));
       }
 
-      // Default display settings (defined in db/)
-      await _isar.apSongMetadataSettingCollections
-          .put(ApSongMetadataSettingCollection());
+      // Default metadata setting
+      await _isar.apSongMetadataSettingCollections.put(
+        ApSongMetadataSettingCollection()
+          ..order = ApSongMetadataType.values
+              .map((e) => ApSongMetadataInfo()
+                ..type = e
+                ..isVisible = true)
+              .toList(),
+      );
     });
   }
 }

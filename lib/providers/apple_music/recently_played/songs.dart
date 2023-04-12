@@ -9,7 +9,7 @@ class RecentlyPlayedSongs extends _$RecentlyPlayedSongs {
   final _client = AppleMusicApiClient();
 
   @override
-  Future<List<SongKind>> build() {
+  Future<List<SongKind>> build() async {
     state = const AsyncValue.loading();
     return fetch();
   }
