@@ -10,7 +10,7 @@ targets:
           imports:
             - package:limer_music_enquirer/db/settings/metadata_order/ap_song.dart
           contexts:
-            ApSongStandardMetadataKind:
+            ApSongStandardMetadataType:
               enum:
                 - albumName
                 - artistName

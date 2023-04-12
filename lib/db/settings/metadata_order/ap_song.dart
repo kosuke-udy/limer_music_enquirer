@@ -21,7 +21,7 @@ class ApSongStandardMetadataInfo {
   ApSongStandardMetadataInfo();
 
   @Enumerated(EnumType.ordinal)
-  ApSongStandardMetadataKind data = ApSongStandardMetadataKind.albumName;
+  ApSongStandardMetadataType data = ApSongStandardMetadataType.albumName;
 
   bool isVisible = false;
 }
@@ -31,12 +31,12 @@ class ApSongClassicalMetadataInfo {
   ApSongClassicalMetadataInfo();
 
   @Enumerated(EnumType.ordinal)
-  ApSongClassicalMetadata data = ApSongClassicalMetadata.attribution;
+  ApSongClassicalMetadataType data = ApSongClassicalMetadataType.attribution;
 
   bool isVisible = false;
 }
 
-enum ApSongStandardMetadataKind {
+enum ApSongStandardMetadataType {
   albumName(true),
   artistName(true),
   audioVariants(false),
@@ -54,7 +54,7 @@ enum ApSongStandardMetadataKind {
 
   final bool isLibrary;
 
-  const ApSongStandardMetadataKind(this.isLibrary);
+  const ApSongStandardMetadataType(this.isLibrary);
 
   String? getStringFromSongs(SongsAttributes atr) {
     switch (this) {
@@ -130,7 +130,7 @@ enum ApSongStandardMetadataKind {
   }
 }
 
-enum ApSongClassicalMetadata {
+enum ApSongClassicalMetadataType {
   attribution,
   movementCount,
   movementName,
