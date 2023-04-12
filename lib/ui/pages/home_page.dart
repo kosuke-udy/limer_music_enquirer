@@ -3,7 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:limer_music_enquirer/router/routes.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
-import '../../providers/apple_music/providers.dart';
+import '../../providers/apple_music/recently_played/songs.dart';
+import '../../providers/db/settings/metadata/ap_song.dart';
 import '../../translations.g.dart';
 import '../common_parts/common_parts.dart';
 import '../components/components.dart';
@@ -13,8 +14,31 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final asyncMetadataSetting = ref.watch(apSongMetadataSettingProvider);
+    final isLoading = asyncMetadataSetting.isLoading;
+    final hasError = asyncMetadataSetting.hasError;
+
+    return isLoading
+        ? const Center(
+            child: CircularProgressIndicator(),
+          )
+        : hasError
+            ? Center(
+                child: Text(asyncMetadataSetting.error.toString()),
+              )
+            : _afterSettingsLoaded(
+                context,
+                ref,
+                asyncMetadataSetting.value!,
+              );
+  }
+
+  Widget _afterSettingsLoaded(
+    BuildContext context,
+    WidgetRef ref,
+    ApSongMetadataSettingCollection metadataSetting,
+  ) {
     final recentlySongs = ref.watch(recentlyPlayedSongsProvider);
-    // final recentlyResources = ref.watch(recentlyPlayedResourcesProvider);
 
     return PageScaffold(
       appBarTitle: Text(t.home.home),
@@ -30,7 +54,10 @@ class HomePage extends ConsumerWidget {
             ),
             child: recentlySongs.when(
               data: (songs) {
-                return SongCardListHorizontal(songs.sublist(0, 10));
+                return SongCardListHorizontal(
+                  songs: songs.sublist(0, 10),
+                  metadataSetting: metadataSetting,
+                );
               },
               loading: () => const Center(
                 child: CircularProgressIndicator(),
