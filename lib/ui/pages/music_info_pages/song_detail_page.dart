@@ -41,7 +41,7 @@ class SongDetailPage extends HookConsumerWidget {
 
     return isLoading
         ? const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator.adaptive(),
           )
         : hasError
             ? Center(
@@ -79,7 +79,7 @@ class SongDetailPage extends HookConsumerWidget {
           Area(
             child: ref.watch(songDetailProvider).when(
                   loading: () => const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator.adaptive(),
                   ),
                   error: (error, stackTrace) => Center(
                     child: Text(error.toString()),

@@ -21,7 +21,7 @@ class SongMetadataOrderSettingPage extends HookConsumerWidget {
 
     return isLoading
         ? const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator.adaptive(),
           )
         : hasError
             ? Center(

@@ -20,7 +20,7 @@ class HomePage extends ConsumerWidget {
 
     return isLoading
         ? const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator.adaptive(),
           )
         : hasError
             ? Center(
@@ -60,7 +60,7 @@ class HomePage extends ConsumerWidget {
                 );
               },
               loading: () => const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator.adaptive(),
               ),
               error: (err, stack) => Center(
                 child: Text(err.toString()),

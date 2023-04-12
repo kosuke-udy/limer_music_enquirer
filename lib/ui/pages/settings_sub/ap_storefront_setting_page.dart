@@ -15,7 +15,8 @@ class ApStorefrontSettingPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(apStorefrontSettingProvider).when(
           data: (data) => _build(context, ref, data),
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () =>
+              const Center(child: CircularProgressIndicator.adaptive()),
           error: (error, stackTrace) => const Center(child: Text("Error")),
         );
   }
@@ -74,8 +75,8 @@ class ApStorefrontSettingPage extends ConsumerWidget {
                         }).toList(),
                       );
                     },
-                    loading: () =>
-                        const Center(child: CircularProgressIndicator()),
+                    loading: () => const Center(
+                        child: CircularProgressIndicator.adaptive()),
                     error: (error, stackTrace) =>
                         const Center(child: Text("Error")),
                   ),
