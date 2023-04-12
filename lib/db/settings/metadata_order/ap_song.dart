@@ -42,6 +42,7 @@ enum ApSongMetadataType {
   trackNumber,
   workName;
 
+  bool get isCatalog => catalogValues.contains(this);
   static const catalogValues = [
     audioVariants,
     composerName,
@@ -50,6 +51,7 @@ enum ApSongMetadataType {
     isrc,
   ];
 
+  bool get isClassic => classicValues.contains(this);
   static const classicValues = [
     attribution,
     movementCount,
