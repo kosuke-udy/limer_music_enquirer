@@ -4,10 +4,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../db/settings/metadata/ap_song.dart';
 import '../../app_isar.dart';
 
-part 'ap_song_metadata_order.g.dart';
+part 'ap_song.g.dart';
 
 @riverpod
-class ApSongMetadataOrderSetting extends _$ApSongMetadataOrderSetting {
+class ApSongMetadataSetting extends _$ApSongMetadataSetting {
   @override
   Future<List<ApSongMetadataInfo>> build() async {
     return ref.watch(_currentSettingProvider.future).then((v) => v.order);
