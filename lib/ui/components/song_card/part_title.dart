@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../functions/color_extension.dart';
+import '../../data_converter/color_extension.dart';
 import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
 
