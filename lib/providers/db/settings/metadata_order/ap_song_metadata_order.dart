@@ -1,10 +1,10 @@
 import 'package:isar/isar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../db/settings/metadata_order/ap_song_metadata.dart';
+import '../../../../db/settings/metadata_order/ap_song.dart';
 import '../../app_isar.dart';
 
-export '../../../../db/settings/metadata_order/ap_song_metadata.dart'
+export '../../../../db/settings/metadata_order/ap_song.dart'
     show
         ApSongStandardMetadataInfo,
         ApSongClassicalMetadataInfo,
