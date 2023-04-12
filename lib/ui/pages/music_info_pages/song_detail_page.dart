@@ -53,7 +53,7 @@ class SongDetailPage extends HookConsumerWidget {
             ? Center(
                 child: Text(asyncStorefrontSetting.error.toString()),
               )
-            : _build(
+            : _afterSettingLoaded(
                 context,
                 ref,
                 asyncStorefrontSetting.value!,
@@ -62,7 +62,7 @@ class SongDetailPage extends HookConsumerWidget {
               );
   }
 
-  Widget _build(
+  Widget _afterSettingLoaded(
     BuildContext context,
     WidgetRef ref,
     ApStorefrontSettingCollection storefrontSetting,
@@ -77,7 +77,7 @@ class SongDetailPage extends HookConsumerWidget {
       data: data,
     );
 
-    final songDetail = ref.watch(detailProvider);
+    final asyncSongDetail = ref.watch(detailProvider);
 
     final common = ref.watch(commonValuesProvider);
 
@@ -89,7 +89,7 @@ class SongDetailPage extends HookConsumerWidget {
         },
         children: [
           Area(
-            child: songDetail.when(
+            child: asyncSongDetail.when(
               data: (song) {
                 return Padding(
                   padding: EdgeInsets.symmetric(
