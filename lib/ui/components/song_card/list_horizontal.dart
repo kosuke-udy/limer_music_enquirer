@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
+import '../../../db/settings/metadata/ap_song.dart';
 import '../../common_values/common_values.dart';
 import 'list_card.dart';
 
@@ -14,10 +15,15 @@ class SongCardListHorizontal extends ConsumerWidget {
   /* ---------- Properties ---------- */
 
   final List<SongKind> songs;
+  final ApSongMetadataSettingCollection metadataSetting;
 
   /* ---------- Constructor ---------- */
 
-  const SongCardListHorizontal(this.songs, {Key? key}) : super(key: key);
+  const SongCardListHorizontal({
+    Key? key,
+    required this.songs,
+    required this.metadataSetting,
+  }) : super(key: key);
 
   /* ---------- Build ---------- */
 
@@ -40,7 +46,10 @@ class SongCardListHorizontal extends ConsumerWidget {
               padding: EdgeInsets.symmetric(
                 horizontal: common.size.insetsSmall,
               ),
-              child: SongListCard(song: e),
+              child: SongListCard(
+                song: e,
+                metadataSetting: metadataSetting,
+              ),
             );
           }).toList(),
         ),

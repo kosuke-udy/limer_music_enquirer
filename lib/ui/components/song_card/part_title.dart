@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../api/apple_music_api/models/models.dart';
 import '../../data_converter/general/color_extension.dart';
 import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
@@ -13,30 +14,31 @@ class SongCardTitlePart extends ConsumerWidget {
 
   /* ---------- Properties ---------- */
 
-  final String name, artistName, artworkUrl;
-  final double artworkSize, elevation;
-  final Color? bgColorBase;
+  final SongKind song;
+  final double elevation, artworkSize;
   final bool fullDisplayed;
 
   /* ---------- Constructor ---------- */
 
   const SongCardTitlePart({
     Key? key,
-    required this.name,
-    required this.artistName,
-    required this.artworkUrl,
+    required this.song,
     required this.artworkSize,
     required this.fullDisplayed,
     this.elevation = 0,
-    this.bgColorBase,
   }) : super(key: key);
 
   /* ---------- Build ---------- */
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final common = ref.watch(commonValuesProvider);
+    final songAttributes = song.attributes!;
+    final name = songAttributes.name;
+    final artistName = songAttributes.artistName;
+    final artworkUrl = songAttributes.artwork.url100;
+    final bgColorBase = songAttributes.artwork.bgColor;
 
+    final common = ref.watch(commonValuesProvider);
     final nameTextStyle = common.textStyle.title.copyWith(
       fontSize: _fontSize,
     );
