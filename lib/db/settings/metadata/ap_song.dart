@@ -3,8 +3,8 @@ import 'package:isar/isar.dart';
 part 'ap_song.g.dart';
 
 @collection
-class ApSongMetadataOrderSettingCollection {
-  ApSongMetadataOrderSettingCollection();
+class ApSongMetadataSettingCollection {
+  ApSongMetadataSettingCollection();
 
   Id? id;
 
