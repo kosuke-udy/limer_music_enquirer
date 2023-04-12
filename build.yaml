@@ -8,7 +8,7 @@ targets:
           output_directory: lib
           output_file_name: translations.g.dart
           imports:
-            - package:limer_music_enquirer/db/settings/metadata_order/ap_song_metadata.dart
+            - package:limer_music_enquirer/db/settings/metadata_order/ap_song.dart
           contexts:
             ApSongStandardMetadata:
               enum:
