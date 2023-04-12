@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:reorderables/reorderables.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
-import '../../../providers/db/settings/metadata_order/ap_song_metadata_order.dart';
+import '../../../providers/db/settings/metadata/ap_song.dart';
 import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
 
@@ -27,7 +27,7 @@ class SongMetadataOrderSettingPage extends HookConsumerWidget {
             margin: EdgeInsets.symmetric(
               horizontal: common.size.insetsLarge,
             ),
-            child: ref.watch(apSongMetadataOrderSettingProvider).when(
+            child: ref.watch(apSongMetadataSettingProvider).when(
                   data: (order) {
                     return ReorderableColumn(
                       ignorePrimaryScrollController: true,
@@ -40,7 +40,7 @@ class SongMetadataOrderSettingPage extends HookConsumerWidget {
                         final item = order.removeAt(oldIndex);
                         order.insert(newIndex, item);
                         ref
-                            .watch(apSongMetadataOrderSettingProvider.notifier)
+                            .watch(apSongMetadataSettingProvider.notifier)
                             .updateOrder(order);
                       },
                       children: order.map(
