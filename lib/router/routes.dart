@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../providers/apple_music/providers.dart';
-import '../ui/pages/settings_sub/ap_storefront_setting_page.dart';
-import '../ui/pages/settings_sub/song_metadata_order_setting_page.dart';
+import '../ui/pages/settings_subs/ap_storefront_setting_page.dart';
+import '../ui/pages/settings_subs/song_metadata_order_setting_page.dart';
 import '../ui/pages/home_page.dart';
-import '../ui/pages/music_info_pages/recently_played_list_page.dart';
-import '../ui/pages/music_info_pages/song_detail_page.dart';
+import '../ui/pages/music_info/recently_played_list_page.dart';
+import '../ui/pages/music_info/song_detail_page.dart';
 import '../ui/pages/settings_page.dart';
 
 part 'routes.g.dart';
