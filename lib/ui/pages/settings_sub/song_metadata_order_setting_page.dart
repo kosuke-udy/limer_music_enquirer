@@ -69,7 +69,7 @@ class SongMetadataOrderSettingPage extends HookConsumerWidget {
                   (e, index) {
                     return ListTile(
                       key: Key(e.type.name),
-                      title: Text(e.type.name),
+                      title: Text(t.metadata.song(type: e.type)),
                       trailing: Platform.isIOS || Platform.isMacOS
                           ? Icon(
                               Icons.drag_handle_rounded,
