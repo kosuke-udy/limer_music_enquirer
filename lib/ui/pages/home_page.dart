@@ -41,7 +41,7 @@ class HomePage extends ConsumerWidget {
     final recentlySongs = ref.watch(recentlyPlayedSongsProvider);
 
     return PageScaffold(
-      appBarTitle: Text(t.home.home),
+      appBarTitle: Text(t.homePage.home),
       body: RefreshableListView(
         onRefresh: () async {
           ref.invalidate(recentlyPlayedSongsProvider);
@@ -49,7 +49,7 @@ class HomePage extends ConsumerWidget {
         children: [
           Area(
             headline: Headline(
-              t.home.recentlyPlayedSongs,
+              t.homePage.recentlyPlayedSongs,
               onTap: () => RecentlyPlayedSongsPageRoute().push(context),
             ),
             child: recentlySongs.when(

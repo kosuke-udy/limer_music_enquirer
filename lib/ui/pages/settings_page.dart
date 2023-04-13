@@ -15,17 +15,17 @@ class SettingsPage extends ConsumerWidget {
     final common = ref.watch(commonValuesProvider);
 
     return PageScaffold(
-      appBarTitle: Text(t.settings.settings),
+      appBarTitle: Text(t.settingsPage.settings),
       body: RefreshableListView(children: [
         Area(
-          headline: Headline(t.settings.general),
+          headline: Headline(t.settingsPage.general),
           child: FilledCard(
             margin: EdgeInsets.symmetric(
               horizontal: common.size.insetsLarge,
               vertical: common.size.insetsSmall,
             ),
             child: ListTile(
-              title: Text(t.settings.regeonsAndLanguages),
+              title: Text(t.settingsPage.regeonsAndLanguages),
               trailing: Icon(
                 Icons.arrow_forward_ios_rounded,
                 size: common.size.infoIcon,
@@ -35,14 +35,14 @@ class SettingsPage extends ConsumerWidget {
           ),
         ),
         Area(
-          headline: Headline(t.settings.metadataOrder),
+          headline: Headline(t.settingsPage.metadataOrder),
           child: FilledCard(
             margin: EdgeInsets.symmetric(
               horizontal: common.size.insetsLarge,
               vertical: common.size.insetsSmall,
             ),
             child: ListTile(
-              title: Text(t.settings.song),
+              title: Text(t.settingsPage.song),
               trailing: Icon(
                 Icons.arrow_forward_ios_rounded,
                 size: common.size.infoIcon,
