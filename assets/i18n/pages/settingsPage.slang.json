@@ -1,0 +1,34 @@
+{
+    "settings": {
+        "base": "Settings",
+        "ja": "設定"
+    },
+    "general": {
+        "base": "General",
+        "ja": "全般"
+    },
+    "regeonsAndLanguages": {
+        "base": "Regions & Languages",
+        "ja": "地域・言語"
+    },
+    "metadataOrder": {
+        "base": "Metadata",
+        "ja": "メタデータ"
+    },
+    "song": {
+        "base": "Song",
+        "ja": "曲"
+    },
+    "subRoutes": {
+        "songMetadata": {
+            "metadataSong": {
+                "base": "Metadata: Song",
+                "ja": "メタデータ: 曲"
+            },
+            "order": {
+                "base": "Order",
+                "ja": "並び替え"
+            }
+        }
+    }
+}
