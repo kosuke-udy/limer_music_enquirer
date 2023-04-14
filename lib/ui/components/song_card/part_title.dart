@@ -12,7 +12,7 @@ class SongCardTitlePart extends ConsumerWidget {
   static const double _nameFontSize = 14.0;
   static const double _artistNameFontSize = 13.0;
   static const double _textSpacing = 4.0;
-  static const double _elevation = 0.1;
+  static const double _elevation = 4;
 
   /* ---------- Properties ---------- */
 
