@@ -12,17 +12,17 @@ class MetadataTable extends ConsumerWidget {
 
   /* ---------- Properties ---------- */
 
-  final double keyAreaWidth;
-  final int? maxLines;
   final Map<String, String?> metadataMap;
+  final int? maxLines;
+  final double keyAreaWidth;
 
   /* ---------- Constructor ---------- */
 
   const MetadataTable({
     Key? key,
-    required this.keyAreaWidth,
-    this.maxLines,
     required this.metadataMap,
+    this.maxLines,
+    required this.keyAreaWidth,
   }) : super(key: key);
 
   /* ---------- Build ---------- */
