@@ -15,7 +15,7 @@ class MetadataTableRow extends ConsumerWidget {
 
   final int? maxLines;
   final String keyText;
-  final double keyAreaWidth;
+  final double mainCardArtworkSize;
   final String? valueText;
 
   /* ---------- Constructor ---------- */
@@ -24,7 +24,7 @@ class MetadataTableRow extends ConsumerWidget {
     Key? key,
     this.maxLines,
     required this.keyText,
-    required this.keyAreaWidth,
+    required this.mainCardArtworkSize,
     this.valueText,
   }) : super(key: key);
 
@@ -41,28 +41,34 @@ class MetadataTableRow extends ConsumerWidget {
             : common.textStyle.subtitle)
         .copyWith(fontSize: _valueFontSize);
 
+    final horizontalMargin = common.size.insetsSmall;
+    final keyAreaWidth = mainCardArtworkSize - horizontalMargin;
+    final spacingKeyToValue = common.size.insetsLarge;
+
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: common.size.insetsSmall,
+        horizontal: horizontalMargin,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.baseline,
         textBaseline: TextBaseline.alphabetic,
         children: [
-          SizedBox(
-            width: keyAreaWidth -
-                _keyAreaWidthAdjustment -
-                common.size.insetsSmall,
-            child: Text(
-              keyText,
-              style: keyTextStyle,
-              textAlign: TextAlign.right,
-              maxLines: maxLines,
-              overflow: maxLines != null ? TextOverflow.ellipsis : null,
+          Padding(
+            padding: const EdgeInsets.only(right: _keyAreaWidthAdjustment),
+            child: SizedBox(
+              width: keyAreaWidth - _keyAreaWidthAdjustment,
+              child: Text(
+                keyText,
+                style: keyTextStyle,
+                textAlign: TextAlign.right,
+                textWidthBasis: TextWidthBasis.parent,
+                maxLines: maxLines,
+                overflow: maxLines != null ? TextOverflow.ellipsis : null,
+              ),
             ),
           ),
-          SizedBox(width: common.size.insetsLarge + _keyAreaWidthAdjustment),
+          SizedBox(width: spacingKeyToValue),
           Expanded(
             child: Text(
               valueText ?? _nullValueText,

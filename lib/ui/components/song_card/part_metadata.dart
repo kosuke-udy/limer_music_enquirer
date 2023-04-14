@@ -23,7 +23,7 @@ class SongCardMetadataPart extends ConsumerWidget {
   final ApSongMetadataSettingCollection setting;
   final int? tableMaxLines;
   final int? rowMaxCount;
-  final double keyAreaWidth;
+  final double mainCardArtworkSize;
 
   /* ---------- Constructor ---------- */
 
@@ -31,7 +31,7 @@ class SongCardMetadataPart extends ConsumerWidget {
     Key? key,
     required this.song,
     required this.setting,
-    required this.keyAreaWidth,
+    required this.mainCardArtworkSize,
     this.rowMaxCount,
     this.tableMaxLines,
   }) : super(key: key);
@@ -52,7 +52,7 @@ class SongCardMetadataPart extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: keyAreaWidth),
+          SizedBox(height: mainCardArtworkSize),
           Padding(
             padding: EdgeInsets.symmetric(
               vertical: tableAreaVearticalPadding,
@@ -60,7 +60,7 @@ class SongCardMetadataPart extends ConsumerWidget {
             child: MetadataTable(
               maxLines: tableMaxLines,
               metadataMap: _generateMetadataMap(song, setting, rowMaxCount),
-              keyAreaWidth: keyAreaWidth,
+              mainCardArtworkSize: mainCardArtworkSize,
             ),
           ),
         ],

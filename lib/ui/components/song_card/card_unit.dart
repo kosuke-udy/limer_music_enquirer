@@ -40,7 +40,7 @@ class SongCardUnit extends ConsumerWidget {
           SongCardMetadataPart(
             song: song,
             setting: metadataSetting,
-            keyAreaWidth: artworkSize,
+            mainCardArtworkSize: artworkSize,
             rowMaxCount: metadataRowMaxCount,
             tableMaxLines: metadataTableMaxLines,
           ),

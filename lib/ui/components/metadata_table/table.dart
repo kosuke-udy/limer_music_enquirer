@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'row.dart';
@@ -13,7 +14,7 @@ class MetadataTable extends ConsumerWidget {
 
   final Map<String, String?> metadataMap;
   final int? maxLines;
-  final double keyAreaWidth;
+  final double mainCardArtworkSize;
 
   /* ---------- Constructor ---------- */
 
@@ -21,7 +22,7 @@ class MetadataTable extends ConsumerWidget {
     Key? key,
     required this.metadataMap,
     this.maxLines,
-    required this.keyAreaWidth,
+    required this.mainCardArtworkSize,
   }) : super(key: key);
 
   /* ---------- Build ---------- */
@@ -34,19 +35,19 @@ class MetadataTable extends ConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: metadataMap.entries.map((entry) {
-        return Column(
-          children: [
-            entry.key != metadataMap.keys.first
-                ? SizedBox(height: rowSpacing)
-                : const SizedBox.shrink(),
-            MetadataTableRow(
-              keyAreaWidth: keyAreaWidth,
-              maxLines: maxLines,
-              keyText: entry.key,
-              valueText: entry.value,
-            ),
-          ],
+      children: metadataMap.entries.mapWithIndex((entry, index) {
+        return Padding(
+          padding: index == 0
+              ? EdgeInsets.zero
+              : EdgeInsets.only(
+                  top: rowSpacing,
+                ),
+          child: MetadataTableRow(
+            mainCardArtworkSize: mainCardArtworkSize,
+            maxLines: maxLines,
+            keyText: entry.key,
+            valueText: entry.value,
+          ),
         );
       }).toList(),
     );
