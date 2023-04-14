@@ -7,8 +7,8 @@ import 'row.dart';
 class MetadataTable extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
-  static const _spacingSmall = 6.0;
-  static const _spacingLarge = 12.0;
+  static const _rowSpacingWithLimit = 6.0;
+  static const _rowSpacingWithoutLimit = 12.0;
 
   /* ---------- Properties ---------- */
 
@@ -29,7 +29,8 @@ class MetadataTable extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final common = ref.watch(commonValuesProvider);
+    final rowSpacing =
+        maxLines == null ? _rowSpacingWithoutLimit : _rowSpacingWithLimit;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -38,12 +39,7 @@ class MetadataTable extends ConsumerWidget {
         return Column(
           children: [
             entry.key != metadataMap.keys.first
-                ? maxLines == null
-                    ? Divider(
-                        height: _spacingLarge,
-                        color: common.color.divider.withOpacity(0),
-                      )
-                    : const SizedBox(height: _spacingSmall)
+                ? SizedBox(height: rowSpacing)
                 : const SizedBox.shrink(),
             MetadataTableRow(
               keyAreaWidth: keyAreaWidth,
