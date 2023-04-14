@@ -76,7 +76,6 @@ Map<String, String?> _generateMetadataMap(
 ) {
   final result = <String, String?>{};
   final isLibrarySong = song.type == ResourceType.librarySongs;
-  bool hasClassicalValue = false;
 
   // Traverses order and stores keys and values in the result
   final order = rowMaxCount == null
@@ -84,16 +83,8 @@ Map<String, String?> _generateMetadataMap(
       : setting.order.take(rowMaxCount).toList();
   for (final info in order) {
     final value = getApSongMetadataValue(song, info);
-    hasClassicalValue = info.type.isClassical && value != null;
     if (!info.isVisible || !(isLibrarySong && info.type.isCatalogs)) {
       result[t.metadata.song(type: info.type)] = value;
-    }
-  }
-
-  // Removes classical values if there is no classical value
-  if (!hasClassicalValue) {
-    for (final classical in ApSongMetadataType.classicalValues) {
-      result.remove(t.metadata.song(type: classical));
     }
   }
 
