@@ -6,8 +6,10 @@ import '../../common_values/common_values.dart';
 class MetadataTableRow extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
-  static const _fontSize = 13.0;
-  static const _spacingTweak = 2.0;
+  static const double _keyFontSize = 11.0;
+  static const double _keyAreaWidthAdjustment = 2.0;
+  static const double _valueFontSize = 13.0;
+  static const String _nullValueText = 'No Data';
 
   /* ---------- Properties ---------- */
 
@@ -33,39 +35,44 @@ class MetadataTableRow extends ConsumerWidget {
     final common = ref.watch(commonValuesProvider);
 
     final keyTextStyle =
-        common.textStyle.subtitleGray.copyWith(fontSize: _fontSize - 2);
+        common.textStyle.subtitleGray.copyWith(fontSize: _keyFontSize);
     final valueTextStyle = (valueText == null
             ? common.textStyle.subtitleGray
             : common.textStyle.subtitle)
-        .copyWith(fontSize: _fontSize);
+        .copyWith(fontSize: _valueFontSize);
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.baseline,
-      textBaseline: TextBaseline.alphabetic,
-      children: [
-        SizedBox(width: common.size.insetsSmall),
-        SizedBox(
-          width: keyAreaWidth - _spacingTweak - common.size.insetsSmall,
-          child: Text(
-            keyText,
-            style: keyTextStyle,
-            textAlign: TextAlign.right,
-            maxLines: maxLines,
-            overflow: maxLines != null ? TextOverflow.ellipsis : null,
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: common.size.insetsSmall,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
+        children: [
+          SizedBox(
+            width: keyAreaWidth -
+                _keyAreaWidthAdjustment -
+                common.size.insetsSmall,
+            child: Text(
+              keyText,
+              style: keyTextStyle,
+              textAlign: TextAlign.right,
+              maxLines: maxLines,
+              overflow: maxLines != null ? TextOverflow.ellipsis : null,
+            ),
           ),
-        ),
-        SizedBox(width: common.size.insetsLarge + _spacingTweak),
-        Expanded(
-          child: Text(
-            valueText ?? "No data",
-            style: valueTextStyle,
-            maxLines: maxLines,
-            overflow: maxLines != null ? TextOverflow.ellipsis : null,
+          SizedBox(width: common.size.insetsLarge + _keyAreaWidthAdjustment),
+          Expanded(
+            child: Text(
+              valueText ?? _nullValueText,
+              style: valueTextStyle,
+              maxLines: maxLines,
+              overflow: maxLines != null ? TextOverflow.ellipsis : null,
+            ),
           ),
-        ),
-        SizedBox(width: common.size.insetsSmall),
-      ],
+        ],
+      ),
     );
   }
 }
