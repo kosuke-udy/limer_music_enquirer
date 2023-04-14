@@ -24,7 +24,7 @@ String? getApSongMetadataValue(
     case ApSongMetadataType.name:
       return songKind.attributes!.name;
     case ApSongMetadataType.releaseDate:
-      return songKind.attributes!.releaseDate;
+      return songKind.attributes!.releaseDate?.replaceAll("-", "/");
     case ApSongMetadataType.trackNumber:
       return songKind.attributes!.trackNumber?.toString();
     default:
