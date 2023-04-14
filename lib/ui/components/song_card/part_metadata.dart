@@ -14,6 +14,8 @@ class SongCardMetadataPart extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
   static const double _elevation = 1;
+  static const double _tableAreaVerticalPaddingWithLimit = 8.0;
+  static const double _tableAreaVerticalPaddingWithoutLimit = 16.0;
 
   /* ---------- Properties ---------- */
 
@@ -39,6 +41,10 @@ class SongCardMetadataPart extends ConsumerWidget {
     final common = ref.watch(commonValuesProvider);
     final bgColorBase = song.attributes?.artwork.bgColor;
 
+    final tableAreaVearticalPadding = rowMaxCount == null
+        ? _tableAreaVerticalPaddingWithoutLimit
+        : _tableAreaVerticalPaddingWithLimit;
+
     return FilledCard(
       elevation: _elevation,
       color: bgColorBase?.aptCardBgColor(),
@@ -50,7 +56,7 @@ class SongCardMetadataPart extends ConsumerWidget {
           SizedBox(height: keyAreaWidth),
           Padding(
             padding: EdgeInsets.symmetric(
-              vertical: common.size.insetsSmall,
+              vertical: tableAreaVearticalPadding,
             ),
             child: MetadataTable(
               maxLines: tableMaxLines,
