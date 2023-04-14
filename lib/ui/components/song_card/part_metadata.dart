@@ -19,9 +19,9 @@ class SongCardMetadataPart extends ConsumerWidget {
 
   final SongKind song;
   final ApSongMetadataSettingCollection setting;
-  final double keyAreaWidth;
-  final int? maxCount;
   final int? tableMaxLines;
+  final int? rowMaxCount;
+  final double keyAreaWidth;
 
   /* ---------- Constructor ---------- */
 
@@ -30,7 +30,7 @@ class SongCardMetadataPart extends ConsumerWidget {
     required this.song,
     required this.setting,
     required this.keyAreaWidth,
-    this.maxCount,
+    this.rowMaxCount,
     this.tableMaxLines,
   }) : super(key: key);
 
@@ -47,13 +47,17 @@ class SongCardMetadataPart extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: keyAreaWidth + common.size.insetsSmall),
-          MetadataTable(
-            maxLines: tableMaxLines,
-            metadataMap: _generateMetadataMap(song, setting, maxCount),
-            keyAreaWidth: keyAreaWidth,
+          SizedBox(height: keyAreaWidth),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: common.size.insetsSmall,
+            ),
+            child: MetadataTable(
+              maxLines: tableMaxLines,
+              metadataMap: _generateMetadataMap(song, setting, rowMaxCount),
+              keyAreaWidth: keyAreaWidth,
+            ),
           ),
-          SizedBox(height: common.size.insetsSmall),
         ],
       ),
     );
@@ -63,15 +67,16 @@ class SongCardMetadataPart extends ConsumerWidget {
 Map<String, String?> _generateMetadataMap(
   SongKind song,
   ApSongMetadataSettingCollection setting,
-  int? maxCount,
+  int? rowMaxCount,
 ) {
   final result = <String, String?>{};
   final isLibrarySong = song.type == ResourceType.librarySongs;
   bool hasClassicalValue = false;
 
   // Traverses order and stores keys and values in the result
-  final order =
-      maxCount == null ? setting.order : setting.order.take(maxCount).toList();
+  final order = rowMaxCount == null
+      ? setting.order
+      : setting.order.take(rowMaxCount).toList();
   for (final info in order) {
     final value = getApSongMetadataValue(song, info);
     hasClassicalValue = info.type.isClassical && value != null;

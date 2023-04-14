@@ -16,7 +16,7 @@ class SongListCard extends ConsumerWidget {
     return () => SongDetailPageRoute(song.id, $extra: song).push(context);
   }
 
-  static const int _metadataMaxCount = 3;
+  static const int _metadataRowMaxCount = 3;
   static const int _metadataTableMaxLines = 1;
 
   /* ---------- Properties ---------- */
@@ -42,7 +42,7 @@ class SongListCard extends ConsumerWidget {
       mainCardNameMaxLines: _mainCardNameMaxLines,
       onTapMainCard: onTapMainCard(context),
       metadataSetting: metadataSetting,
-      metadataMaxCount: _metadataMaxCount,
+      metadataRowMaxCount: _metadataRowMaxCount,
       metadataTableMaxLines: _metadataTableMaxLines,
     );
   }
