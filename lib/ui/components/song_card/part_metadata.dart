@@ -41,7 +41,7 @@ class SongCardMetadataPart extends ConsumerWidget {
 
     return FilledCard(
       elevation: _elevation,
-      color: bgColorBase?.aptCardBgColor(0),
+      color: bgColorBase?.aptCardBgColor(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,

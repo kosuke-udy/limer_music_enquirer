@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 extension ColorConverter on Color {
@@ -6,12 +8,12 @@ extension ColorConverter on Color {
   static const _baseMaxLightness = 0.10;
   static const _baseMinLightness = 0.05;
 
-  Color aptCardBgColor(double lightnessLevel) {
+  Color aptCardBgColor({double lightnessAddition = 0}) {
     return adjustHSLDarker(
       maxSaturation: _baseMaxSaturation,
       minSaturation: _baseMinSaturation,
-      maxLightness: _baseMaxLightness + lightnessLevel * 0.1,
-      minLightness: _baseMinLightness + lightnessLevel * 0.1,
+      maxLightness: _baseMaxLightness + lightnessAddition,
+      minLightness: _baseMinLightness + lightnessAddition,
     );
   }
 
@@ -23,12 +25,16 @@ extension ColorConverter on Color {
   }) {
     HSLColor hslColor = HSLColor.fromColor(this);
 
+    maxSaturation = min(maxSaturation, 1);
+    minSaturation = min(minSaturation, 1);
     if (hslColor.saturation > maxSaturation) {
       hslColor = hslColor.withSaturation(maxSaturation);
     } else if (hslColor.saturation < minSaturation) {
       hslColor = hslColor.withSaturation(minSaturation);
     }
 
+    maxLightness = min(maxLightness, 0.9);
+    minLightness = min(minLightness, 0.9);
     if (hslColor.lightness > maxLightness) {
       hslColor = hslColor.withLightness(maxLightness);
     } else if (hslColor.lightness < minLightness) {

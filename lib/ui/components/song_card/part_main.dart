@@ -9,6 +9,7 @@ import '../../common_values/common_values.dart';
 class SongCardMainPart extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
+  static const double _bgColorLightnessAddition = 0.13;
   static const double _nameFontSize = 14.0;
   static const double _artistNameFontSize = 13.0;
   static const int _artistNameMaxLines = 1;
@@ -50,7 +51,9 @@ class SongCardMainPart extends ConsumerWidget {
 
     return FilledCard(
       elevation: _elevation,
-      color: bgColorBase?.aptCardBgColor(2),
+      color: bgColorBase?.aptCardBgColor(
+        lightnessAddition: _bgColorLightnessAddition,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
