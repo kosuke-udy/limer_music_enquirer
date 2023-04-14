@@ -38,7 +38,6 @@ class SongCardMetadataPart extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final common = ref.watch(commonValuesProvider);
     final bgColorBase = song.attributes?.artwork.bgColor;
 
     final tableAreaVearticalPadding = rowMaxCount == null
