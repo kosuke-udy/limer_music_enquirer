@@ -6,6 +6,7 @@ import '../../common_values/common_values.dart';
 class MetadataTableRow extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
+  static const double _horizontalMargin = 14.0;
   static const double _keyFontSize = 10.0;
   static const double _keyAreaWidthAdjustment = 2.0;
   static const double _valueFontSize = 12.0;
@@ -41,13 +42,12 @@ class MetadataTableRow extends ConsumerWidget {
             : common.textStyle.subtitle)
         .copyWith(fontSize: _valueFontSize);
 
-    final horizontalMargin = common.size.insetsSmall;
-    final keyAreaWidth = mainCardArtworkSize - horizontalMargin;
+    final keyAreaWidth = mainCardArtworkSize - _horizontalMargin;
     final spacingKeyToValue = common.size.insetsLarge;
 
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: horizontalMargin,
+      padding: const EdgeInsets.symmetric(
+        horizontal: _horizontalMargin,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,

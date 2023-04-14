@@ -1,3 +1,6 @@
+import 'dart:math';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -27,7 +30,7 @@ class SongCardMainPart extends ConsumerWidget {
     Key? key,
     required this.song,
     required this.artworkSize,
-    required this.maxLines,
+    this.maxLines = 2,
   }) : super(key: key);
 
   /* ---------- Build ---------- */
@@ -44,19 +47,19 @@ class SongCardMainPart extends ConsumerWidget {
     final nameTextStyle = common.textStyle.title.copyWith(
       fontSize: _nameFontSize,
     );
-    final artistTextStyle = common.textStyle.subtitle.copyWith(
+    final artistNameTextStyle = common.textStyle.subtitle.copyWith(
       fontSize: _artistNameFontSize,
     );
 
-    final nameWidth = _getTextWidth(nameTextStyle, name);
-    final artistNameWidth = _getTextWidth(artistTextStyle, artistName);
-    final nameMaxLines = maxLines == null
-        ? null
-        : nameWidth > artistNameWidth
-            ? ((maxLines as double) / 2.0).ceil()
-            : ((maxLines as double) / 2.0).floor();
-    final artistNameMaxLines =
-        maxLines == null ? null : maxLines! - nameMaxLines!;
+    final mainAreaMaxHeight = artworkSize - common.size.insetsMedium * 2;
+    final maxLinesUnit = _getMaxLinesUnit(
+      name,
+      nameTextStyle,
+      artistName,
+      artistNameTextStyle,
+      _textSpacing,
+      mainAreaMaxHeight,
+    );
 
     return FilledCard(
       elevation: _elevation,
@@ -85,14 +88,14 @@ class SongCardMainPart extends ConsumerWidget {
                 Text(
                   name,
                   style: nameTextStyle,
-                  maxLines: nameMaxLines,
+                  maxLines: maxLinesUnit.name,
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: _textSpacing),
                 Text(
                   artistName,
-                  style: artistTextStyle,
-                  maxLines: artistNameMaxLines,
+                  style: artistNameTextStyle,
+                  maxLines: maxLinesUnit.artistName,
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
@@ -113,17 +116,80 @@ class SongCardMainPart extends ConsumerWidget {
       ),
     );
   }
+}
 
-  // Get Text widget width when render as single line
-  double _getTextWidth(TextStyle style, String text) {
-    final textPainter = TextPainter(
-      text: TextSpan(
-        text: text,
-        style: style,
-      ),
-      maxLines: 1,
-      textDirection: TextDirection.ltr,
-    )..layout();
-    return textPainter.size.width;
+class _MaxLinesUnit {
+  final int? name;
+  final int? artistName;
+
+  const _MaxLinesUnit({
+    required this.name,
+    required this.artistName,
+  });
+}
+
+// Only support for 2 or 3 lines
+_MaxLinesUnit _getMaxLinesUnit(
+  String nameText,
+  TextStyle nameTextStyle,
+  String artistNameText,
+  TextStyle artistNameTextStyle,
+  double textSpacing,
+  double maxHeight,
+) {
+  const roughMaxWidth = 200.0;
+
+  final nameTextPainter =
+      _getTextPainter(nameText, nameTextStyle, roughMaxWidth);
+  final artistNameTextPainter =
+      _getTextPainter(artistNameText, artistNameTextStyle, roughMaxWidth);
+
+  final totalHeight =
+      nameTextPainter.height + artistNameTextPainter.height + textSpacing;
+
+  final nameLineCount = nameTextPainter.computeLineMetrics().length;
+  final artistNameLineCount = artistNameTextPainter.computeLineMetrics().length;
+  if (totalHeight <= maxHeight) {
+    return _MaxLinesUnit(
+      name: nameLineCount,
+      artistName: artistNameLineCount,
+    );
+  } else {
+    final setHeight = nameTextPainter.preferredLineHeight +
+        artistNameTextPainter.preferredLineHeight +
+        textSpacing;
+    final surplusHeight = maxHeight - setHeight;
+    if (nameLineCount == 1 &&
+        surplusHeight >= nameTextPainter.preferredLineHeight) {
+      return const _MaxLinesUnit(
+        name: 1,
+        artistName: 2,
+      );
+    } else if (nameLineCount >= 2 &&
+        surplusHeight >= nameTextPainter.preferredLineHeight) {
+      return const _MaxLinesUnit(
+        name: 2,
+        artistName: 1,
+      );
+    } else {
+      return const _MaxLinesUnit(
+        name: 1,
+        artistName: 1,
+      );
+    }
   }
+}
+
+TextPainter _getTextPainter(
+  String text,
+  TextStyle textStyle,
+  double maxWidth,
+) {
+  return TextPainter(
+    text: TextSpan(
+      text: text,
+      style: textStyle,
+    ),
+    textDirection: TextDirection.ltr,
+  )..layout(maxWidth: maxWidth);
 }

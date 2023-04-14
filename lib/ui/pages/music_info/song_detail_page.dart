@@ -13,7 +13,7 @@ class SongDetailPage extends HookConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
   static const _artworkSize = 100.0;
-  static const _mainCardNameMaxLines = 2;
+  static const _mainCardMaxLines = 3;
 
   /* ---------- Properties ---------- */
 
@@ -92,7 +92,7 @@ class SongDetailPage extends HookConsumerWidget {
                     child: SongCardUnit(
                       song: songDetail,
                       artworkSize: _artworkSize,
-                      mainCardNameMaxLines: _mainCardNameMaxLines,
+                      mainCardMaxLines: _mainCardMaxLines,
                       metadataSetting: metadataSetting,
                     ),
                   ),
