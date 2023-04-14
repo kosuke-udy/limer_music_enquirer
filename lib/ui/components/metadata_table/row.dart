@@ -13,19 +13,19 @@ class MetadataTableRow extends ConsumerWidget {
 
   /* ---------- Properties ---------- */
 
-  final String keyText;
-  final String? valueText;
-  final double keyAreaWidth;
   final int? maxLines;
+  final String keyText;
+  final double keyAreaWidth;
+  final String? valueText;
 
   /* ---------- Constructor ---------- */
 
   const MetadataTableRow({
     Key? key,
-    required this.keyText,
-    this.valueText,
-    required this.keyAreaWidth,
     this.maxLines,
+    required this.keyText,
+    required this.keyAreaWidth,
+    this.valueText,
   }) : super(key: key);
 
   /* ---------- Build ---------- */
