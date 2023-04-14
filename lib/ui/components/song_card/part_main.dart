@@ -10,11 +10,11 @@ class SongCardMainPart extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
   static const double _bgColorLightnessAddition = 0.13;
+  static const double _elevation = 4;
   static const double _nameFontSize = 14.0;
   static const double _artistNameFontSize = 13.0;
   static const int _artistNameMaxLines = 1;
   static const double _textSpacing = 4.0;
-  static const double _elevation = 4;
 
   /* ---------- Properties ---------- */
 
