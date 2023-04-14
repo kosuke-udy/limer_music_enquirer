@@ -1,4 +1,7 @@
 import 'package:isar/isar.dart';
+import 'package:limer_music_enquirer/ui/data_converter/general/duration.dart';
+
+import 'ap_object_base.dart';
 
 part 'ap_song.g.dart';
 
@@ -8,20 +11,24 @@ class ApSongMetadataSettingCollection {
 
   Id? id;
 
-  List<ApSongMetadataInfo> order = [];
+  List<ApSongMetadataInfo> order = ApSongMetadataType.defaultOrder
+      .map((e) => ApSongMetadataInfo()..type = e)
+      .toList();
 }
 
 @embedded
-class ApSongMetadataInfo {
+class ApSongMetadataInfo implements ApMetadataInfoBase<ApSongMetadataType> {
   ApSongMetadataInfo();
 
+  @override
   @Enumerated(EnumType.ordinal)
   ApSongMetadataType type = ApSongMetadataType.albumName;
 
+  @override
   bool isVisible = false;
 }
 
-enum ApSongMetadataType {
+enum ApSongMetadataType implements ApMetadataEnumBase {
   albumName,
   artistName,
   attribution,
@@ -42,6 +49,7 @@ enum ApSongMetadataType {
   trackNumber,
   workName;
 
+  @override
   bool get isCatalogs => catalogValues.contains(this);
   static const catalogValues = [
     audioVariants,
@@ -58,5 +66,27 @@ enum ApSongMetadataType {
     movementName,
     movementNumber,
     workName,
+  ];
+
+  static const defaultOrder = [
+    albumName,
+    composerName,
+    releaseDate,
+    genreNames,
+    name,
+    artistName,
+    durationInMillis,
+    audioVariants,
+    trackNumber,
+    discNumber,
+    contentRating,
+    hasLyrics,
+    isAppleDigitalMaster,
+    isrc,
+    attribution,
+    workName,
+    movementName,
+    movementNumber,
+    movementCount,
   ];
 }

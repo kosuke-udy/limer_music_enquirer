@@ -61,15 +61,9 @@ class AppIsar extends _$AppIsar {
               ));
       }
 
-      // Default metadata setting
-      await _isar.apSongMetadataSettingCollections.put(
-        ApSongMetadataSettingCollection()
-          ..order = ApSongMetadataType.values
-              .map((e) => ApSongMetadataInfo()
-                ..type = e
-                ..isVisible = true)
-              .toList(),
-      );
+      // Initialize song metadata settings
+      await _isar.apSongMetadataSettingCollections
+          .put(ApSongMetadataSettingCollection());
     });
   }
 }
