@@ -7,7 +7,7 @@ import '../../common_values/common_values.dart';
 import 'list_card.dart';
 
 class SongCardListVertical extends ConsumerWidget {
-  /* ---------- Statics ---------- */
+  /* ---------- Fixed Values ---------- */
 
   static const _paddingHorizontal = 20.0;
 

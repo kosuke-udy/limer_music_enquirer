@@ -5,7 +5,7 @@ import '../../common_values/common_values.dart';
 import 'row.dart';
 
 class MetadataTable extends ConsumerWidget {
-  /* ---------- Statics ---------- */
+  /* ---------- Fixed Values ---------- */
 
   static const _spacingSmall = 6.0;
   static const _spacingLarge = 12.0;

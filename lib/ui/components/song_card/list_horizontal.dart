@@ -7,7 +7,7 @@ import '../../common_values/common_values.dart';
 import 'list_card.dart';
 
 class SongCardListHorizontal extends ConsumerWidget {
-  /* ---------- Statics ---------- */
+  /* ---------- Fixed Values ---------- */
 
   static const _maxHeight = 180.0;
   static const _viewportFraction = 0.9;

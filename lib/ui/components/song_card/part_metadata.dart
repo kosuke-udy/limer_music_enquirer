@@ -11,7 +11,7 @@ import '../../data_converter/metadata/ap_song.dart';
 import '../metadata_table/table.dart';
 
 class SongCardMetadataPart extends ConsumerWidget {
-  /* ---------- Statics ---------- */
+  /* ---------- Fixed Values ---------- */
 
   static const double _elevation = 1;
 
@@ -21,6 +21,7 @@ class SongCardMetadataPart extends ConsumerWidget {
   final ApSongMetadataSettingCollection setting;
   final double keyAreaWidth;
   final int? maxCount;
+  final int? tableMaxLines;
 
   /* ---------- Constructor ---------- */
 
@@ -30,6 +31,7 @@ class SongCardMetadataPart extends ConsumerWidget {
     required this.setting,
     required this.keyAreaWidth,
     this.maxCount,
+    this.tableMaxLines,
   }) : super(key: key);
 
   @override
@@ -47,7 +49,7 @@ class SongCardMetadataPart extends ConsumerWidget {
         children: [
           SizedBox(height: keyAreaWidth + common.size.insetsSmall),
           MetadataTable(
-            maxLines: 1,
+            maxLines: tableMaxLines,
             metadataMap: _generateMetadataMap(song, setting, maxCount),
             keyAreaWidth: keyAreaWidth,
           ),

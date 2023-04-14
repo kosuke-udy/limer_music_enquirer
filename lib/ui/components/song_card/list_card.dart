@@ -7,10 +7,13 @@ import '../../../router/routes.dart';
 import 'card_unit.dart';
 
 class SongListCard extends ConsumerWidget {
-  /* ---------- Statics ---------- */
+  /* ---------- Fixed Values ---------- */
 
-  static const _artworkSize = 76.0;
-  static const _metadataMaxCount = 3;
+  static const double _artworkSize = 76.0;
+  static const int _metadataMaxCount = 3;
+  static const int _metadataTableMaxLines = 1;
+  void Function() onTopCardTap(BuildContext context) =>
+      () => SongDetailPageRoute(song.id, $extra: song).push(context);
 
   /* ---------- Properties ---------- */
 
@@ -32,10 +35,10 @@ class SongListCard extends ConsumerWidget {
     return SongCardUnit(
       song: song,
       metadataSetting: metadataSetting,
-      metadataMaxCount: _metadataMaxCount,
       artworkSize: _artworkSize,
-      onTopCardTap: () =>
-          SongDetailPageRoute(song.id, $extra: song).push(context),
+      metadataMaxCount: _metadataMaxCount,
+      metadataTableMaxLines: _metadataTableMaxLines,
+      onTopCardTap: onTopCardTap(context),
     );
   }
 }

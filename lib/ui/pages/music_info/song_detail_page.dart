@@ -10,7 +10,7 @@ import '../../common_values/common_values.dart';
 import '../../components/song_card/card_unit.dart';
 
 class SongDetailPage extends HookConsumerWidget {
-  /* ---------- Statics ---------- */
+  /* ---------- Fixed Values ---------- */
 
   static const _artworkSize = 100.0;
 

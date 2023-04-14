@@ -7,7 +7,7 @@ import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
 
 class SongCardTitlePart extends ConsumerWidget {
-  /* ---------- Statics ---------- */
+  /* ---------- Fixed Values ---------- */
 
   static const double _nameFontSize = 14.0;
   static const double _artistNameFontSize = 13.0;

@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../common_values/common_values.dart';
 
 class MetadataTableRow extends ConsumerWidget {
-  /* ---------- Statics ---------- */
+  /* ---------- Fixed Values ---------- */
 
   static const _fontSize = 13.0;
   static const _spacingTweak = 2.0;

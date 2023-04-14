@@ -14,6 +14,7 @@ class SongCardUnit extends ConsumerWidget {
   final double artworkSize;
   final void Function()? onTopCardTap;
   final int? metadataMaxCount;
+  final int? metadataTableMaxLines;
 
   /* ---------- Constructor ---------- */
 
@@ -24,6 +25,7 @@ class SongCardUnit extends ConsumerWidget {
     required this.artworkSize,
     this.onTopCardTap,
     this.metadataMaxCount,
+    this.metadataTableMaxLines,
   }) : super(key: key);
 
   /* ---------- Build ---------- */
@@ -38,6 +40,7 @@ class SongCardUnit extends ConsumerWidget {
             setting: metadataSetting,
             keyAreaWidth: artworkSize,
             maxCount: metadataMaxCount,
+            tableMaxLines: metadataTableMaxLines,
           ),
           GestureDetector(
             onTap: onTopCardTap,
