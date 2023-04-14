@@ -6,9 +6,9 @@ import '../../common_values/common_values.dart';
 class MetadataTableRow extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
-  static const double _keyFontSize = 11.0;
+  static const double _keyFontSize = 10.0;
   static const double _keyAreaWidthAdjustment = 2.0;
-  static const double _valueFontSize = 13.0;
+  static const double _valueFontSize = 12.0;
   static const String _nullValueText = 'No Data';
 
   /* ---------- Properties ---------- */
