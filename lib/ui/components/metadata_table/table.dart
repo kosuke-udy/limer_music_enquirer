@@ -7,7 +7,7 @@ class MetadataTable extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
   static const _rowSpacingWithLimit = 6.0;
-  static const _rowSpacingWithoutLimit = 12.0;
+  static const _rowSpacingWithoutLimit = 10.0;
 
   /* ---------- Properties ---------- */
 
