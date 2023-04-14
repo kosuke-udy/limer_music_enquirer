@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
@@ -7,6 +6,7 @@ import '../../../providers/apple_music/providers.dart';
 import '../../../providers/db/settings/metadata/ap_song.dart';
 import '../../../providers/db/settings/ap_storefront.dart';
 import '../../common_parts/common_parts.dart';
+import '../../common_values/common_values.dart';
 import '../../components/song_card/card_unit.dart';
 
 class SongDetailPage extends HookConsumerWidget {
@@ -70,12 +70,11 @@ class SongDetailPage extends HookConsumerWidget {
       data: data,
     );
 
+    final common = ref.watch(commonValuesProvider);
+
     return PageScaffold(
       appBarTitle: const Text("Detail"),
       body: RefreshableListView(
-        onRefresh: () async {
-          ref.invalidate(songDetailProvider);
-        },
         children: [
           Area(
             child: ref.watch(songDetailProvider).when(
@@ -85,10 +84,15 @@ class SongDetailPage extends HookConsumerWidget {
                   error: (error, stackTrace) => Center(
                     child: Text(error.toString()),
                   ),
-                  data: (songDetail) => SongCardUnit(
-                    song: songDetail,
-                    metadataSetting: metadataSetting,
-                    artworkSize: _artworkSize,
+                  data: (songDetail) => Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: common.size.insetsLarge,
+                    ),
+                    child: SongCardUnit(
+                      song: songDetail,
+                      metadataSetting: metadataSetting,
+                      artworkSize: _artworkSize,
+                    ),
                   ),
                 ),
           ),
