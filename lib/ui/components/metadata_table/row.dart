@@ -54,18 +54,16 @@ class MetadataTableRow extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.baseline,
         textBaseline: TextBaseline.alphabetic,
         children: [
-          Padding(
+          Container(
             padding: const EdgeInsets.only(right: _keyAreaWidthAdjustment),
-            child: SizedBox(
-              width: keyAreaWidth - _keyAreaWidthAdjustment,
-              child: Text(
-                keyText,
-                style: keyTextStyle,
-                textAlign: TextAlign.right,
-                textWidthBasis: TextWidthBasis.parent,
-                maxLines: maxLines,
-                overflow: maxLines != null ? TextOverflow.ellipsis : null,
-              ),
+            width: keyAreaWidth - _keyAreaWidthAdjustment,
+            child: Text(
+              keyText,
+              style: keyTextStyle,
+              textAlign: TextAlign.right,
+              textWidthBasis: TextWidthBasis.parent,
+              maxLines: maxLines,
+              overflow: maxLines != null ? TextOverflow.ellipsis : null,
             ),
           ),
           SizedBox(width: spacingKeyToValue),
