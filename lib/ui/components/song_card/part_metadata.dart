@@ -11,22 +11,26 @@ import '../../data_converter/metadata/ap_song.dart';
 import '../metadata_table/table.dart';
 
 class SongCardMetadataPart extends ConsumerWidget {
+  /* ---------- Statics ---------- */
+
+  static const double _elevation = 1;
+
   /* ---------- Properties ---------- */
 
   final SongKind song;
   final ApSongMetadataSettingCollection setting;
   final double keyAreaWidth;
-  final int? maxLines;
+  final int? maxCount;
 
   /* ---------- Constructor ---------- */
 
-  const SongCardMetadataPart(
-      {Key? key,
-      required this.song,
-      required this.setting,
-      required this.keyAreaWidth,
-      this.maxLines})
-      : super(key: key);
+  const SongCardMetadataPart({
+    Key? key,
+    required this.song,
+    required this.setting,
+    required this.keyAreaWidth,
+    this.maxCount,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,7 +38,7 @@ class SongCardMetadataPart extends ConsumerWidget {
     final bgColorBase = song.attributes?.artwork.bgColor;
 
     return FilledCard(
-      elevation: 1,
+      elevation: _elevation,
       color: bgColorBase?.aptCardBgColor(0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -44,8 +48,7 @@ class SongCardMetadataPart extends ConsumerWidget {
           SizedBox(height: keyAreaWidth + common.size.insetsSmall),
           MetadataTable(
             maxLines: 1,
-            metadataMap: _generateMetadataMap(song, setting, maxLines),
-            // metadataMap: {"a": "b"},
+            metadataMap: _generateMetadataMap(song, setting, maxCount),
             keyAreaWidth: keyAreaWidth,
           ),
           SizedBox(height: common.size.insetsSmall),
@@ -58,7 +61,7 @@ class SongCardMetadataPart extends ConsumerWidget {
 Map<String, String?> _generateMetadataMap(
   SongKind song,
   ApSongMetadataSettingCollection setting,
-  int? maxLines,
+  int? maxCount,
 ) {
   final result = <String, String?>{};
   final isLibrarySong = song.type == ResourceType.librarySongs;
@@ -66,7 +69,7 @@ Map<String, String?> _generateMetadataMap(
 
   // Traverses order and stores keys and values in the result
   final order =
-      maxLines == null ? setting.order : setting.order.take(maxLines).toList();
+      maxCount == null ? setting.order : setting.order.take(maxCount).toList();
   for (final info in order) {
     final value = getApSongMetadataValue(song, info);
     hasClassicalValue = info.type.isClassical && value != null;

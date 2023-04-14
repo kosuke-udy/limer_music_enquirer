@@ -4,14 +4,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../../db/settings/metadata/ap_song.dart';
 import '../../../router/routes.dart';
-import '../../common_values/common_values.dart';
 import 'card_unit.dart';
 
 class SongListCard extends ConsumerWidget {
   /* ---------- Statics ---------- */
 
   static const _artworkSize = 76.0;
-  static const _metadataMaxLines = 3;
+  static const _metadataMaxCount = 3;
 
   /* ---------- Properties ---------- */
 
@@ -33,7 +32,7 @@ class SongListCard extends ConsumerWidget {
     return SongCardUnit(
       song: song,
       metadataSetting: metadataSetting,
-      metadataMaxLines: _metadataMaxLines,
+      metadataMaxCount: _metadataMaxCount,
       artworkSize: _artworkSize,
       onTopCardTap: () =>
           SongDetailPageRoute(song.id, $extra: song).push(context),
