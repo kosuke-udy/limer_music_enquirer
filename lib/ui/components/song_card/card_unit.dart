@@ -12,7 +12,7 @@ class SongCardUnit extends ConsumerWidget {
   final SongKind song;
   final ApSongMetadataSettingCollection metadataSetting;
   final double artworkSize;
-  final int? mainCardNameMaxLines;
+  final int? mainCardMaxLines;
   final void Function()? onTapMainCard;
   final int? metadataRowMaxCount;
   final int? metadataTableMaxLines;
@@ -24,7 +24,7 @@ class SongCardUnit extends ConsumerWidget {
     required this.song,
     required this.metadataSetting,
     required this.artworkSize,
-    this.mainCardNameMaxLines,
+    this.mainCardMaxLines,
     this.onTapMainCard,
     this.metadataRowMaxCount,
     this.metadataTableMaxLines,
@@ -49,7 +49,7 @@ class SongCardUnit extends ConsumerWidget {
             child: SongCardMainPart(
               song: song,
               artworkSize: artworkSize,
-              nameMaxLines: mainCardNameMaxLines,
+              maxLines: mainCardMaxLines,
             ),
           ),
         ],

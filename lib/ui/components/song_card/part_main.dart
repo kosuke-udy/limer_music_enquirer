@@ -13,14 +13,13 @@ class SongCardMainPart extends ConsumerWidget {
   static const double _elevation = 4;
   static const double _nameFontSize = 14.0;
   static const double _artistNameFontSize = 13.0;
-  static const int _artistNameMaxLines = 1;
   static const double _textSpacing = 4.0;
 
   /* ---------- Properties ---------- */
 
   final SongKind song;
   final double artworkSize;
-  final int? nameMaxLines;
+  final int? maxLines;
 
   /* ---------- Constructor ---------- */
 
@@ -28,7 +27,7 @@ class SongCardMainPart extends ConsumerWidget {
     Key? key,
     required this.song,
     required this.artworkSize,
-    required this.nameMaxLines,
+    required this.maxLines,
   }) : super(key: key);
 
   /* ---------- Build ---------- */
@@ -48,6 +47,16 @@ class SongCardMainPart extends ConsumerWidget {
     final artistTextStyle = common.textStyle.subtitle.copyWith(
       fontSize: _artistNameFontSize,
     );
+
+    final nameWidth = _getTextWidth(nameTextStyle, name);
+    final artistNameWidth = _getTextWidth(artistTextStyle, artistName);
+    final nameMaxLines = maxLines == null
+        ? null
+        : nameWidth > artistNameWidth
+            ? ((maxLines as double) / 2.0).ceil()
+            : ((maxLines as double) / 2.0).floor();
+    final artistNameMaxLines =
+        maxLines == null ? null : maxLines! - nameMaxLines!;
 
     return FilledCard(
       elevation: _elevation,
@@ -83,7 +92,7 @@ class SongCardMainPart extends ConsumerWidget {
                 Text(
                   artistName,
                   style: artistTextStyle,
-                  maxLines: _artistNameMaxLines,
+                  maxLines: artistNameMaxLines,
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
@@ -103,5 +112,18 @@ class SongCardMainPart extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  // Get Text widget width when render as single line
+  double _getTextWidth(TextStyle style, String text) {
+    final textPainter = TextPainter(
+      text: TextSpan(
+        text: text,
+        style: style,
+      ),
+      maxLines: 1,
+      textDirection: TextDirection.ltr,
+    )..layout();
+    return textPainter.size.width;
   }
 }

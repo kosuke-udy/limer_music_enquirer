@@ -11,7 +11,7 @@ class SongListCard extends ConsumerWidget {
 
   static const double _artworkSize = 76.0;
 
-  static const int _mainCardNameMaxLines = 1;
+  static const int _mainCardMaxLines = 2;
   void Function() onTapMainCard(BuildContext context) {
     return () => SongDetailPageRoute(song.id, $extra: song).push(context);
   }
@@ -39,7 +39,7 @@ class SongListCard extends ConsumerWidget {
     return SongCardUnit(
       song: song,
       artworkSize: _artworkSize,
-      mainCardNameMaxLines: _mainCardNameMaxLines,
+      mainCardMaxLines: _mainCardMaxLines,
       onTapMainCard: onTapMainCard(context),
       metadataSetting: metadataSetting,
       metadataRowMaxCount: _metadataRowMaxCount,
