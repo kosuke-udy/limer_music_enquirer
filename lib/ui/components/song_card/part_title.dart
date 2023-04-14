@@ -9,13 +9,15 @@ import '../../common_values/common_values.dart';
 class SongCardTitlePart extends ConsumerWidget {
   /* ---------- Statics ---------- */
 
-  static const _fontSize = 14.0;
+  static const _nameFontSize = 14.0;
+  static const _artistNameFontSize = 13.0;
   static const _textSpacing = 4.0;
+  static const _elevation = 0.1;
 
   /* ---------- Properties ---------- */
 
   final SongKind song;
-  final double elevation, artworkSize;
+  final double artworkSize;
   final bool fullDisplayed;
 
   /* ---------- Constructor ---------- */
@@ -25,7 +27,6 @@ class SongCardTitlePart extends ConsumerWidget {
     required this.song,
     required this.artworkSize,
     required this.fullDisplayed,
-    this.elevation = 0,
   }) : super(key: key);
 
   /* ---------- Build ---------- */
@@ -40,14 +41,14 @@ class SongCardTitlePart extends ConsumerWidget {
 
     final common = ref.watch(commonValuesProvider);
     final nameTextStyle = common.textStyle.title.copyWith(
-      fontSize: _fontSize,
+      fontSize: _nameFontSize,
     );
     final artistTextStyle = common.textStyle.subtitle.copyWith(
-      fontSize: _fontSize - 1,
+      fontSize: _artistNameFontSize,
     );
 
     return FilledCard(
-      elevation: elevation,
+      elevation: _elevation,
       color: bgColorBase?.aptCardBgColor(2),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,

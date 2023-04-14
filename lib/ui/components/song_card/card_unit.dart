@@ -44,7 +44,6 @@ class SongCardUnit extends ConsumerWidget {
             child: SongCardTitlePart(
               song: song,
               artworkSize: artworkSize,
-              elevation: 0.1,
               fullDisplayed: false,
             ),
           ),
