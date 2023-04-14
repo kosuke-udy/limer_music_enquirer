@@ -10,10 +10,14 @@ class SongListCard extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
   static const double _artworkSize = 76.0;
+
+  static const int _mainCardNameMaxLines = 1;
+  void Function() onTapMainCard(BuildContext context) {
+    return () => SongDetailPageRoute(song.id, $extra: song).push(context);
+  }
+
   static const int _metadataMaxCount = 3;
   static const int _metadataTableMaxLines = 1;
-  void Function() onTopCardTap(BuildContext context) =>
-      () => SongDetailPageRoute(song.id, $extra: song).push(context);
 
   /* ---------- Properties ---------- */
 
@@ -34,11 +38,12 @@ class SongListCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SongCardUnit(
       song: song,
-      metadataSetting: metadataSetting,
       artworkSize: _artworkSize,
+      mainCardNameMaxLines: _mainCardNameMaxLines,
+      onTapMainCard: onTapMainCard(context),
+      metadataSetting: metadataSetting,
       metadataMaxCount: _metadataMaxCount,
       metadataTableMaxLines: _metadataTableMaxLines,
-      onTopCardTap: onTopCardTap(context),
     );
   }
 }

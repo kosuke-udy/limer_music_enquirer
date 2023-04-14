@@ -6,7 +6,7 @@ import '../../data_converter/general/color_extension.dart';
 import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
 
-class SongCardTitlePart extends ConsumerWidget {
+class SongCardMainPart extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
   static const double _nameFontSize = 14.0;
@@ -18,15 +18,15 @@ class SongCardTitlePart extends ConsumerWidget {
 
   final SongKind song;
   final double artworkSize;
-  final bool fullDisplayed;
+  final int? nameMaxLines;
 
   /* ---------- Constructor ---------- */
 
-  const SongCardTitlePart({
+  const SongCardMainPart({
     Key? key,
     required this.song,
     required this.artworkSize,
-    required this.fullDisplayed,
+    required this.nameMaxLines,
   }) : super(key: key);
 
   /* ---------- Build ---------- */
@@ -72,7 +72,7 @@ class SongCardTitlePart extends ConsumerWidget {
                 Text(
                   name,
                   style: nameTextStyle,
-                  maxLines: fullDisplayed ? 2 : 1,
+                  maxLines: nameMaxLines,
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: _textSpacing),

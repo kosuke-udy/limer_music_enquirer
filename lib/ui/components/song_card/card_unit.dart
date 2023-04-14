@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../../db/settings/metadata/ap_song.dart';
 import 'part_metadata.dart';
-import 'part_title.dart';
+import 'part_main.dart';
 
 class SongCardUnit extends ConsumerWidget {
   /* ---------- Properties ---------- */
@@ -12,7 +12,8 @@ class SongCardUnit extends ConsumerWidget {
   final SongKind song;
   final ApSongMetadataSettingCollection metadataSetting;
   final double artworkSize;
-  final void Function()? onTopCardTap;
+  final int? mainCardNameMaxLines;
+  final void Function()? onTapMainCard;
   final int? metadataMaxCount;
   final int? metadataTableMaxLines;
 
@@ -23,7 +24,8 @@ class SongCardUnit extends ConsumerWidget {
     required this.song,
     required this.metadataSetting,
     required this.artworkSize,
-    this.onTopCardTap,
+    this.mainCardNameMaxLines,
+    this.onTapMainCard,
     this.metadataMaxCount,
     this.metadataTableMaxLines,
   }) : super(key: key);
@@ -43,11 +45,11 @@ class SongCardUnit extends ConsumerWidget {
             tableMaxLines: metadataTableMaxLines,
           ),
           GestureDetector(
-            onTap: onTopCardTap,
-            child: SongCardTitlePart(
+            onTap: onTapMainCard,
+            child: SongCardMainPart(
               song: song,
               artworkSize: artworkSize,
-              fullDisplayed: false,
+              nameMaxLines: mainCardNameMaxLines,
             ),
           ),
         ],
