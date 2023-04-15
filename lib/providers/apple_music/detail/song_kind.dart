@@ -21,13 +21,22 @@ class SongKindDetail extends _$SongKindDetail {
       state = AsyncData(data);
     }
 
-    final result = await _client.fetchResource<SongKind>(
-      "https://api.music.apple.com/v1/catalog/$storefront/songs/$id",
-      queryParameters: <String, dynamic>{
-        "l": languageTag,
-        "include": "albums,artists,composers,library",
-      },
-    );
+    final isCatalogs = !id.contains("i.");
+    final result = isCatalogs
+        ? await _client.fetchResource<Songs>(
+            "https://api.music.apple.com/v1/catalog/$storefront/songs/$id",
+            queryParameters: <String, dynamic>{
+              "l": languageTag,
+              "include": "albums,artists,composers,library",
+            },
+          )
+        : await _client.fetchResource<LibrarySongs>(
+            "https://api.music.apple.com/v1/me/library/songs/$id",
+            queryParameters: <String, dynamic>{
+              "include": "albums,artists,catalog",
+            },
+          );
+
     state = AsyncData(result[0]);
     return result[0];
   }

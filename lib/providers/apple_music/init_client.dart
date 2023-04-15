@@ -24,12 +24,12 @@ Future<void> initAppleMusicApiClient() async {
     logger: (response) => AppLogger.get("AppleMusicApiClient").info([
       "Request: ${response.requestOptions.method} ${response.requestOptions.path}",
       "Response Status: ${response.statusCode} ${response.statusMessage}",
-      // "",
-      // "Response Headers:",
-      // response.headers,
-      // "",
-      // "Response Data:",
-      // IndentLog("", object: response, indent: 1),
+      "",
+      "Response Headers:",
+      response.headers,
+      "",
+      "Response Data:",
+      IndentLog("", object: response, indent: 1),
     ]),
   );
 }

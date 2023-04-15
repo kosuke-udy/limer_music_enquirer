@@ -17,7 +17,7 @@ class Relationship<T extends ResourceKind> with _$Relationship<T> {
     return Relationship(
       href: json["href"],
       next: json["next"],
-      data: convertToList(json),
+      data: convertToList<T>(json),
     );
   }
 }

@@ -12,17 +12,17 @@ class LibraryArtistsRelationships
     with _$LibraryArtistsRelationships
     implements ArtistKindRelationships {
   const factory LibraryArtistsRelationships({
-    Relationship<Artists>? artists,
-    Relationship<LibraryAlbums>? catalog,
+    Relationship<LibraryAlbums>? albums,
+    Relationship<Artists>? catalog,
   }) = _LibraryArtistsRelationships;
 
   factory LibraryArtistsRelationships.fromJson(Map<String, dynamic> json) {
     return LibraryArtistsRelationships(
-      artists: json["artists"] != null
-          ? Relationship<Artists>.fromJson(json["artists"])
+      albums: json["albums"] != null
+          ? Relationship<LibraryAlbums>.fromJson(json["albums"])
           : null,
       catalog: json["catalog"] != null
-          ? Relationship<LibraryAlbums>.fromJson(json["catalog"])
+          ? Relationship<Artists>.fromJson(json["catalog"])
           : null,
     );
   }

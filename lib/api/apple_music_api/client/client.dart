@@ -63,18 +63,14 @@ class AppleMusicApiClient {
 
   Future<List<T>> fetchResource<T extends ResourceKind>(String path,
       {Map<String, dynamic>? queryParameters}) async {
-    try {
-      final response = await dio.get(
-        path,
-        queryParameters: queryParameters,
-      );
+    final response = await dio.get(
+      path,
+      queryParameters: queryParameters,
+    );
 
-      if (logEnabled) logger(response);
+    if (logEnabled) logger(response);
 
-      return convertToList(response.data);
-    } catch (e) {
-      rethrow;
-    }
+    return convertToList(response.data);
   }
 
   Future<List<dynamic>> fetch(String path,
