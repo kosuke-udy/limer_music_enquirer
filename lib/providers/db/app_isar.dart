@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:isar/isar.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../api/apple_music_api/apple_music_api.dart';
 import '../../db/schemas.dart';
 
 part 'app_isar.g.dart';
@@ -19,6 +17,7 @@ class AppIsar extends _$AppIsar {
     return _isar;
   }
 
+  // Initialize the database
   Future<void> initialize() async {
     await _isar.writeTxn(() => _isar.clear());
   }
