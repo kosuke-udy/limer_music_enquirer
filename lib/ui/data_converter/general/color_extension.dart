@@ -2,18 +2,42 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-extension ColorConverter on Color {
-  static const _baseMaxSaturation = 0.3;
-  static const _baseMinSaturation = 0.2;
-  static const _baseMaxLightness = 0.10;
-  static const _baseMinLightness = 0.05;
+enum TuningParams {
+  dark(
+    maxSaturation: 0.3,
+    minSaturation: 0.00,
+    maxLightness: 0.09,
+    minLightness: 0.02,
+  ),
+  darkAccent(
+    maxSaturation: 0.4,
+    minSaturation: 0.00,
+    maxLightness: 0.15,
+    minLightness: 0.10,
+  );
 
-  Color aptCardBgColor({double lightnessAddition = 0}) {
+  final double maxSaturation;
+  final double minSaturation;
+  final double maxLightness;
+  final double minLightness;
+
+  const TuningParams({
+    required this.maxSaturation,
+    required this.minSaturation,
+    required this.maxLightness,
+    required this.minLightness,
+  });
+}
+
+extension ColorConverter on Color {
+  Color tune({
+    required TuningParams params,
+  }) {
     return adjustHSLDarker(
-      maxSaturation: _baseMaxSaturation,
-      minSaturation: _baseMinSaturation,
-      maxLightness: _baseMaxLightness + lightnessAddition,
-      minLightness: _baseMinLightness + lightnessAddition,
+      maxSaturation: params.maxSaturation,
+      minSaturation: params.minSaturation,
+      maxLightness: params.maxLightness,
+      minLightness: params.minLightness,
     );
   }
 

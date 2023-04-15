@@ -5,7 +5,6 @@ import '../../../api/apple_music_api/models/models.dart';
 import '../../../db/settings/metadata/ap_song.dart';
 import '../../../translations.g.dart';
 import '../../common_parts/common_parts.dart';
-import '../../common_values/common_values.dart';
 import '../../data_converter/general/color_extension.dart';
 import '../../data_converter/metadata/ap_song.dart';
 import '../metadata_table/table.dart';
@@ -46,7 +45,7 @@ class SongCardMetadataPart extends ConsumerWidget {
 
     return FilledCard(
       elevation: _elevation,
-      color: bgColorBase?.aptCardBgColor(),
+      color: bgColorBase?.tune(params: TuningParams.dark),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
