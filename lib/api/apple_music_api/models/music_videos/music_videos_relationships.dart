@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../converter/converter.dart';
 import '../albums/albums.dart';
 import '../artists/artists.dart';
+import '../common_types/common_types.dart';
 // import '../genres/genres.dart';
 import '../songs/songs.dart';
 import '../base_abstracts.dart';
@@ -15,21 +16,27 @@ class MusicVideosRelationships
     with _$MusicVideosRelationships
     implements MusicVideoKindRelationships {
   const factory MusicVideosRelationships({
-    List<Albums>? albums,
-    List<Artists>? artists,
-    // List<Genres>? genres,
-    List<LibraryMusicVideos>? library,
-    List<Songs>? songs,
+    Relationship<Albums>? albums,
+    Relationship<Artists>? artists,
+    // Relationship<Genres>? genres,
+    Relationship<LibraryMusicVideos>? library,
+    Relationship<Songs>? songs,
   }) = _MusicVideosRelationships;
 
   factory MusicVideosRelationships.fromJson(Map<String, dynamic> json) {
     return MusicVideosRelationships(
-      albums: json["albums"] != null ? convertToList(json["albums"]) : null,
-      artists: json["artists"] != null ? convertToList(json["artists"]) : null,
+      albums:
+          json["albums"] != null ? Relationship.fromJson(json["albums"]) : null,
+      artists: json["artists"] != null
+          ? Relationship.fromJson(json["artists"])
+          : null,
       // genres:
-      //     json["genres"] != null ? convertToList(json["genres"]) : null,
-      library: json["library"] != null ? convertToList(json["library"]) : null,
-      songs: json["songs"] != null ? convertToList(json["songs"]) : null,
+      //     json["genres"] != null ? Relationship.fromJson(json["genres"]) : null,
+      library: json["library"] != null
+          ? Relationship.fromJson(json["library"])
+          : null,
+      songs:
+          json["songs"] != null ? Relationship.fromJson(json["songs"]) : null,
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../converter/converter.dart';
+import '../common_types/common_types.dart';
 import '../base_abstracts.dart';
 import 'library_playlists.dart';
 
@@ -11,18 +12,21 @@ class PlaylistsRelationships
     with _$PlaylistsRelationships
     implements PlaylistKindRelationships {
   const factory PlaylistsRelationships({
-    // List<CuratorType>? curator,
-    List<LibraryPlaylists>? library,
-    List<TrackKind>? tracks,
+    // Relationship<CuratorType>? curator,
+    Relationship<LibraryPlaylists>? library,
+    Relationship<TrackKind>? tracks,
   }) = _PlaylistsRelationships;
 
   factory PlaylistsRelationships.fromJson(Map<String, dynamic> json) {
     return PlaylistsRelationships(
       // curator: json["curator"] != null
-      //     ? convertToList(json["curator"])
+      //     ? Relationship.fromJson(json["curator"])
       //     : null,
-      library: json["library"] != null ? convertToList(json["library"]) : null,
-      tracks: json["tracks"] != null ? convertToList(json["tracks"]) : null,
+      library: json["library"] != null
+          ? Relationship.fromJson(json["library"])
+          : null,
+      tracks:
+          json["tracks"] != null ? Relationship.fromJson(json["tracks"]) : null,
     );
   }
 }

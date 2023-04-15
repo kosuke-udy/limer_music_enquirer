@@ -57,8 +57,8 @@ abstract class SongKindAttributes implements TrackKindAttributes {
 }
 
 abstract class SongKindRelationships implements TrackKindRelationships {
-  List<AlbumKind>? get albums;
-  List<ArtistKind>? get artists;
+  Relationship<AlbumKind>? get albums;
+  Relationship<ArtistKind>? get artists;
 }
 
 /* ---------- MusicVideoKind ---------- */
@@ -78,7 +78,7 @@ abstract class MusicVideoKind implements TrackKind {
 abstract class MusicVideoKindAttributes implements TrackKindAttributes {}
 
 abstract class MusicVideoKindRelationships implements TrackKindRelationships {
-  List<ArtistKind>? get artists;
+  Relationship<ArtistKind>? get artists;
 }
 
 /* =============== TrackListKind =============== */
@@ -102,7 +102,7 @@ abstract class TrackListKindAttributes {
 }
 
 abstract class TrackListKindRelationships {
-  List<TrackKind>? get tracks;
+  Relationship<TrackKind>? get tracks;
 }
 
 /* ---------- AlbumKind ---------- */

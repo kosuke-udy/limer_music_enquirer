@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../converter/converter.dart';
 import '../albums/albums.dart';
 import '../artists/artists.dart';
+import '../common_types/common_types.dart';
 // import '../genres/genres.dart';
 import '../music_videos/music_videos.dart';
 // import '../stations/stations.dart';
@@ -16,29 +16,38 @@ class SongsRelationships
     with _$SongsRelationships
     implements SongKindRelationships {
   const factory SongsRelationships({
-    List<Albums>? albums,
-    List<Artists>? artists,
-    List<Artists>? composers,
-    // List<Genres>? genres,
-    List<LibrarySongs>? library,
-    List<MusicVideos>? musicVideos,
-    // List<Stations>? station,
+    Relationship<Albums>? albums,
+    Relationship<Artists>? artists,
+    Relationship<Artists>? composers,
+    // Relationship<Genres>? genres,
+    Relationship<LibrarySongs>? library,
+    Relationship<MusicVideos>? musicVideos,
+    // Relationship<Stations>? station,
   }) = _SongsRelationships;
 
   factory SongsRelationships.fromJson(Map<String, dynamic> json) {
     return SongsRelationships(
-      albums: json["albums"] != null ? convertToList(json["albums"]) : null,
-      artists: json["artists"] != null ? convertToList(json["artists"]) : null,
-      composers:
-          json["composers"] != null ? convertToList(json["composers"]) : null,
-      // genres:
-      //     json["genres"] != null ? convertToList(json["genres"]) : null,
-      library: json["library"] != null ? convertToList(json["library"]) : null,
-      musicVideos: json["musicVideos"] != null
-          ? convertToList(json["musicVideos"])
+      albums: json["albums"] != null
+          ? Relationship<Albums>.fromJson(json["albums"])
           : null,
-      // station:
-      //     json["station"] != null ? convertToList(json["station"]) : null,
+      artists: json["artists"] != null
+          ? Relationship<Artists>.fromJson(json["artists"])
+          : null,
+      composers: json["composers"] != null
+          ? Relationship<Artists>.fromJson(json["composers"])
+          : null,
+      // genres: json["genres"] != null
+      //     ? Relationship<Genres>.fromJson(json["genres"])
+      //     : null,
+      library: json["library"] != null
+          ? Relationship<LibrarySongs>.fromJson(json["library"])
+          : null,
+      musicVideos: json["musicVideos"] != null
+          ? Relationship<MusicVideos>.fromJson(json["musicVideos"])
+          : null,
+      // station: json["station"] != null
+      //     ? Relationship<Stations>.fromJson(json["station"])
+      //     : null,
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../albums/albums.dart';
 import '../music_videos/music_videos.dart';
+import '../common_types/common_types.dart';
 import '../playlists/playlists.dart';
 import '../songs/songs.dart';
 import 'artists.dart';
@@ -11,93 +12,58 @@ part 'artists_views.freezed.dart';
 @freezed
 class ArtistsViews with _$ArtistsViews {
   factory ArtistsViews({
-    String? appearsOnAlbumsTitle,
-    List<Albums>? appearsOnAlbums,
-    String? compilationAlbumsTitle,
-    List<Albums>? compilationAlbums,
-    String? featuredAlbumsTitle,
-    List<Albums>? featuredAlbums,
-    String? featuredMusicVideosTitle,
-    List<MusicVideos>? featuredMusicVideos,
-    String? featuredPlaylistsTitle,
-    List<Playlists>? featuredPlaylists,
-    String? fullAlbumsTitle,
-    List<Albums>? fullAlbums,
-    String? latestReleaseTitle,
-    List<Albums>? latestRelease,
-    String? liveAlbumsTitle,
-    List<Albums>? liveAlbums,
-    String? similarArtistsTitle,
-    List<Artists>? similarArtists,
-    String? singlesTitle,
-    List<Albums>? singles,
-    String? topMusicVideosTitle,
-    List<MusicVideos>? topMusicVideos,
-    String? topSongsTitle,
-    List<Songs>? topSongs,
+    TitledView<Albums>? appearsOnAlbums,
+    TitledView<Albums>? compilationAlbums,
+    TitledView<Albums>? featuredAlbums,
+    TitledView<MusicVideos>? featuredMusicVideos,
+    TitledView<Playlists>? featuredPlaylists,
+    TitledView<Albums>? fullAlbums,
+    TitledView<Albums>? latestRelease,
+    TitledView<Albums>? liveAlbums,
+    TitledView<Artists>? similarArtists,
+    TitledView<Albums>? singles,
+    TitledView<MusicVideos>? topMusicVideos,
+    TitledView<Songs>? topSongs,
   }) = _ArtistsViews;
 
   factory ArtistsViews.fromJson(Map<String, dynamic> json) {
     return ArtistsViews(
-      appearsOnAlbumsTitle:
-          json['appears-on-albums']["attributes"]["title"] as String?,
-      appearsOnAlbums: (json['appears-on-albums']["data"] as List<dynamic>?)
-          ?.map((e) => Albums.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      compilationAlbumsTitle:
-          json['compilation-albums']["attributes"]["title"] as String?,
-      compilationAlbums: (json['compilation-albums']["data"] as List<dynamic>?)
-          ?.map((e) => Albums.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      featuredAlbumsTitle:
-          json['featured-albums']["attributes"]["title"] as String?,
-      featuredAlbums: (json['featured-albums']["data"] as List<dynamic>?)
-          ?.map((e) => Albums.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      featuredMusicVideosTitle:
-          json['featured-music-videos']["attributes"]["title"] as String?,
-      featuredMusicVideos:
-          (json['featured-music-videos']["data"] as List<dynamic>?)
-              ?.map((e) => MusicVideos.fromJson(e as Map<String, dynamic>))
-              .toList(),
-      featuredPlaylistsTitle:
-          json['featured-playlists']["attributes"]["title"] as String?,
-      featuredPlaylists: (json['featured-playlists']["data"] as List<dynamic>?)
-          ?.map((e) => Playlists.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      fullAlbumsTitle: json['full-albums']["attributes"]["title"] as String?,
-      fullAlbums: (json['full-albums']["data"] as List<dynamic>?)
-          ?.map((e) => Albums.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      latestReleaseTitle:
-          json['latest-release']["attributes"]["title"] as String?,
-      latestRelease: (json['latest-release']["data"] as List<dynamic>?)
-          ?.map((e) => Albums.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      liveAlbumsTitle: json['live-albums']["attributes"]["title"] as String?,
-      liveAlbums: (json['live-albums']["data"] as List<dynamic>?)
-          ?.map((e) => Albums.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      similarArtistsTitle:
-          json['similar-artists']["attributes"]["title"] as String?,
-      similarArtists: json['similar-artists']["data"] == null
-          ? null
-          : (json['similar-artists']["data"] as List<dynamic>)
-              .map((e) => Artists.fromJson(e as Map<String, dynamic>))
-              .toList(),
-      singlesTitle: json['singles']["attributes"]["title"] as String?,
-      singles: (json['singles']["data"] as List<dynamic>?)
-          ?.map((e) => Albums.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      topMusicVideosTitle:
-          json['top-music-videos']["attributes"]["title"] as String?,
-      topMusicVideos: (json['top-music-videos']["data"] as List<dynamic>?)
-          ?.map((e) => MusicVideos.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      topSongsTitle: json['top-songs']["attributes"]["title"] as String?,
-      topSongs: (json['top-songs']["data"] as List<dynamic>?)
-          ?.map((e) => Songs.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      appearsOnAlbums: json["appearsOnAlbums"] != null
+          ? TitledView<Albums>.fromJson(json["appearsOnAlbums"])
+          : null,
+      compilationAlbums: json["compilationAlbums"] != null
+          ? TitledView<Albums>.fromJson(json["compilationAlbums"])
+          : null,
+      featuredAlbums: json["featuredAlbums"] != null
+          ? TitledView<Albums>.fromJson(json["featuredAlbums"])
+          : null,
+      featuredMusicVideos: json["featuredMusicVideos"] != null
+          ? TitledView<MusicVideos>.fromJson(json["featuredMusicVideos"])
+          : null,
+      featuredPlaylists: json["featuredPlaylists"] != null
+          ? TitledView<Playlists>.fromJson(json["featuredPlaylists"])
+          : null,
+      fullAlbums: json["fullAlbums"] != null
+          ? TitledView<Albums>.fromJson(json["fullAlbums"])
+          : null,
+      latestRelease: json["latestRelease"] != null
+          ? TitledView<Albums>.fromJson(json["latestRelease"])
+          : null,
+      liveAlbums: json["liveAlbums"] != null
+          ? TitledView<Albums>.fromJson(json["liveAlbums"])
+          : null,
+      similarArtists: json["similarArtists"] != null
+          ? TitledView<Artists>.fromJson(json["similarArtists"])
+          : null,
+      singles: json["singles"] != null
+          ? TitledView<Albums>.fromJson(json["singles"])
+          : null,
+      topMusicVideos: json["topMusicVideos"] != null
+          ? TitledView<MusicVideos>.fromJson(json["topMusicVideos"])
+          : null,
+      topSongs: json["topSongs"] != null
+          ? TitledView<Songs>.fromJson(json["topSongs"])
+          : null,
     );
   }
 }
