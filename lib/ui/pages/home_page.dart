@@ -49,7 +49,7 @@ class HomePage extends ConsumerWidget {
         children: [
           Area(
             headline: Headline(
-              t.homePage.recentlyPlayedSongs,
+              t.homePage.recentlyPlayed,
               onTap: () => RecentlyPlayedSongsPageRoute().push(context),
             ),
             child: recentlySongs.when(
