@@ -4,28 +4,24 @@ import 'package:flutter/material.dart';
 
 enum TuningParams {
   dark(
-    maxSaturation: 0.3,
-    minSaturation: 0.00,
-    maxLightness: 0.09,
-    minLightness: 0.02,
+    maxSaturation: 0.5,
+    minSaturation: 0.02,
+    lightness: 0.07,
   ),
   darkAccent(
-    maxSaturation: 0.4,
+    maxSaturation: 0.5,
     minSaturation: 0.00,
-    maxLightness: 0.15,
-    minLightness: 0.10,
+    lightness: 0.13,
   );
 
   final double maxSaturation;
   final double minSaturation;
-  final double maxLightness;
-  final double minLightness;
+  final double lightness;
 
   const TuningParams({
     required this.maxSaturation,
     required this.minSaturation,
-    required this.maxLightness,
-    required this.minLightness,
+    required this.lightness,
   });
 }
 
@@ -36,16 +32,14 @@ extension ColorConverter on Color {
     return adjustHSLDarker(
       maxSaturation: params.maxSaturation,
       minSaturation: params.minSaturation,
-      maxLightness: params.maxLightness,
-      minLightness: params.minLightness,
+      lightness: params.lightness,
     );
   }
 
   Color adjustHSLDarker({
     required double maxSaturation,
     required double minSaturation,
-    required double maxLightness,
-    required double minLightness,
+    required double lightness,
   }) {
     HSLColor hslColor = HSLColor.fromColor(this);
 
@@ -57,13 +51,8 @@ extension ColorConverter on Color {
       hslColor = hslColor.withSaturation(minSaturation);
     }
 
-    maxLightness = min(maxLightness, 0.9);
-    minLightness = min(minLightness, 0.9);
-    if (hslColor.lightness > maxLightness) {
-      hslColor = hslColor.withLightness(maxLightness);
-    } else if (hslColor.lightness < minLightness) {
-      hslColor = hslColor.withLightness(minLightness);
-    }
+    lightness = min(lightness, 0.9);
+    hslColor = hslColor.withLightness(lightness);
 
     return hslColor.toColor();
   }
