@@ -11,10 +11,6 @@ class RecentlyPlayedResources extends _$RecentlyPlayedResources {
   @override
   Future<List<ResourceKind>> build() {
     state = const AsyncValue.loading();
-    return fetch();
-  }
-
-  Future<List<ResourceKind>> fetch() async {
     return _client.fetchResource(
       "https://api.music.apple.com/v1/me/recent/played",
       queryParameters: <String, dynamic>{
