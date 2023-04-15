@@ -1,0 +1,3 @@
+image_path_ios: assets/limer_logo.png
+ios: true
+remove_alpha_ios: true
