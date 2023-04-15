@@ -36,7 +36,7 @@ class SongCardMainPart extends ConsumerWidget {
     final songAttributes = song.attributes!;
     final name = songAttributes.name;
     final artistName = songAttributes.artistName;
-    final artworkUrl = songAttributes.artwork.url100;
+    final artworkUrl = songAttributes.artwork.url300;
     final bgColorBase = songAttributes.artwork.bgColor;
 
     final common = ref.watch(commonValuesProvider);
