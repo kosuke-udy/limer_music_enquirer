@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
-import '../translations.g.dart';
+import '../../translations.g.dart';
 
 part 'nav_destinations.g.dart';
 

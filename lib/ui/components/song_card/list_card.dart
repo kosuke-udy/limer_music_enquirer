@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../../db/settings/metadata/ap_song.dart';
-import '../../../router/routes.dart';
+import '../../router/routes.dart';
 import 'card_unit.dart';
 
 class SongListCard extends ConsumerWidget {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:limer_music_enquirer/router/routes.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
 import '../../providers/apple_music/recently_played/songs.dart';
@@ -8,6 +7,7 @@ import '../../providers/db/settings/metadata/ap_song.dart';
 import '../../translations.g.dart';
 import '../common_parts/common_parts.dart';
 import '../components/components.dart';
+import '../router/routes.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);

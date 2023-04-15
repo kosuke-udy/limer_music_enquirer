@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
-import '../../router/routes.dart';
 import '../../translations.g.dart';
 import '../common_parts/common_parts.dart';
 import '../common_values/common_values.dart';
+import '../router/routes.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({Key? key}) : super(key: key);
