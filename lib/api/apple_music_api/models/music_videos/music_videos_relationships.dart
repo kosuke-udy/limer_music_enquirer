@@ -5,7 +5,7 @@ import '../albums/albums.dart';
 import '../artists/artists.dart';
 // import '../genres/genres.dart';
 import '../songs/songs.dart';
-import '../abstracts_base.dart';
+import '../base_abstracts.dart';
 import 'library_music_videos.dart';
 
 part 'music_videos_relationships.freezed.dart';

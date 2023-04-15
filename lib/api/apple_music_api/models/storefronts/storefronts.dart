@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../abstracts_base.dart';
+import '../base_abstracts.dart';
 import 'storefronts_attributes.dart';
 
 part 'storefronts.freezed.dart';

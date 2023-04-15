@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../common_types/common_types.dart';
-import '../abstracts_base.dart';
+import '../base_abstracts.dart';
 
 part 'library_songs_attributes.freezed.dart';
 

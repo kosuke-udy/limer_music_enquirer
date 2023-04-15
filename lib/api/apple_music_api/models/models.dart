@@ -1,4 +1,4 @@
-export 'abstracts_base.dart';
+export 'base_abstracts.dart';
 
 export 'common_types/common_types.dart';
 

@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../converter/converter.dart';
-import '../abstracts_base.dart';
+import '../base_abstracts.dart';
 import 'library_playlists.dart';
 
 part 'playlists_relationships.freezed.dart';

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../abstracts_base.dart';
+import '../base_abstracts.dart';
 import 'songs_attributes.dart';
 import 'songs_relationships.dart';
 

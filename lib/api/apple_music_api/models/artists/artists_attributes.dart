@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../common_types/artwork.dart';
 import '../common_types/editorial_notes.dart';
-import '../abstracts_base.dart';
+import '../base_abstracts.dart';
 
 part 'artists_attributes.freezed.dart';
 

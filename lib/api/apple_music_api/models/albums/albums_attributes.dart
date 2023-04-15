@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../common_types/artwork.dart';
 import '../common_types/play_parameters.dart';
-import '../abstracts_base.dart';
+import '../base_abstracts.dart';
 
 part 'albums_attributes.freezed.dart';
 
