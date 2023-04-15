@@ -24,10 +24,6 @@ run:
 @iossims ARG="available":
   xcrun simctl list devices {{ARG}}
 
-## flutter_icon_launcher
-flutter_icon_launcher:
-  flutter pub run flutter_launcher_icons -f pubspec.yaml
-
 ## Run all autogenerator tools
 prebuild:
   just pigeon
@@ -46,6 +42,10 @@ pigeon:
   --objc_header_out ios/Runner/AppleMusicNativeApi.pigeon.h \
   --objc_source_out ios/Runner/AppleMusicNativeApi.pigeon.m \
   --experimental_swift_out ios/Runner/AppleMusicNativeApi.pigeon.swift
+
+## flutter_icon_launcher
+icons:
+  flutter pub run flutter_launcher_icons 
 
 slang:
   just build_runner build
