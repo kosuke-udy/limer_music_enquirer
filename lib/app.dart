@@ -12,8 +12,9 @@ import 'ui/common_values/common_values.dart';
 final initProvider = FutureProvider((ref) async {
   await initAppleMusicApiClient();
 
-  // Always after initAppleMusicApiClient()
-  await ref.watch(appIsarProvider.notifier).ensureInitialized();
+  if (kDebugMode) {
+    await ref.read(appIsarProvider.notifier).initialize();
+  }
 
   return;
 });
@@ -38,10 +39,7 @@ class App extends ConsumerWidget {
             localizationsDelegates: GlobalMaterialLocalizations.delegates,
           ),
           loading: () => Container(),
-          error: (error, stack) => Container(
-            color: Colors.white,
-            child: Text(error.toString()),
-          ),
+          error: (error, stack) => throw error,
         );
   }
 }
