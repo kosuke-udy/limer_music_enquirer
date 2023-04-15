@@ -14,8 +14,8 @@ class RecentlyPlayedResources extends _$RecentlyPlayedResources {
     return _client.fetchResource(
       "https://api.music.apple.com/v1/me/recent/played",
       queryParameters: <String, dynamic>{
-        "include": 'albums,library-albums',
         "include[library-albums]": "catalog",
+        "include[library-playlists]": "catalog",
       },
     );
   }

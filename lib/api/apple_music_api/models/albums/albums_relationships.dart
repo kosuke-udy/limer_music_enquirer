@@ -4,7 +4,7 @@ import '../artists/artists.dart';
 // import '../genres/genres.dart';
 // import '../record_labels/record_labels.dart';
 import '../../converter/converter.dart';
-import '../util_types.dart';
+import '../abstracts_base.dart';
 import 'library_albums.dart';
 
 part 'albums_relationships.freezed.dart';

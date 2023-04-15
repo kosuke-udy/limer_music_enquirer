@@ -6,7 +6,7 @@ import '../albums/albums.dart';
 import '../music_videos/music_videos.dart';
 import '../playlists/playlists.dart';
 // import '../stations/stations.dart';
-import '../util_types.dart';
+import '../abstracts_base.dart';
 
 part 'artists_relationships.freezed.dart';
 

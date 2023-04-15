@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../converter/converter.dart';
 import '../artists/library_artists.dart';
-import '../util_types.dart';
+import '../abstracts_base.dart';
 import 'albums.dart';
 
 part 'library_albums_relationships.freezed.dart';

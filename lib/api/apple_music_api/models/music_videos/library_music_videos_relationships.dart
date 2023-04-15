@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../converter/converter.dart';
 import '../albums/library_albums.dart';
 import '../artists/library_artists.dart';
-import '../util_types.dart';
+import '../abstracts_base.dart';
 import 'music_videos.dart';
 
 part 'library_music_videos_relationships.freezed.dart';

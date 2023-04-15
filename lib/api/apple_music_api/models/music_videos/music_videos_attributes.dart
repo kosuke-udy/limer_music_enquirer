@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../common_types/common_types.dart';
-import '../util_types.dart';
+import '../abstracts_base.dart';
 
 part 'music_videos_attributes.freezed.dart';
 

@@ -6,6 +6,7 @@ export 'resource_type.dart';
 abstract class ResourceKind {
   String get id;
   ResourceType get type;
+  String? get href;
 }
 
 /* =============== TrackKind =============== */

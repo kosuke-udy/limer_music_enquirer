@@ -4,7 +4,7 @@ import '../common_types/artwork.dart';
 import '../common_types/editorial_notes.dart';
 import '../common_types/play_parameters.dart';
 import '../common_types/preview.dart';
-import '../util_types.dart';
+import '../abstracts_base.dart';
 
 part 'songs_attributes.freezed.dart';
 

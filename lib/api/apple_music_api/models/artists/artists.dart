@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../util_types.dart';
+import '../abstracts_base.dart';
 import 'artists_attributes.dart';
 import 'artists_relationships.dart';
 import 'artists_views.dart';

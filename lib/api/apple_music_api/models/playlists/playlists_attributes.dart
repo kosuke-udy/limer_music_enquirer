@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../common_types/artwork.dart';
 import '../common_types/description_attribute.dart';
 import '../common_types/play_parameters.dart';
-import '../util_types.dart';
+import '../abstracts_base.dart';
 import 'playlist_type.dart';
 
 part 'playlists_attributes.freezed.dart';
