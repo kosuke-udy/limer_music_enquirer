@@ -11,6 +11,7 @@ class LibraryArtists with _$LibraryArtists implements ArtistKind {
   const factory LibraryArtists({
     required String id,
     required ResourceType type,
+    String? href,
     LibraryArtistsAttributes? attributes,
     LibraryArtistsRelationships? relationships,
   }) = _LibraryArtists;
@@ -19,6 +20,7 @@ class LibraryArtists with _$LibraryArtists implements ArtistKind {
     return LibraryArtists(
       id: json["id"],
       type: ResourceType.fromJson(json["type"]),
+      href: json["href"],
       attributes: json["attributes"] != null
           ? LibraryArtistsAttributes.fromJson(json["attributes"])
           : null,

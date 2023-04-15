@@ -11,6 +11,7 @@ class Songs with _$Songs implements SongKind {
   const factory Songs({
     required String id,
     required ResourceType type,
+    String? href,
     SongsAttributes? attributes,
     SongsRelationships? relationships,
   }) = _Songs;
@@ -19,6 +20,7 @@ class Songs with _$Songs implements SongKind {
     return Songs(
       id: json["id"],
       type: ResourceType.fromJson(json["type"]),
+      href: json["href"],
       attributes: json["attributes"] != null
           ? SongsAttributes.fromJson(json["attributes"])
           : null,

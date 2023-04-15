@@ -11,6 +11,7 @@ class LibraryAlbums with _$LibraryAlbums implements AlbumKind {
   const factory LibraryAlbums({
     required String id,
     required ResourceType type,
+    String? href,
     LibraryAlbumsAttributes? attributes,
     LibraryAlbumsRelationships? relationships,
   }) = _LibraryAlbums;
@@ -19,6 +20,7 @@ class LibraryAlbums with _$LibraryAlbums implements AlbumKind {
     return LibraryAlbums(
       id: json["id"],
       type: ResourceType.fromJson(json["type"]),
+      href: json["href"],
       attributes: json["attributes"] != null
           ? LibraryAlbumsAttributes.fromJson(json["attributes"])
           : null,

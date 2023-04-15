@@ -11,6 +11,7 @@ class LibraryMusicVideos with _$LibraryMusicVideos implements MusicVideoKind {
   const factory LibraryMusicVideos({
     required String id,
     required ResourceType type,
+    String? href,
     LibraryMusicVideosAttributes? attributes,
     LibraryMusicVideosRelationships? relationships,
   }) = _LibraryMusicVideos;
@@ -19,6 +20,7 @@ class LibraryMusicVideos with _$LibraryMusicVideos implements MusicVideoKind {
     return LibraryMusicVideos(
       id: json["id"],
       type: ResourceType.fromJson(json["type"]),
+      href: json["href"],
       attributes: json["attributes"] != null
           ? LibraryMusicVideosAttributes.fromJson(json["attributes"])
           : null,

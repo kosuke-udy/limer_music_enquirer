@@ -11,6 +11,7 @@ class Storefronts with _$Storefronts implements ResourceKind {
   const factory Storefronts({
     required String id,
     required ResourceType type,
+    String? href,
     StorefrontsAttributes? attributes,
   }) = _Storefronts;
 
@@ -18,6 +19,7 @@ class Storefronts with _$Storefronts implements ResourceKind {
     return Storefronts(
       id: json["id"],
       type: ResourceType.fromJson(json["type"]),
+      href: json["href"],
       attributes: json["attributes"] != null
           ? StorefrontsAttributes.fromJson(json["attributes"])
           : null,

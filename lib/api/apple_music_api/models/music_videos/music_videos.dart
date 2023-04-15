@@ -12,6 +12,7 @@ class MusicVideos with _$MusicVideos implements MusicVideoKind {
   const factory MusicVideos({
     required String id,
     required ResourceType type,
+    String? href,
     MusicVideosAttributes? attributes,
     MusicVideosRelationships? relationships,
     MusicVideosViews? views,
@@ -21,6 +22,7 @@ class MusicVideos with _$MusicVideos implements MusicVideoKind {
     return MusicVideos(
       id: json["id"],
       type: ResourceType.fromJson(json["type"]),
+      href: json["href"],
       attributes: json["attributes"] != null
           ? MusicVideosAttributes.fromJson(json["attributes"])
           : null,

@@ -12,6 +12,7 @@ class Albums with _$Albums implements AlbumKind {
   const factory Albums({
     required String id,
     required ResourceType type,
+    String? href,
     AlbumsAttributes? attributes,
     AlbumsRelationships? relationships,
     AlbumsViews? views,
@@ -21,6 +22,7 @@ class Albums with _$Albums implements AlbumKind {
     return Albums(
       id: json["id"],
       type: ResourceType.fromJson(json["type"]),
+      href: json["href"],
       attributes: json["attributes"] != null
           ? AlbumsAttributes.fromJson(json["attributes"])
           : null,

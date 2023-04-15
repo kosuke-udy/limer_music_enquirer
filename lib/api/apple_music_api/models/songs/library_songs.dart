@@ -11,6 +11,7 @@ class LibrarySongs with _$LibrarySongs implements SongKind {
   const factory LibrarySongs({
     required String id,
     required ResourceType type,
+    String? href,
     LibrarySongsAttributes? attributes,
     LibrarySongsRelationships? relationships,
   }) = _LibrarySongs;
@@ -19,6 +20,7 @@ class LibrarySongs with _$LibrarySongs implements SongKind {
     return LibrarySongs(
       id: json["id"],
       type: ResourceType.fromJson(json["type"]),
+      href: json["href"],
       attributes: json["attributes"] != null
           ? LibrarySongsAttributes.fromJson(json["attributes"])
           : null,

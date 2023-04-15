@@ -12,6 +12,7 @@ class Playlists with _$Playlists implements PlaylistKind {
   const factory Playlists({
     required String id,
     required ResourceType type,
+    String? href,
     PlaylistsAttributes? attributes,
     PlaylistsRelationships? relationships,
     PlaylistsViews? views,
@@ -21,6 +22,7 @@ class Playlists with _$Playlists implements PlaylistKind {
     return Playlists(
       id: json["id"],
       type: ResourceType.fromJson(json["type"]),
+      href: json["href"],
       attributes: json["attributes"] != null
           ? PlaylistsAttributes.fromJson(json["attributes"])
           : null,

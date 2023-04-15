@@ -11,6 +11,7 @@ class LibraryPlaylists with _$LibraryPlaylists implements PlaylistKind {
   const factory LibraryPlaylists({
     required String id,
     required ResourceType type,
+    String? href,
     LibraryPlaylistsAttributes? attributes,
     LibraryPlaylistsRelationships? relationships,
   }) = _LibraryPlaylists;
@@ -19,6 +20,7 @@ class LibraryPlaylists with _$LibraryPlaylists implements PlaylistKind {
     return LibraryPlaylists(
       id: json["id"],
       type: ResourceType.fromJson(json["type"]),
+      href: json["href"],
       attributes: json["attributes"] != null
           ? LibraryPlaylistsAttributes.fromJson(json["attributes"])
           : null,
