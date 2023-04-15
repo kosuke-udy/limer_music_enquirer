@@ -9,7 +9,7 @@ clean:
 
 ## Install to device
 install DEVICE: 
-  fvm flutter build ios
+  fvm flutter build ios --dart-define-from-file=dart_defines/prod.json
   fvm flutter install -d {{DEVICE}}
 
 ## Run all autogenerator tools
