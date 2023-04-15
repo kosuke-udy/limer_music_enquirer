@@ -5,9 +5,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../common_values/common_values.dart';
 
 class RoundedImage extends ConsumerWidget {
+  /* ---------- Fixed Values ---------- */
+
+  static const BoxFit _boxFit = BoxFit.contain;
+
+  /* ---------- Properties ---------- */
+
+  final double size;
   late final ImageProvider<Object>? imageProvider;
   late final String? url;
-  final double size;
+
+  /* ---------- Constructors ---------- */
 
   RoundedImage(
     ImageProvider<Object> image, {
@@ -26,6 +34,8 @@ class RoundedImage extends ConsumerWidget {
     imageProvider = null;
   }
 
+  /* ---------- Methods ---------- */
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final common = ref.watch(commonValuesProvider);
@@ -39,22 +49,27 @@ class RoundedImage extends ConsumerWidget {
         decoration: BoxDecoration(
           border: Border.all(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2),
-            width: 1,
+            width: 0.1,
           ),
           borderRadius: BorderRadius.circular(radius),
         ),
         child: imageProvider != null || url != null
             ? ClipRRect(
                 borderRadius: BorderRadius.circular(radius - 1),
-                child: imageProvider != null
-                    ? Image(
-                        fit: BoxFit.cover,
-                        image: imageProvider!,
-                      )
-                    : Image.network(
-                        fit: BoxFit.cover,
-                        url!,
-                      ),
+                child: Container(
+                  width: size,
+                  height: size,
+                  color: Theme.of(context).colorScheme.surface,
+                  child: imageProvider != null
+                      ? Image(
+                          fit: _boxFit,
+                          image: imageProvider!,
+                        )
+                      : Image.network(
+                          fit: _boxFit,
+                          url!,
+                        ),
+                ),
               )
             : Container(),
       ),
