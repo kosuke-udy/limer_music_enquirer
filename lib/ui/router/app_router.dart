@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
-import 'nav_destinations.dart';
+import 'navigation.dart';
 import 'routes.dart';
 
 part 'app_router.g.dart';
