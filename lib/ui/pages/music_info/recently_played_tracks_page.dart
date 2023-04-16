@@ -7,8 +7,8 @@ import '../../../providers/db/settings/metadata/ap_song.dart';
 import '../../common_parts/common_parts.dart';
 import '../../components/components.dart';
 
-class RecentlyPlayedSongsPage extends ConsumerWidget {
-  const RecentlyPlayedSongsPage({Key? key}) : super(key: key);
+class RecentlyPlayedTracksPage extends ConsumerWidget {
+  const RecentlyPlayedTracksPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
