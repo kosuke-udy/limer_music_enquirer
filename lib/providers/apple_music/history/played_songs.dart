@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../api/apple_music_api/apple_music_api.dart';
+import '../../../api/apple_music_api/apple_music_api.dart';
 
 part 'played_songs.g.dart';
 
