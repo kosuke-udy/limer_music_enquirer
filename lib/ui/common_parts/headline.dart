@@ -8,6 +8,8 @@ class Headline extends ConsumerWidget {
 
   static const _horizontalPadding = 24.0;
   static const _verticalPadding = 16.0;
+  static const _fontSize = 22.0;
+  static const _iconSize = 34.0;
 
   /* ---------- Properties ---------- */
 
@@ -35,20 +37,21 @@ class Headline extends ConsumerWidget {
           vertical: _verticalPadding,
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               text,
               style: Theme.of(context)
                   .textTheme
                   .headlineSmall!
-                  .copyWith(fontSize: 22),
-              textHeightBehavior: const TextHeightBehavior(
-                  applyHeightToFirstAscent: false,
-                  applyHeightToLastDescent: true),
+                  .copyWith(fontSize: _fontSize),
             ),
-            SizedBox(width: common.size.insetsSmall),
             onTap != null && onTap != () {}
-                ? Icon(Icons.chevron_right, color: common.color.infoIcon)
+                ? Icon(
+                    Icons.chevron_right,
+                    color: common.color.infoIcon,
+                    size: _iconSize,
+                  )
                 : const SizedBox.shrink(),
           ],
         ),
