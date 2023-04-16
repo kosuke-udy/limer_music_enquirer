@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../api/apple_music_api/apple_music_api.dart';
 
-part 'resources.g.dart';
+part 'played_resources.g.dart';
 
 @Riverpod(keepAlive: true)
 class RecentlyPlayedResources extends _$RecentlyPlayedResources {

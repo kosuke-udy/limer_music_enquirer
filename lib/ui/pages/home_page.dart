@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
-import '../../providers/apple_music/history/songs.dart';
+import '../../providers/apple_music/history/played_songs.dart';
 import '../../providers/db/settings/metadata/ap_song.dart';
 import '../../translations.g.dart';
 import '../common_parts/common_parts.dart';
