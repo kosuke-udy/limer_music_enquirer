@@ -52,7 +52,9 @@ extension ColorConverter on Color {
     }
 
     lightness = min(lightness, 0.9);
-    hslColor = hslColor.withLightness(lightness);
+    if (hslColor.lightness > lightness) {
+      hslColor = hslColor.withLightness(lightness);
+    }
 
     return hslColor.toColor();
   }
