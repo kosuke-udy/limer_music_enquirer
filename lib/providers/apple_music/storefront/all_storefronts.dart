@@ -11,9 +11,9 @@ class AllStorefronts extends _$AllStorefronts {
     state = const AsyncValue.loading();
 
     final client = await ref.watch(appApClientProvider.future);
-    final response = await client.fetch(
+    final response = await client.fetch<Storefronts>(
       "https://api.music.apple.com/v1/storefronts",
     );
-    return response.map((e) => Storefronts.fromJson(e)).toList(growable: false);
+    return response.data;
   }
 }

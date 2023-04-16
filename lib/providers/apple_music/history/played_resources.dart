@@ -11,12 +11,13 @@ class RecentlyPlayedResources extends _$RecentlyPlayedResources {
     state = const AsyncValue.loading();
 
     final client = await ref.watch(appApClientProvider.future);
-    return client.fetchResource(
+    final response = await client.fetch<ResourceKind>(
       "https://api.music.apple.com/v1/me/recent/played",
       queryParameters: <String, dynamic>{
         "include[library-albums]": "catalog",
         "include[library-playlists]": "catalog",
       },
     );
+    return response.data;
   }
 }

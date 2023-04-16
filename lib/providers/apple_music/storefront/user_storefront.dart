@@ -10,9 +10,9 @@ class UserStorefront extends _$UserStorefront {
   Future<Storefronts> build() async {
     state = const AsyncValue.loading();
     final client = await ref.watch(appApClientProvider.future);
-    final response = await client.fetch(
+    final response = await client.fetch<Storefronts>(
       "https://api.music.apple.com/v1/me/storefront",
     );
-    return Storefronts.fromJson(response[0]);
+    return response.data[0];
   }
 }

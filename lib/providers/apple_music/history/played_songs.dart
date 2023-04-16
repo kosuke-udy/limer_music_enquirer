@@ -11,7 +11,7 @@ class RecentlyPlayedSongs extends _$RecentlyPlayedSongs {
     state = const AsyncValue.loading();
 
     final client = await ref.watch(appApClientProvider.future);
-    return client.fetchResource(
+    final response = await client.fetch<SongKind>(
       "https://api.music.apple.com/v1/me/recent/played/tracks",
       queryParameters: <String, dynamic>{
         "l": "",
@@ -22,5 +22,6 @@ class RecentlyPlayedSongs extends _$RecentlyPlayedSongs {
         "include[songs]": "albums,artists,composers,library",
       },
     );
+    return response.data;
   }
 }
