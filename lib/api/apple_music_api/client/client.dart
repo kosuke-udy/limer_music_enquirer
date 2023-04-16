@@ -5,7 +5,6 @@ import 'dart:developer';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:dio/dio.dart';
 
-import '../converter/converter.dart';
 import '../models/models.dart';
 import 'response.dart';
 
