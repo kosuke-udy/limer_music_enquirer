@@ -4,4 +4,3 @@ export 'history/played_songs.dart';
 export 'history/played_resources.dart';
 export 'storefront/all_storefronts.dart';
 export 'storefront/user_storefront.dart';
-export 'init_client.dart';

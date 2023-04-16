@@ -4,18 +4,14 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'translations.g.dart';
-import 'providers/apple_music/init_client.dart';
 import 'providers/db/providers.dart';
 import 'ui/common_values/common_values.dart';
 import 'ui/router/app_router.dart';
 
 final initProvider = FutureProvider((ref) async {
-  await initAppleMusicApiClient();
-
   if (kDebugMode) {
     await ref.read(appIsarProvider.notifier).initialize();
   }
-
   return;
 });
 
