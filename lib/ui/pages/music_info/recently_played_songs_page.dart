@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
@@ -8,8 +7,8 @@ import '../../../providers/db/settings/metadata/ap_song.dart';
 import '../../common_parts/common_parts.dart';
 import '../../components/components.dart';
 
-class RecentlyPlayedListPage extends ConsumerWidget {
-  const RecentlyPlayedListPage({Key? key}) : super(key: key);
+class RecentlyPlayedSongsPage extends ConsumerWidget {
+  const RecentlyPlayedSongsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
