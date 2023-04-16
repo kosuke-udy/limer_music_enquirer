@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
+import '../../providers/apple_music/history/added_resources.dart';
 import '../../providers/apple_music/history/played_songs.dart';
 import '../../providers/db/settings/metadata/ap_song.dart';
 import '../../translations.g.dart';
@@ -38,7 +39,9 @@ class HomePage extends ConsumerWidget {
     WidgetRef ref,
     ApSongMetadataSettingCollection metadataSetting,
   ) {
-    final recentlySongs = ref.watch(recentlyPlayedSongsProvider);
+    final asyncRecentlyPlayedSongs = ref.watch(recentlyPlayedSongsProvider);
+    final asyncRecentlyAddedResources =
+        ref.watch(recentlyAddedResourcesProvider);
 
     return PageScaffold(
       appBarTitle: Text(t.homePage.home),
@@ -52,7 +55,7 @@ class HomePage extends ConsumerWidget {
               t.homePage.recentlyPlayed,
               onTap: () => RecentlyPlayedSongsPageRoute().push(context),
             ),
-            child: recentlySongs.when(
+            child: asyncRecentlyPlayedSongs.when(
               data: (songs) {
                 return SongCardListHorizontal(
                   songs: songs.sublist(0, 10),

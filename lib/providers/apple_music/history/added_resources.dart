@@ -12,7 +12,7 @@ class RecentlyAddedResources extends _$RecentlyAddedResources {
 
     final client = await ref.watch(appApClientProvider.future);
     return client.fetchResource(
-      "https://api.music.apple.com/v1/me/recent/added",
+      "https://api.music.apple.com/v1/me/library/recently-added",
       queryParameters: <String, dynamic>{
         "include[library-albums]": "catalog",
         "include[library-playlists]": "catalog",

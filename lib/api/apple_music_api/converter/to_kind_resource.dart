@@ -3,43 +3,29 @@ part of converter;
 T convertToResourceKind<T extends ResourceKind>(
   Map<String, dynamic> json,
 ) {
-  switch (T) {
-    case Albums:
+  switch (json["type"]) {
+    case "albums":
       return Albums.fromJson(json) as T;
-    case LibraryAlbums:
+    case "library-albums":
       return LibraryAlbums.fromJson(json) as T;
-    case Artists:
+    case "artists":
       return Artists.fromJson(json) as T;
-    case LibraryArtists:
+    case "library-artists":
       return LibraryArtists.fromJson(json) as T;
-    case MusicVideos:
+    case "music-videos":
       return MusicVideos.fromJson(json) as T;
-    case LibraryMusicVideos:
+    case "library-music-videos":
       return LibraryMusicVideos.fromJson(json) as T;
-    case Playlists:
+    case "playlists":
       return Playlists.fromJson(json) as T;
-    case LibraryPlaylists:
+    case "library-playlists":
       return LibraryPlaylists.fromJson(json) as T;
-    case Songs:
+    case "songs":
       return Songs.fromJson(json) as T;
-    case LibrarySongs:
+    case "library-songs":
       return LibrarySongs.fromJson(json) as T;
-    case Storefronts:
+    case "storefronts":
       return Storefronts.fromJson(json) as T;
-    case TrackKind:
-      return convertToTrackKind(json) as T;
-    case TrackListKind:
-      return convertToTrackListKind(json) as T;
-    case AlbumKind:
-      return convertToAlbumKind(json) as T;
-    case ArtistKind:
-      return convertToArtistKind(json) as T;
-    case MusicVideoKind:
-      return convertToMusicVideoKind(json) as T;
-    case PlaylistKind:
-      return convertToPlaylistKind(json) as T;
-    case SongKind:
-      return convertToSongKind(json) as T;
     default:
       throw NotSupportedTypeError(json["type"]);
   }
