@@ -10,10 +10,14 @@ class AlbumCard extends StatelessWidget {
 
   final AlbumKind album;
 
+  /* ---------- Constructor ---------- */
+
   const AlbumCard({
     Key? key,
     required this.album,
   }) : super(key: key);
+
+  /* ---------- Build ---------- */
 
   @override
   Widget build(BuildContext context) {
