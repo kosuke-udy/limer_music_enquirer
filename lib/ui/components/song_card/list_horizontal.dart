@@ -3,14 +3,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../../db/settings/metadata/ap_song.dart';
-import '../../common_values/common_values.dart';
 import 'list_card.dart';
 
 class SongCardListHorizontal extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
-  static const _maxHeight = 180.0;
-  static const _viewportFraction = 0.9;
+  static const _maxHeight = 155.0;
+  static const _viewportFraction = 0.917;
+  static const _horizontalPadding = 8.0;
 
   /* ---------- Properties ---------- */
 
@@ -29,8 +29,6 @@ class SongCardListHorizontal extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final common = ref.watch(commonValuesProvider);
-
     return LayoutBuilder(
       builder: (context, constraints) => ConstrainedBox(
         constraints: BoxConstraints(
@@ -43,8 +41,8 @@ class SongCardListHorizontal extends ConsumerWidget {
           ),
           children: songs.map((e) {
             return Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: common.size.insetsSmall,
+              padding: const EdgeInsets.symmetric(
+                horizontal: _horizontalPadding,
               ),
               child: SongListCard(
                 song: e,
