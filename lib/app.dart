@@ -9,38 +9,27 @@ import 'providers/db/providers.dart';
 import 'ui/common_values/common_values.dart';
 import 'ui/router/router_delegates.dart';
 
-final initProvider = FutureProvider((ref) async {
-  if (kDebugMode) {
-    await ref.read(appIsarProvider.notifier).initialize();
-  }
-  return;
-});
-
 class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(initProvider).when(
-          data: (data) => MaterialApp.router(
-            title: const String.fromEnvironment("APP_NAME"),
-            routerDelegate: appRouterDelegate,
-            routeInformationParser: BeamerParser(),
-            backButtonDispatcher: BeamerBackButtonDispatcher(
-              delegate: appRouterDelegate,
-            ),
-            theme: ref.watch(commonValuesProvider).theme.copyWith(
-                  splashFactory: NoSplash.splashFactory,
-                ),
-            debugShowCheckedModeBanner: false,
-            locale: !kDebugMode
-                ? TranslationProvider.of(context).flutterLocale
-                : const Locale("ja", "JP"),
-            supportedLocales: AppLocaleUtils.supportedLocales,
-            localizationsDelegates: GlobalMaterialLocalizations.delegates,
+    return MaterialApp.router(
+      title: const String.fromEnvironment("APP_NAME"),
+      routerDelegate: appRouterDelegate,
+      routeInformationParser: BeamerParser(),
+      backButtonDispatcher: BeamerBackButtonDispatcher(
+        delegate: appRouterDelegate,
+      ),
+      theme: ref.watch(commonValuesProvider).theme.copyWith(
+            splashFactory: NoSplash.splashFactory,
           ),
-          loading: () => Container(),
-          error: (error, stack) => throw error,
-        );
+      debugShowCheckedModeBanner: false,
+      locale: !kDebugMode
+          ? TranslationProvider.of(context).flutterLocale
+          : const Locale("ja", "JP"),
+      supportedLocales: AppLocaleUtils.supportedLocales,
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+    );
   }
 }

@@ -11,19 +11,22 @@ class AppIsar extends _$AppIsar {
   @override
   Future<Isar> build() async {
     final directory = await getApplicationSupportDirectory();
-    return Isar.openSync(
+    final instance = Isar.openSync(
       [
         ApStorefrontSettingCollectionSchema,
         ApSongMetadataSettingCollectionSchema,
       ],
       directory: directory.path,
     );
-  }
 
-  // Initialize the database
-  Future<void> initialize() async {
-    final appIsar = await ref.watch(appIsarProvider.future);
-    await appIsar.writeTxn(() => appIsar.clear());
-    state = AsyncValue.data(appIsar);
+    await instance.writeTxn(
+      () async {
+        if (const String.fromEnvironment("FLAVOR") == "dev") {
+          await instance.clear();
+        }
+      },
+    );
+
+    return instance;
   }
 }

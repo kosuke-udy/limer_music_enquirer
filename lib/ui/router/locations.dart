@@ -10,13 +10,6 @@ import '../pages/settings_page.dart';
 import 'paths.dart';
 
 class HomeLocation extends BeamLocation<BeamState> {
-  static const page = BeamPage(
-    key: ValueKey("home"),
-    title: "Home Tab",
-    type: BeamPageType.noTransition,
-    child: HomePage(),
-  );
-
   @override
   List<String> get pathPatterns => [
         appPath.home,
@@ -30,7 +23,7 @@ class HomeLocation extends BeamLocation<BeamState> {
       const BeamPage(
         key: ValueKey("home"),
         title: "Home Tab",
-        type: BeamPageType.noTransition,
+        // type: BeamPageType.noTransition,
         child: HomePage(),
       ),
     ];
