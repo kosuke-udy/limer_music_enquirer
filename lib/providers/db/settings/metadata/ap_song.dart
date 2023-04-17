@@ -25,11 +25,9 @@ class ApSongMetadataSetting extends _$ApSongMetadataSetting {
 class _Settings extends _$Settings {
   @override
   Future<List<ApSongMetadataSettingCollection>> build() async {
-    final list = await ref
-        .watch(appIsarProvider)
-        .apSongMetadataSettingCollections
-        .where()
-        .findAll();
+    final appIsar = await ref.watch(appIsarProvider.future);
+    final list =
+        await appIsar.apSongMetadataSettingCollections.where().findAll();
 
     // If the list is empty, create a new one with the default order.
     if (list.isEmpty) {
@@ -61,7 +59,7 @@ class _Settings extends _$Settings {
     int? id,
     required List<ApSongMetadataInfo> order,
   }) async {
-    final appIsar = ref.watch(appIsarProvider);
+    final appIsar = await ref.watch(appIsarProvider.future);
     appIsar.writeTxn(() async {
       appIsar.apSongMetadataSettingCollections
           .put(ApSongMetadataSettingCollection()

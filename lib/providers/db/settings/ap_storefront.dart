@@ -23,7 +23,7 @@ class ApStorefrontSetting extends _$ApStorefrontSetting {
 class _Settings extends _$Settings {
   @override
   Future<List<ApStorefrontSettingCollection>> build() async {
-    final appIsar = ref.watch(appIsarProvider);
+    final appIsar = await ref.watch(appIsarProvider.future);
     final list = await appIsar.apStorefrontSettingCollections.where().findAll();
 
     // If the list is empty, create a new one with the user's storefront.
@@ -48,7 +48,7 @@ class _Settings extends _$Settings {
     int? id,
     required List<ApStorefront> list,
   }) async {
-    final appIsar = ref.watch(appIsarProvider);
+    final appIsar = await ref.watch(appIsarProvider.future);
     await appIsar.writeTxn(() async {
       if (id != null) {
         await appIsar.apStorefrontSettingCollections.delete(id);
