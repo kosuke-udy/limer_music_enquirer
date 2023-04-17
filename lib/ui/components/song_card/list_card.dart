@@ -1,9 +1,10 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../../db/settings/metadata/ap_song.dart';
-import '../../router/routes.dart';
+import '../../router/paths.dart';
 import 'card_unit.dart';
 
 class SongListCard extends ConsumerWidget {
@@ -13,7 +14,12 @@ class SongListCard extends ConsumerWidget {
 
   static const int _mainCardMaxLines = 2;
   void Function() onTapMainCard(BuildContext context) {
-    return () => SongDetailPageRoute(song.id, $extra: song).push(context);
+    return () {
+      print(appPath.songDetail(song.id));
+      context.beamToNamed(
+        appPath.songDetail(song.id),
+      );
+    };
   }
 
   static const int _metadataRowMaxCount = 3;

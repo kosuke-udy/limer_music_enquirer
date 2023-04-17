@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
@@ -5,7 +6,7 @@ import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 import '../../translations.g.dart';
 import '../common_parts/common_parts.dart';
 import '../common_values/common_values.dart';
-import '../router/routes.dart';
+import '../router/paths.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class SettingsPage extends ConsumerWidget {
                 Icons.arrow_forward_ios_rounded,
                 size: common.size.infoIcon,
               ),
-              onTap: () => ApStorefrontSettingPageRoute().go(context),
+              onTap: () => context.beamToNamed(appPath.settingsApStorefront),
             ),
           ),
         ),
@@ -47,7 +48,8 @@ class SettingsPage extends ConsumerWidget {
                 Icons.arrow_forward_ios_rounded,
                 size: common.size.infoIcon,
               ),
-              onTap: () => SongMetadataOrderSettingPageRoute().go(context),
+              onTap: () =>
+                  context.beamToNamed(appPath.settingsSongMetadataOrder),
             ),
           ),
         ),

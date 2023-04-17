@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -6,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'translations.g.dart';
 import 'providers/db/providers.dart';
 import 'ui/common_values/common_values.dart';
-import 'ui/router/app_router.dart';
+import 'ui/router/router_delegates.dart';
 
 final initProvider = FutureProvider((ref) async {
   if (kDebugMode) {
@@ -23,7 +24,11 @@ class App extends ConsumerWidget {
     return ref.watch(initProvider).when(
           data: (data) => MaterialApp.router(
             title: const String.fromEnvironment("APP_NAME"),
-            routerConfig: ref.watch(appRouterProvider),
+            routerDelegate: appRouterDelegate,
+            routeInformationParser: BeamerParser(),
+            backButtonDispatcher: BeamerBackButtonDispatcher(
+              delegate: appRouterDelegate,
+            ),
             theme: ref.watch(commonValuesProvider).theme.copyWith(
                   splashFactory: NoSplash.splashFactory,
                 ),

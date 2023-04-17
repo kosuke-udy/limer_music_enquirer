@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
@@ -8,7 +9,7 @@ import '../../providers/db/settings/metadata/ap_song.dart';
 import '../../translations.g.dart';
 import '../common_parts/common_parts.dart';
 import '../components/components.dart';
-import '../router/routes.dart';
+import '../router/paths.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -53,7 +54,7 @@ class HomePage extends ConsumerWidget {
           Area(
             headline: Headline(
               t.homePage.recentlyPlayed,
-              onTap: () => RecentlyPlayedSongsPageRoute().push(context),
+              onTap: () => context.beamToNamed(appPath.recentlyPlayedSongs),
             ),
             child: asyncRecentlyPlayedSongs.when(
               data: (songs) {
