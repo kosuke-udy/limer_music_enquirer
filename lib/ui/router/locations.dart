@@ -91,10 +91,10 @@ class SearchLocation extends BeamLocation<BeamState> {
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
     return [
-      const BeamPage(
-        key: ValueKey("search"),
+      BeamPage(
+        key: getPageKey("/search"),
         title: "Search",
-        child: Center(
+        child: const Center(
           child: Text("Search"),
         ),
       ),
@@ -112,10 +112,10 @@ class SettingsLocation extends BeamLocation<BeamState> {
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
     final pages = <BeamPage>[
-      const BeamPage(
-        key: ValueKey("settings"),
+      BeamPage(
+        key: getPageKey(appPath.settings),
         title: "Settings",
-        child: SettingsPage(),
+        child: const SettingsPage(),
       ),
     ];
 
@@ -123,19 +123,19 @@ class SettingsLocation extends BeamLocation<BeamState> {
       switch (state.pathPatternSegments[1]) {
         case 'ap-storefront':
           pages.add(
-            const BeamPage(
-              key: ValueKey("setting-ap-storefront"),
+            BeamPage(
+              key: getPageKey(appPath.settingsApStorefront),
               title: "Apple Music Storefront Setting",
-              child: ApStorefrontSettingPage(),
+              child: const ApStorefrontSettingPage(),
             ),
           );
           break;
         case 'song-metadata-order':
           pages.add(
-            const BeamPage(
-              key: ValueKey("setting-song-metadata-order"),
+            BeamPage(
+              key: getPageKey(appPath.settingsSongMetadataOrder),
               title: "Song Metadata Order Setting",
-              child: SongMetadataOrderSettingPage(),
+              child: const SongMetadataOrderSettingPage(),
             ),
           );
           break;
