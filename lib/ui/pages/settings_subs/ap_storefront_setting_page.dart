@@ -16,7 +16,7 @@ class ApStorefrontSettingPage extends ConsumerWidget {
     return PageScaffold(
       appBarTitle: const Text("Settings: Metadata Locale"),
       body: ref.watch(apStorefrontSettingProvider).when(
-            data: (data) => _afterSettingsLoaded(context, ref, data),
+            data: (data) => _afterPreloaded(context, ref, data),
             loading: () =>
                 const Center(child: CircularProgressIndicator.adaptive()),
             error: (error, stackTrace) => const Center(child: Text("Error")),
@@ -24,7 +24,7 @@ class ApStorefrontSettingPage extends ConsumerWidget {
     );
   }
 
-  Widget _afterSettingsLoaded(
+  Widget _afterPreloaded(
     BuildContext context,
     WidgetRef ref,
     ApStorefrontSettingCollection setting,

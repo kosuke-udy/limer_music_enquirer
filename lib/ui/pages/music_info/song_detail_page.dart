@@ -53,7 +53,7 @@ class SongDetailPage extends HookConsumerWidget {
               ? Center(
                   child: Text(asyncStorefrontSetting.error.toString()),
                 )
-              : _afterSettingLoaded(
+              : _afterPreloaded(
                   context,
                   ref,
                   asyncStorefrontSetting.value!,
@@ -62,7 +62,7 @@ class SongDetailPage extends HookConsumerWidget {
     );
   }
 
-  Widget _afterSettingLoaded(
+  Widget _afterPreloaded(
     BuildContext context,
     WidgetRef ref,
     ApStorefrontSettingCollection storefrontSetting,

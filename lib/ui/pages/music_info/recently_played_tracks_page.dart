@@ -28,7 +28,7 @@ class RecentlyPlayedTracksPage extends ConsumerWidget {
               ? Center(
                   child: Text(asyncMetadataSetting.error.toString()),
                 )
-              : _afterSettingsLoaded(
+              : _afterPreloaded(
                   context,
                   ref,
                   asyncMetadataSetting.value!,
@@ -36,7 +36,7 @@ class RecentlyPlayedTracksPage extends ConsumerWidget {
     );
   }
 
-  Widget _afterSettingsLoaded(
+  Widget _afterPreloaded(
     BuildContext context,
     WidgetRef ref,
     ApSongMetadataSettingCollection metadataSetting,

@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -30,7 +28,7 @@ class SongMetadataOrderSettingPage extends HookConsumerWidget {
               ? Center(
                   child: Text(settingsFuture.error.toString()),
                 )
-              : _afterSettingsLoaded(
+              : _afterPreloaded(
                   context,
                   ref,
                   settingsFuture.data!,
@@ -38,7 +36,7 @@ class SongMetadataOrderSettingPage extends HookConsumerWidget {
     );
   }
 
-  Widget _afterSettingsLoaded(
+  Widget _afterPreloaded(
     BuildContext context,
     WidgetRef ref,
     ApSongMetadataSettingCollection setting,
