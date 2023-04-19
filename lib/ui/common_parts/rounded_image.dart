@@ -11,7 +11,7 @@ class RoundedImage extends ConsumerWidget {
 
   /* ---------- Properties ---------- */
 
-  final double size;
+  final double? size;
   late final ImageProvider<Object>? imageProvider;
   late final String? url;
 
@@ -20,7 +20,7 @@ class RoundedImage extends ConsumerWidget {
   RoundedImage(
     ImageProvider<Object> image, {
     Key? key,
-    required this.size,
+    this.size,
   }) : super(key: key) {
     imageProvider = image;
     url = null;
@@ -29,7 +29,7 @@ class RoundedImage extends ConsumerWidget {
   RoundedImage.network(
     this.url, {
     Key? key,
-    required this.size,
+    this.size,
   }) : super(key: key) {
     imageProvider = null;
   }
