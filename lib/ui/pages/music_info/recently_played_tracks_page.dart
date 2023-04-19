@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
@@ -39,6 +40,7 @@ class RecentlyPlayedTracksPage extends ConsumerWidget {
     final recentlyPlayedSongs = ref.watch(recentlyPlayedSongsProvider);
 
     return PageScaffold(
+      onBackButtonPressed: context.beamBack,
       appBarTitle: const Text("Recently Played"),
       body: RefreshableListView(
         onRefresh: () async => ref.invalidate(recentlyPlayedSongsProvider),

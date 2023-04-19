@@ -15,7 +15,6 @@ class SongListCard extends ConsumerWidget {
   static const int _mainCardMaxLines = 2;
   void Function() onTapMainCard(BuildContext context) {
     return () {
-      print(appPath.songDetail(song.id));
       context.beamToNamed(
         appPath.songDetail(song.id),
       );

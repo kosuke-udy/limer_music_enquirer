@@ -1,5 +1,5 @@
 // const homePath = '/home';
-// const recentlyPlayedSongsPath = '/recently-played-songs';
+// const recentlyPlayedTracksPath = '/recently-played-songs';
 // const songDetailPath = '/song-detail/:id';
 // const searchPath = '/search';
 // const settingsPath = '/settings';
@@ -13,10 +13,10 @@ class AppPath {
 
   final home = '/home';
 
-  final recentlyPlayedSongs = '/recently-played-songs';
+  final recentlyPlayedTracks = '/recently-played-tracks';
 
-  final songDetailPattern = '/song-detail/:id';
-  String songDetail(String id) => songDetailPattern.replaceAll(':id', id);
+  final songDetailPattern = '/song-detail';
+  String songDetail(String id) => '$songDetailPattern?id=$id';
 
   final search = '/search';
 

@@ -9,47 +9,78 @@ import '../pages/home_page.dart';
 import '../pages/settings_page.dart';
 import 'paths.dart';
 
+ValueKey getPageKey(String path) {
+  const divider = "-";
+  return ValueKey(path.replaceFirst("/", "").replaceAll("/", "-") +
+      divider +
+      DateTime.now().millisecondsSinceEpoch.toString());
+}
+
 class HomeLocation extends BeamLocation<BeamState> {
   @override
   List<String> get pathPatterns => [
         appPath.home,
-        appPath.recentlyPlayedSongs,
+      ];
+
+  @override
+  List<BeamPage> buildPages(BuildContext context, BeamState state) {
+    return [
+      BeamPage(
+        key: getPageKey(appPath.home),
+        title: "Home",
+        child: const HomePage(),
+      ),
+    ];
+  }
+}
+
+class RecentlyPlayedTracksLocation extends BeamLocation<BeamState> {
+  @override
+  List<String> get pathPatterns => [
+        appPath.recentlyPlayedTracks,
+      ];
+
+  @override
+  List<BeamPage> buildPages(BuildContext context, BeamState state) {
+    final nextPage = BeamPage(
+      key: getPageKey(appPath.recentlyPlayedTracks),
+      title: "Recently Played Tracks",
+      child: const RecentlyPlayedTracksPage(),
+    );
+
+    return [
+      ...context.currentBeamPages.last.key == nextPage.key
+          ? (context.currentBeamPages..removeLast())
+          : context.currentBeamPages,
+      nextPage,
+    ];
+  }
+}
+
+class SongDetailLocation extends BeamLocation<BeamState> {
+  @override
+  List<String> get pathPatterns => [
         appPath.songDetailPattern,
       ];
 
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
-    final pages = [
-      const BeamPage(
-        key: ValueKey("home"),
-        title: "Home Tab",
-        // type: BeamPageType.noTransition,
-        child: HomePage(),
-      ),
-    ];
-
-    if (state.uri.path == appPath.recentlyPlayedSongs) {
-      pages.add(
-        const BeamPage(
-          key: ValueKey("recently-played-songs"),
-          title: "Recently Played Songs",
-          child: RecentlyPlayedTracksPage(),
-        ),
+    final id = state.queryParameters["id"];
+    if (id != null) {
+      final nextPage = BeamPage(
+        key: getPageKey(appPath.songDetail(id)),
+        title: "Song Detail",
+        child: SongDetailPage(id),
       );
-    } else if (state.uriBlueprint.path == appPath.songDetailPattern) {
-      final id = state.pathParameters["id"];
-      if (id != null) {
-        pages.add(
-          BeamPage(
-            key: ValueKey("song-detail-$id"),
-            title: "Song Detail",
-            child: SongDetailPage(id),
-          ),
-        );
-      }
+      return [
+        ...context.currentBeamPages.last.key == nextPage.key
+            ? (context.currentBeamPages..removeLast())
+            : context.currentBeamPages,
+        nextPage,
+      ];
+    } else {
+      return context.currentBeamPages;
     }
-
-    return pages;
   }
 }
 

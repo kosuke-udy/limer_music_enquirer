@@ -18,9 +18,7 @@ class App extends ConsumerWidget {
       title: const String.fromEnvironment("APP_NAME"),
       routerDelegate: appRouterDelegate,
       routeInformationParser: BeamerParser(),
-      backButtonDispatcher: BeamerBackButtonDispatcher(
-        delegate: appRouterDelegate,
-      ),
+      backButtonDispatcher: backButtonDispatcher,
       theme: ref.watch(commonValuesProvider).theme.copyWith(
             splashFactory: NoSplash.splashFactory,
           ),

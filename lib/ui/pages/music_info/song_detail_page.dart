@@ -1,3 +1,4 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
@@ -74,6 +75,7 @@ class SongDetailPage extends HookConsumerWidget {
     final common = ref.watch(commonValuesProvider);
 
     return PageScaffold(
+      onBackButtonPressed: context.beamBack,
       appBarTitle: const Text("Detail"),
       body: RefreshableListView(
         children: [

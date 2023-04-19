@@ -54,7 +54,7 @@ class HomePage extends ConsumerWidget {
           Area(
             headline: Headline(
               t.homePage.recentlyPlayed,
-              onTap: () => context.beamToNamed(appPath.recentlyPlayedSongs),
+              onTap: () => context.beamToNamed(appPath.recentlyPlayedTracks),
             ),
             child: asyncRecentlyPlayedSongs.when(
               data: (songs) {

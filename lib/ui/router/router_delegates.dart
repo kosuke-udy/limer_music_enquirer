@@ -1,21 +1,41 @@
 import 'package:beamer/beamer.dart';
+import 'package:flutter/material.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
 import 'locations.dart';
 import 'navigation.dart';
 import 'paths.dart';
 
+final backButtonDispatcher = BeamerBackButtonDispatcher(
+  delegate: appRouterDelegate,
+  alwaysBeamBack: true,
+  onBack: (delegate) async {
+    delegate.beamBack();
+    return true;
+  },
+);
+// final List<BeamerChildBackButtonDispatcher> tabBackButtonDispatchers =
+//     List.filled(
+//   tabRouterDelegates.length,
+//   BeamerChildBackButtonDispatcher(
+//     delegate: homeTabRouterDelegate,
+//     parent: backButtonDispatcher,
+//   ),
+//   growable: false,
+// );
+
 final appRouterDelegate = BeamerDelegate(
     initialPath: appPath.home,
+    beamBackTransitionDelegate: const ReverseTransitionDelegate(),
     locationBuilder: RoutesLocationBuilder(routes: {
       '*': (context, state, data) {
         return ScreenScaffold(
-          bodyStackChildren: tabRouterDelegates.map((delegate) {
+          bodyStackChildren: tabRouterDelegates.mapWithIndex((delegate, index) {
             return Beamer(
+              key: tabBeamerKeys[index],
               routerDelegate: delegate,
-              backButtonDispatcher: BeamerBackButtonDispatcher(
-                delegate: delegate,
-              ),
+              // backButtonDispatcher: tabBackButtonDispatchers[index],
             );
           }).toList(),
           destinations: navDestinations,
@@ -28,6 +48,12 @@ final appRouterDelegate = BeamerDelegate(
       }
     }));
 
+final tabBeamerKeys = List.generate(
+  tabRouterDelegates.length,
+  (index) => GlobalKey<NavigatorState>(),
+  growable: false,
+);
+
 final tabRouterDelegates = [
   homeTabRouterDelegate,
   searchTabRouterDelegate,
@@ -36,35 +62,36 @@ final tabRouterDelegates = [
 
 final homeTabRouterDelegate = BeamerDelegate(
   initialPath: appPath.home,
-  locationBuilder: (routeInformation, params) {
-    if (routeInformation.location != null &&
-        HomeLocation().pathPatterns.contains(routeInformation.location)) {
-      return HomeLocation();
-    } else {
-      return HomeLocation();
-    }
+  locationBuilder: BeamerLocationBuilder(
+    beamLocations: [
+      HomeLocation(),
+      RecentlyPlayedTracksLocation(),
+      SongDetailLocation(),
+    ],
+  ),
+  buildListener: (context, delegate) {
+    print("buildListnener: ${context.beamingHistory}");
+    print("currentBeamPages: ${context.currentBeamPages}");
+  },
+  routeListener: (routeInformation, delegate) {
+    print(routeInformation.location);
   },
 );
 
 final searchTabRouterDelegate = BeamerDelegate(
   initialPath: appPath.search,
-  locationBuilder: (routeInformation, params) {
-    if (routeInformation.location != null &&
-        SearchLocation().pathPatterns.contains(routeInformation.location)) {
-      return SearchLocation();
-    } else {
-      return SearchLocation();
-    }
-  },
+  locationBuilder: BeamerLocationBuilder(
+    beamLocations: [
+      SearchLocation(),
+    ],
+  ),
 );
 
 final settingsTabRouterDelegate = BeamerDelegate(
   initialPath: appPath.settings,
-  locationBuilder: (routeInformation, params) {
-    if (routeInformation.location!.contains(appPath.settings)) {
-      return SettingsLocation();
-    } else {
-      return SettingsLocation();
-    }
-  },
+  locationBuilder: BeamerLocationBuilder(
+    beamLocations: [
+      SettingsLocation(),
+    ],
+  ),
 );
