@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
+import '../../utils/app_logger.dart';
 import 'locations.dart';
 import 'navigation.dart';
 import 'paths.dart';
@@ -15,15 +16,6 @@ final backButtonDispatcher = BeamerBackButtonDispatcher(
     return true;
   },
 );
-// final List<BeamerChildBackButtonDispatcher> tabBackButtonDispatchers =
-//     List.filled(
-//   tabRouterDelegates.length,
-//   BeamerChildBackButtonDispatcher(
-//     delegate: homeTabRouterDelegate,
-//     parent: backButtonDispatcher,
-//   ),
-//   growable: false,
-// );
 
 final appRouterDelegate = BeamerDelegate(
     initialPath: appPath.home,
@@ -60,6 +52,8 @@ final tabRouterDelegates = [
   settingsTabRouterDelegate,
 ];
 
+final homeTabLogger = AppLogger.get("homeTabRouterDelegate");
+
 final homeTabRouterDelegate = BeamerDelegate(
   initialPath: appPath.home,
   locationBuilder: BeamerLocationBuilder(
@@ -70,13 +64,15 @@ final homeTabRouterDelegate = BeamerDelegate(
     ],
   ),
   buildListener: (context, delegate) {
-    print("buildListnener: ${context.beamingHistory}");
-    print("currentBeamPages: ${context.currentBeamPages}");
-  },
-  routeListener: (routeInformation, delegate) {
-    print(routeInformation.location);
+    homeTabLogger.info([
+      // "buildListnener: ${context.beamingHistory}",
+      // "currentBeamPages: ${context.currentBeamPages}",
+      "Move to ${delegate.currentBeamLocation.state.routeInformation.location}"
+    ]);
   },
 );
+
+final searchTabLogger = AppLogger.get("searchTabRouterDelegate");
 
 final searchTabRouterDelegate = BeamerDelegate(
   initialPath: appPath.search,
@@ -85,7 +81,16 @@ final searchTabRouterDelegate = BeamerDelegate(
       SearchLocation(),
     ],
   ),
+  buildListener: (context, delegate) {
+    searchTabLogger.info([
+      // "buildListnener: ${context.beamingHistory}",
+      // "currentBeamPages: ${context.currentBeamPages}",
+      "Move to ${delegate.currentBeamLocation.state.routeInformation.location}"
+    ]);
+  },
 );
+
+final settingsTabLogger = AppLogger.get("settingsTabRouterDelegate");
 
 final settingsTabRouterDelegate = BeamerDelegate(
   initialPath: appPath.settings,
@@ -94,4 +99,11 @@ final settingsTabRouterDelegate = BeamerDelegate(
       SettingsLocation(),
     ],
   ),
+  buildListener: (context, delegate) {
+    settingsTabLogger.info([
+      // "buildListnener: ${context.beamingHistory}",
+      // "currentBeamPages: ${context.currentBeamPages}",
+      "Move to ${delegate.currentBeamLocation.state.routeInformation.location}"
+    ]);
+  },
 );
