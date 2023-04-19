@@ -5,7 +5,7 @@
     },
     "recentlyPlayed": {
         "base": "Recently Played",
-        "ja": "最近の再生"
+        "ja": "最近再生したトラック"
     },
     "recentlyAdded": {
         "base": "Recently Added",
