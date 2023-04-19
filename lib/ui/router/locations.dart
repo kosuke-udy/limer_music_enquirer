@@ -9,11 +9,55 @@ import '../pages/home_page.dart';
 import '../pages/settings_page.dart';
 import 'paths.dart';
 
-ValueKey getPageKey(String path) {
-  const divider = "-";
-  return ValueKey(path.replaceFirst("/", "").replaceAll("/", "-") +
-      divider +
-      DateTime.now().millisecondsSinceEpoch.toString());
+String getPageKeyValue(String path) {
+  // const divider = "-";
+  // return ValueKey(path.replaceFirst("/", "").replaceAll("/", "-") +
+  //     divider +
+  //     DateTime.now().millisecondsSinceEpoch.toString());
+  return path.replaceFirst("/", "").replaceAll("/", "-");
+}
+
+ValueKey<String> getPageKey(String path) {
+  return ValueKey(getPageKeyValue(path));
+}
+
+List<BeamPage> generatePageHistory({
+  required BuildContext context,
+  required BeamParameters parameters,
+  required String path,
+  required String title,
+  required Widget child,
+}) {
+  final currentPages = context.currentBeamPages;
+  final keyValue = getPageKeyValue(path);
+
+  final index =
+      currentPages.indexWhere((element) => element.key == ValueKey(keyValue));
+  if (index != -1) {
+    final isBack = parameters.transitionDelegate is ReverseTransitionDelegate;
+
+    if (isBack) {
+      return currentPages.sublist(0, index + 1);
+    } else {
+      return [
+        ...currentPages,
+        BeamPage(
+          key: ValueKey("$keyValue-${DateTime.now().millisecondsSinceEpoch}"),
+          title: title,
+          child: child,
+        ),
+      ];
+    }
+  } else {
+    return [
+      ...context.currentBeamPages,
+      BeamPage(
+        key: ValueKey(keyValue),
+        title: title,
+        child: child,
+      ),
+    ];
+  }
 }
 
 class HomeLocation extends BeamLocation<BeamState> {
@@ -42,18 +86,13 @@ class RecentlyPlayedTracksLocation extends BeamLocation<BeamState> {
 
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
-    final nextPage = BeamPage(
-      key: getPageKey(appPath.recentlyPlayedTracks),
+    return generatePageHistory(
+      context: context,
+      parameters: beamParameters,
+      path: appPath.recentlyPlayedTracks,
       title: "Recently Played Tracks",
       child: const RecentlyPlayedTracksPage(),
     );
-
-    return [
-      ...context.currentBeamPages.last.key == nextPage.key
-          ? (context.currentBeamPages..removeLast())
-          : context.currentBeamPages,
-      nextPage,
-    ];
   }
 }
 
@@ -67,17 +106,13 @@ class SongDetailLocation extends BeamLocation<BeamState> {
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
     final id = state.queryParameters["id"];
     if (id != null) {
-      final nextPage = BeamPage(
-        key: getPageKey(appPath.songDetail(id)),
+      return generatePageHistory(
+        context: context,
+        parameters: beamParameters,
+        path: appPath.songDetail(id),
         title: "Song Detail",
         child: SongDetailPage(id),
       );
-      return [
-        ...context.currentBeamPages.last.key == nextPage.key
-            ? (context.currentBeamPages..removeLast())
-            : context.currentBeamPages,
-        nextPage,
-      ];
     } else {
       return context.currentBeamPages;
     }
