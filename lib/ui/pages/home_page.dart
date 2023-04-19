@@ -72,9 +72,18 @@ class HomePage extends ConsumerWidget {
           ),
         ),
         Area(
-          headline: Headline(t.homePage.recentlyAdded),
-          child: const ResourceCardGridView(),
-        ),
+            headline: Headline(t.homePage.recentlyAdded),
+            child: asyncRecentlyAddedResources.when(
+              data: (resources) {
+                return ResourceCardGridView(
+                  resources: resources,
+                );
+              },
+              loading: () => const Center(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+              error: (err, stack) => throw err,
+            )),
       ],
     );
   }

@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../common_values/common_values.dart';
 
 import 'card_resource.dart';
 
 class ResourceCardGridView extends ConsumerWidget {
+  final List<ResourceKind> resources;
+
   const ResourceCardGridView({
     Key? key,
+    required this.resources,
   }) : super(key: key);
 
   @override
@@ -21,11 +25,13 @@ class ResourceCardGridView extends ConsumerWidget {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // 横方向のウィジェット数
+          crossAxisCount: 2,
         ),
-        itemCount: 4, // ウィジェット数
+        itemCount: resources.length,
         itemBuilder: (BuildContext context, int index) {
-          return const ResourceCard();
+          return ResourceCard(
+            resource: resources[index],
+          );
         },
       ),
     );
