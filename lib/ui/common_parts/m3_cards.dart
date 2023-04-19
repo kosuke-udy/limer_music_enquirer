@@ -37,7 +37,10 @@ class FilledCard extends ConsumerWidget {
               .colorScheme
               .onSurface
               .withOpacity(common.opacity.focus),
-      child: child,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(common.radius.medium),
+        child: child,
+      ),
     );
   }
 }
