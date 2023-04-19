@@ -20,19 +20,22 @@ class HomePage extends ConsumerWidget {
     final isLoading = asyncMetadataSetting.isLoading;
     final hasError = asyncMetadataSetting.hasError;
 
-    return isLoading
-        ? const Center(
-            child: CircularProgressIndicator.adaptive(),
-          )
-        : hasError
-            ? Center(
-                child: Text(asyncMetadataSetting.error.toString()),
-              )
-            : _afterSettingsLoaded(
-                context,
-                ref,
-                asyncMetadataSetting.value!,
-              );
+    return PageScaffold(
+      appBarTitle: Text(t.homePage.home),
+      body: isLoading
+          ? const Center(
+              child: CircularProgressIndicator.adaptive(),
+            )
+          : hasError
+              ? Center(
+                  child: Text(asyncMetadataSetting.error.toString()),
+                )
+              : _afterSettingsLoaded(
+                  context,
+                  ref,
+                  asyncMetadataSetting.value!,
+                ),
+    );
   }
 
   Widget _afterSettingsLoaded(
@@ -44,33 +47,30 @@ class HomePage extends ConsumerWidget {
     final asyncRecentlyAddedResources =
         ref.watch(recentlyAddedResourcesProvider);
 
-    return PageScaffold(
-      appBarTitle: Text(t.homePage.home),
-      body: RefreshableListView(
-        onRefresh: () async {
-          ref.invalidate(recentlyPlayedSongsProvider);
-        },
-        children: [
-          Area(
-            headline: Headline(
-              t.homePage.recentlyPlayed,
-              onTap: () => context.beamToNamed(appPath.recentlyPlayedTracks),
-            ),
-            child: asyncRecentlyPlayedSongs.when(
-              data: (songs) {
-                return SongCardListHorizontal(
-                  songs: songs.sublist(0, 10),
-                  metadataSetting: metadataSetting,
-                );
-              },
-              loading: () => const Center(
-                child: CircularProgressIndicator.adaptive(),
-              ),
-              error: (err, stack) => throw err,
-            ),
+    return RefreshableListView(
+      onRefresh: () async {
+        ref.invalidate(recentlyPlayedSongsProvider);
+      },
+      children: [
+        Area(
+          headline: Headline(
+            t.homePage.recentlyPlayed,
+            onTap: () => context.beamToNamed(appPath.recentlyPlayedTracks),
           ),
-        ],
-      ),
+          child: asyncRecentlyPlayedSongs.when(
+            data: (songs) {
+              return SongCardListHorizontal(
+                songs: songs.sublist(0, 10),
+                metadataSetting: metadataSetting,
+              );
+            },
+            loading: () => const Center(
+              child: CircularProgressIndicator.adaptive(),
+            ),
+            error: (err, stack) => throw err,
+          ),
+        ),
+      ],
     );
   }
 }

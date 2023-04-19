@@ -42,20 +42,24 @@ class SongDetailPage extends HookConsumerWidget {
     final hasError = asyncStorefrontSetting.hasError ||
         asyncStandardMetadataSetting.hasError;
 
-    return isLoading
-        ? const Center(
-            child: CircularProgressIndicator.adaptive(),
-          )
-        : hasError
-            ? Center(
-                child: Text(asyncStorefrontSetting.error.toString()),
-              )
-            : _afterSettingLoaded(
-                context,
-                ref,
-                asyncStorefrontSetting.value!,
-                asyncStandardMetadataSetting.value!,
-              );
+    return PageScaffold(
+      onBackButtonPressed: context.beamBack,
+      appBarTitle: const Text("Detail"),
+      body: isLoading
+          ? const Center(
+              child: CircularProgressIndicator.adaptive(),
+            )
+          : hasError
+              ? Center(
+                  child: Text(asyncStorefrontSetting.error.toString()),
+                )
+              : _afterSettingLoaded(
+                  context,
+                  ref,
+                  asyncStorefrontSetting.value!,
+                  asyncStandardMetadataSetting.value!,
+                ),
+    );
   }
 
   Widget _afterSettingLoaded(
@@ -74,34 +78,30 @@ class SongDetailPage extends HookConsumerWidget {
 
     final common = ref.watch(commonValuesProvider);
 
-    return PageScaffold(
-      onBackButtonPressed: context.beamBack,
-      appBarTitle: const Text("Detail"),
-      body: RefreshableListView(
-        children: [
-          Area(
-            child: ref.watch(songDetailProvider).when(
-                  loading: () => const Center(
-                    child: CircularProgressIndicator.adaptive(),
+    return RefreshableListView(
+      children: [
+        Area(
+          child: ref.watch(songDetailProvider).when(
+                loading: () => const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                ),
+                error: (error, stackTrace) => Center(
+                  child: Text(error.toString()),
+                ),
+                data: (songDetail) => Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: common.size.insetsLarge,
                   ),
-                  error: (error, stackTrace) => Center(
-                    child: Text(error.toString()),
-                  ),
-                  data: (songDetail) => Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: common.size.insetsLarge,
-                    ),
-                    child: SongCardUnit(
-                      song: songDetail,
-                      artworkSize: _artworkSize,
-                      mainCardMaxLines: _mainCardMaxLines,
-                      metadataSetting: metadataSetting,
-                    ),
+                  child: SongCardUnit(
+                    song: songDetail,
+                    artworkSize: _artworkSize,
+                    mainCardMaxLines: _mainCardMaxLines,
+                    metadataSetting: metadataSetting,
                   ),
                 ),
-          ),
-        ],
-      ),
+              ),
+        ),
+      ],
     );
   }
 }

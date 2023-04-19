@@ -17,19 +17,23 @@ class RecentlyPlayedTracksPage extends ConsumerWidget {
     final isLoading = asyncMetadataSetting.isLoading;
     final hasError = asyncMetadataSetting.hasError;
 
-    return isLoading
-        ? const Center(
-            child: CircularProgressIndicator.adaptive(),
-          )
-        : hasError
-            ? Center(
-                child: Text(asyncMetadataSetting.error.toString()),
-              )
-            : _afterSettingsLoaded(
-                context,
-                ref,
-                asyncMetadataSetting.value!,
-              );
+    return PageScaffold(
+      onBackButtonPressed: context.beamBack,
+      appBarTitle: const Text("Recently Played"),
+      body: isLoading
+          ? const Center(
+              child: CircularProgressIndicator.adaptive(),
+            )
+          : hasError
+              ? Center(
+                  child: Text(asyncMetadataSetting.error.toString()),
+                )
+              : _afterSettingsLoaded(
+                  context,
+                  ref,
+                  asyncMetadataSetting.value!,
+                ),
+    );
   }
 
   Widget _afterSettingsLoaded(
@@ -39,30 +43,26 @@ class RecentlyPlayedTracksPage extends ConsumerWidget {
   ) {
     final recentlyPlayedSongs = ref.watch(recentlyPlayedSongsProvider);
 
-    return PageScaffold(
-      onBackButtonPressed: context.beamBack,
-      appBarTitle: const Text("Recently Played"),
-      body: RefreshableListView(
-        onRefresh: () async => ref.invalidate(recentlyPlayedSongsProvider),
-        children: [
-          Area(
-            child: recentlyPlayedSongs.when(
-              data: (songs) {
-                return SongCardListVertical(
-                  songs: songs,
-                  metadataSetting: metadataSetting,
-                );
-              },
-              loading: () => const Center(
-                child: CircularProgressIndicator.adaptive(),
-              ),
-              error: (err, stack) => Center(
-                child: Text(err.toString()),
-              ),
+    return RefreshableListView(
+      onRefresh: () async => ref.invalidate(recentlyPlayedSongsProvider),
+      children: [
+        Area(
+          child: recentlyPlayedSongs.when(
+            data: (songs) {
+              return SongCardListVertical(
+                songs: songs,
+                metadataSetting: metadataSetting,
+              );
+            },
+            loading: () => const Center(
+              child: CircularProgressIndicator.adaptive(),
+            ),
+            error: (err, stack) => Center(
+              child: Text(err.toString()),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
