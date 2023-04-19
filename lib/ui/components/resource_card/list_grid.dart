@@ -4,12 +4,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../common_values/common_values.dart';
 
-import 'card_resource.dart';
+import 'list_card.dart';
 
-class ResourceCardGridView extends ConsumerWidget {
+class ResourceCardGridList extends ConsumerWidget {
   final List<ResourceKind> resources;
 
-  const ResourceCardGridView({
+  const ResourceCardGridList({
     Key? key,
     required this.resources,
   }) : super(key: key);
