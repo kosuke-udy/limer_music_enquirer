@@ -91,9 +91,9 @@ enum ResourceType {
   ];
 
   final String value;
-  final Type type;
+  final Type objectType;
 
-  const ResourceType(this.value, this.type);
+  const ResourceType(this.value, this.objectType);
 
   factory ResourceType.fromJson(String value) {
     return ResourceType.values.firstWhere((e) => e.value == value);
