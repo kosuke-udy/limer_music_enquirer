@@ -6,5 +6,9 @@
     "recentlyPlayed": {
         "base": "Recently Played",
         "ja": "最近の再生"
+    },
+    "recentlyAdded": {
+        "base": "Recently Added",
+        "ja": "最近追加したアイテム"
     }
 }

@@ -70,6 +70,31 @@ class HomePage extends ConsumerWidget {
             error: (err, stack) => throw err,
           ),
         ),
+        Area(
+          headline: Headline(t.homePage.recentlyAdded),
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 24,
+            ),
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // 横方向のウィジェット数
+              ),
+              itemCount: 4, // ウィジェット数
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  color: Colors.grey,
+                  margin: const EdgeInsets.only(
+                    right: 24,
+                    bottom: 24,
+                  ),
+                );
+              },
+            ),
+          ),
+        )
       ],
     );
   }
