@@ -82,12 +82,8 @@ class SongDetailPage extends HookConsumerWidget {
       children: [
         Area(
           child: ref.watch(songDetailProvider).when(
-                loading: () => const Center(
-                  child: CircularProgressIndicator.adaptive(),
-                ),
-                error: (error, stackTrace) => Center(
-                  child: Text(error.toString()),
-                ),
+                loading: () => const SizedBox.shrink(),
+                error: (error, stackTrace) => throw error,
                 data: (songDetail) => Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: common.size.insetsLarge,
