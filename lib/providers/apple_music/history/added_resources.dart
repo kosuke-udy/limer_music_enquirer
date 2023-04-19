@@ -6,9 +6,26 @@ part 'added_resources.g.dart';
 
 @Riverpod(keepAlive: true)
 class RecentlyAddedResources extends _$RecentlyAddedResources {
+  int? _nextOffset = 0;
+
   @override
   Future<List<ResourceKind>> build() async {
-    state = const AsyncValue.loading();
+    return _fetchUnits();
+  }
+
+  Future<List<ResourceKind>> _fetchUnits({int unitCount = 2}) async {
+    final results = <ResourceKind>[];
+    for (int i = 0; i < unitCount; i++) {
+      if (_nextOffset == null) {
+        break;
+      }
+      results.addAll(await _fetch());
+    }
+    return results;
+  }
+
+  Future<List<ResourceKind>> _fetch() async {
+    if (_nextOffset == null) return [];
 
     final client = await ref.watch(appApClientProvider.future);
     final response = await client.fetch<ResourceKind>(
@@ -16,8 +33,13 @@ class RecentlyAddedResources extends _$RecentlyAddedResources {
       queryParameters: <String, dynamic>{
         "include[library-albums]": "catalog",
         "include[library-playlists]": "catalog",
+        "offset": _nextOffset,
       },
     );
+    print(_nextOffset);
+    print(response);
+    _nextOffset = int.tryParse(
+        Uri.tryParse(response.next ?? "")?.queryParameters["offset"] ?? "");
     return response.data;
   }
 }

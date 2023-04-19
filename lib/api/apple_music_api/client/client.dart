@@ -66,7 +66,9 @@ class AppleMusicApiClient {
     Map<String, dynamic>? queryParameters,
   }) async {
     final response = await dio.get(
-      path,
+      path.contains("https://api.music.apple.com")
+          ? path
+          : "https://api.music.apple.com$path",
       queryParameters: queryParameters,
     );
 
