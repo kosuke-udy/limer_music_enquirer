@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../common_values/common_values.dart';
+import '../../data_converter/general/text_style.dart';
 
 class MetadataTableRow extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
   static const double _horizontalMargin = 14.0;
-  static const double _keyFontSize = 10.0;
   static const double _keyAreaWidthAdjustment = 2.0;
-  static const double _valueFontSize = 12.0;
   static const String _nullValueText = 'No Data';
 
   /* ---------- Properties ---------- */
@@ -35,13 +34,13 @@ class MetadataTableRow extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final common = ref.watch(commonValuesProvider);
 
-    final keyTextStyle =
-        common.textStyle.subtitleGray.copyWith(fontSize: _keyFontSize);
+    // Text styles
+    final keyTextStyle = common.textStyle.cardBodySmall.grayedOut();
     final valueTextStyle = (valueText == null
-            ? common.textStyle.subtitleGray
-            : common.textStyle.subtitle)
-        .copyWith(fontSize: _valueFontSize);
+        ? common.textStyle.cardBody.grayedOut()
+        : common.textStyle.cardBody);
 
+    // Sizes
     final keyAreaWidth = mainCardArtworkSize - _horizontalMargin;
     final spacingKeyToValue = common.size.insetsLarge;
 

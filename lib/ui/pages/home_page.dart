@@ -8,7 +8,7 @@ import '../../providers/apple_music/history/played_songs.dart';
 import '../../providers/db/settings/metadata/ap_song.dart';
 import '../../translations.g.dart';
 import '../common_parts/common_parts.dart';
-import '../components/resource_card/list_grid.dart';
+import '../components/resource_card/view_grid.dart';
 import '../components/song_card/list_horizontal.dart';
 import '../router/paths.dart';
 
@@ -75,7 +75,7 @@ class HomePage extends ConsumerWidget {
           headline: Headline(t.homePage.recentlyAdded),
           child: asyncRecentlyAddedResources.when(
             data: (resources) {
-              return ResourceCardGridList(
+              return ResourceCardGridView(
                 resources: resources,
               );
             },

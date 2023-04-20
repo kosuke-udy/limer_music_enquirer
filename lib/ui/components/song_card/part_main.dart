@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/models/models.dart';
-import '../../data_converter/general/color_extension.dart';
+import '../../data_converter/general/color.dart';
 import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
 
@@ -10,8 +10,6 @@ class SongCardMainPart extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
   static const double _elevation = 4;
-  static const double _nameFontSize = 14.0;
-  static const double _artistNameFontSize = 13.0;
   static const double _textSpacing = 4.0;
 
   /* ---------- Properties ---------- */
@@ -40,13 +38,12 @@ class SongCardMainPart extends ConsumerWidget {
     final bgColorBase = songAttributes.artwork.bgColor;
 
     final common = ref.watch(commonValuesProvider);
-    final nameTextStyle = common.textStyle.title.copyWith(
-      fontSize: _nameFontSize,
-    );
-    final artistNameTextStyle = common.textStyle.subtitle.copyWith(
-      fontSize: _artistNameFontSize,
-    );
 
+    // Text styles
+    final nameTextStyle = common.textStyle.cardTitle;
+    final artistNameTextStyle = common.textStyle.cardSubtitle;
+
+    // Max lines
     final mainAreaMaxHeight = artworkSize - common.size.insetsMedium * 2;
     final maxLinesUnit = _getMaxLinesUnit(
       name,

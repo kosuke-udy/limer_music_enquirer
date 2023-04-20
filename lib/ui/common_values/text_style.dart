@@ -13,19 +13,24 @@ class TextStyleCommon extends _$TextStyleCommon {
     final colorScheme = ref.watch(themeDataCommonProvider).colorScheme;
 
     return TextStyleCommonModel()
-      ..title = textTheme.displaySmall!.copyWith(
+      ..cardTitle = textTheme.displaySmall!.copyWith(
         fontWeight: FontWeight.w600,
+        fontSize: 14,
       )
-      ..subtitle = textTheme.headlineSmall!.copyWith(
+      ..cardSubtitle = textTheme.headlineSmall!.copyWith(
         color: colorScheme.onSurface,
+        fontSize: 13,
       )
-      ..subtitleGray = textTheme.headlineSmall!.copyWith(
-        color: colorScheme.onSurface.withOpacity(0.6),
+      ..cardBody = textTheme.headlineSmall!.copyWith(
+        fontSize: 12,
+      )
+      ..cardBodySmall = textTheme.headlineSmall!.copyWith(
+        fontSize: 10,
       );
   }
 }
 
 class TextStyleCommonModel {
-  late final TextStyle title;
-  late final TextStyle subtitle, subtitleGray;
+  late final TextStyle cardTitle, cardSubtitle;
+  late final TextStyle cardBody, cardBodySmall;
 }

@@ -48,11 +48,38 @@ class ResourceCard extends HookConsumerWidget {
     final common = ref.watch(commonValuesProvider);
 
     return FilledCard(
-      margin: EdgeInsets.only(
-        right: common.size.screenPadding,
-        bottom: common.size.screenPadding,
+      // margin: EdgeInsets.only(
+      //   right: common.size.screenPadding,
+      //   bottom: common.size.screenPadding,
+      // ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          artworkWidget,
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: common.size.insetsSmall,
+              vertical: common.size.insetsSmall,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textWidthBasis: TextWidthBasis.longestLine,
+                ),
+                Text(
+                  subtitle,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
-      child: artworkWidget,
     );
   }
 }

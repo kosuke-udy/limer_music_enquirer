@@ -5,7 +5,7 @@ import '../../../api/apple_music_api/models/models.dart';
 import '../../../db/settings/metadata/ap_song.dart';
 import '../../../translations.g.dart';
 import '../../common_parts/common_parts.dart';
-import '../../data_converter/general/color_extension.dart';
+import '../../data_converter/general/color.dart';
 import '../../data_converter/metadata/ap_song.dart';
 import '../metadata_table/table.dart';
 
