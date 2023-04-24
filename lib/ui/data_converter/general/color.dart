@@ -3,12 +3,17 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 enum TuningParams {
-  dark(
+  resourceCardDark(
+    maxSaturation: 0.5,
+    minSaturation: 0.00,
+    lightness: 0.20,
+  ),
+  songCardBottomDark(
     maxSaturation: 0.5,
     minSaturation: 0.02,
     lightness: 0.07,
   ),
-  darkAccent(
+  songCardTopDark(
     maxSaturation: 0.5,
     minSaturation: 0.00,
     lightness: 0.13,

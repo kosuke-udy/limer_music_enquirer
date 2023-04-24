@@ -38,7 +38,7 @@ class SongCardMainPart extends ConsumerWidget {
     final artistName = songAttributes.artistName;
     final artworkUrl = songAttributes.artwork.url300;
     final bgColor = songAttributes.artwork.bgColor?.tune(
-      params: TuningParams.darkAccent,
+      params: TuningParams.songCardTopDark,
     );
     final artworkAreaBgColor = songAttributes.artwork.textColor4;
 

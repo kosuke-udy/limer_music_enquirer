@@ -1,11 +1,3 @@
-// const homePath = '/home';
-// const recentlyPlayedTracksPath = '/recently-played-songs';
-// const songDetailPath = '/song-detail/:id';
-// const searchPath = '/search';
-// const settingsPath = '/settings';
-// const settingsApStorefrontPath = '/settings/apple-music-storefront';
-// const settingsSongMetadataOrderPath = '/settings/song-metadata-order';
-
 const appPath = AppPath();
 
 class AppPath {

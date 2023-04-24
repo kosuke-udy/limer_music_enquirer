@@ -27,20 +27,20 @@ class ResourceCardVerticalList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final common = ref.watch(commonValuesProvider);
 
-    final inset = common.size.screenPadding;
+    final padding = common.size.screenPadding;
     final screenWidth = MediaQuery.of(context).size.width;
-    final cardWidth = (screenWidth - inset * 3) / _crossAxisCount;
+    final cardWidth = (screenWidth - padding * 3) / _crossAxisCount;
 
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: inset,
+        horizontal: padding,
       ),
       child: Column(
         children: resources.map(
           (e) {
             return Padding(
               padding: EdgeInsets.only(
-                bottom: inset,
+                bottom: common.size.insetsLarge,
               ),
               child: ResourceListCard(
                 resource: e,

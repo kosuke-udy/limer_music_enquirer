@@ -51,6 +51,7 @@ class HomePage extends ConsumerWidget {
     return RefreshableListView(
       onRefresh: () async {
         ref.invalidate(recentlyPlayedSongsProvider);
+        ref.invalidate(recentlyAddedResourcesProvider);
       },
       children: [
         Area(

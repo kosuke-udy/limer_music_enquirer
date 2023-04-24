@@ -9,12 +9,22 @@ import '../../common_values/common_values.dart';
 import '../../data_converter/general/color.dart';
 
 class ResourceListCard extends HookConsumerWidget {
+  /* ---------- Fixed Values ---------- */
+
+  static const double _artworkWidthProporation = 0.25;
+
+  /* ---------- Properties ---------- */
+
   final ResourceKind resource;
+
+  /* ---------- Constructor ---------- */
 
   const ResourceListCard({
     Key? key,
     required this.resource,
   }) : super(key: key);
+
+  /* ---------- Build ---------- */
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,14 +39,20 @@ class ResourceListCard extends HookConsumerWidget {
       final trackList = resource as TrackListKind;
       final artwork = trackList.attributes!.artwork;
       title = trackList.attributes!.name;
-      bgColor = artwork?.bgColor?.tune(params: TuningParams.darkAccent);
-      artworkWidget = artwork != null
-          ? RoundedImage.network(
-              artwork.url500,
-            )
-          : Container(
-              color: Colors.grey,
-            );
+      bgColor = artwork?.bgColor?.tune(params: TuningParams.resourceCardDark);
+      artworkWidget = FilledCard(
+        elevation: 4,
+        child: artwork != null
+            ? Image.network(
+                artwork.url500,
+              )
+            : AspectRatio(
+                aspectRatio: 1,
+                child: Container(
+                  color: Colors.grey,
+                ),
+              ),
+      );
 
       // Branching for each type
       // subtitle
@@ -53,36 +69,44 @@ class ResourceListCard extends HookConsumerWidget {
 
     final common = ref.watch(commonValuesProvider);
 
+    // Artwork width
+    final cardWidth =
+        MediaQuery.of(context).size.width - common.size.screenPadding;
+    final artworkWidth = cardWidth * _artworkWidthProporation;
+
     return FilledCard(
       color: bgColor,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: Row(
         children: [
-          artworkWidget,
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: common.size.insetsSmall,
-              vertical: common.size.insetsSmall,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  title,
-                  style: common.textStyle.cardTitle,
-                  maxLines: 1,
-                  overflow: TextOverflow.fade,
-                  softWrap: false,
-                  strutStyle: StrutStyle.disabled,
-                  textWidthBasis: TextWidthBasis.longestLine,
-                ),
-                Text(
-                  subtitle,
-                  style: common.textStyle.cardSubtitle,
-                  maxLines: 1,
-                  overflow: TextOverflow.clip,
-                ),
-              ],
+          SizedBox(
+            width: artworkWidth,
+            child: artworkWidget,
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: common.size.insetsLarge,
+                vertical: common.size.insetsSmall,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: common.textStyle.cardTitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    strutStyle: StrutStyle.disabled,
+                    textWidthBasis: TextWidthBasis.longestLine,
+                  ),
+                  Text(
+                    subtitle,
+                    style: common.textStyle.cardSubtitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.clip,
+                  ),
+                ],
+              ),
             ),
           ),
         ],
