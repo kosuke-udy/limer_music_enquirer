@@ -4,10 +4,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../common_values/common_values.dart';
 
-import 'view_card.dart';
+import 'list_card.dart';
 
-class ResourceCardGridView extends ConsumerWidget {
+class ResourceCardVerticalList extends ConsumerWidget {
   static const int _crossAxisCount = 2;
+  static const double _cardTextAreaHeight = 56;
 
   /* ---------- Properties ---------- */
 
@@ -15,7 +16,7 @@ class ResourceCardGridView extends ConsumerWidget {
 
   /* ---------- Constructor ---------- */
 
-  const ResourceCardGridView({
+  const ResourceCardVerticalList({
     Key? key,
     required this.resources,
   }) : super(key: key);
@@ -34,20 +35,19 @@ class ResourceCardGridView extends ConsumerWidget {
       padding: EdgeInsets.symmetric(
         horizontal: inset,
       ),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: _crossAxisCount,
-          mainAxisSpacing: inset,
-          crossAxisSpacing: inset,
-        ),
-        itemCount: resources.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ResourceCard(
-            resource: resources[index],
-          );
-        },
+      child: Column(
+        children: resources.map(
+          (e) {
+            return Padding(
+              padding: EdgeInsets.only(
+                bottom: inset,
+              ),
+              child: ResourceListCard(
+                resource: e,
+              ),
+            );
+          },
+        ).toList(),
       ),
     );
   }

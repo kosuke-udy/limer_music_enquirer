@@ -15,7 +15,7 @@ class MetadataTableRow extends ConsumerWidget {
 
   final int? maxLines;
   final String keyText;
-  final double mainCardArtworkSize;
+  final double keyAreaWidth;
   final String? valueText;
 
   /* ---------- Constructor ---------- */
@@ -24,7 +24,7 @@ class MetadataTableRow extends ConsumerWidget {
     Key? key,
     this.maxLines,
     required this.keyText,
-    required this.mainCardArtworkSize,
+    required this.keyAreaWidth,
     this.valueText,
   }) : super(key: key);
 
@@ -41,7 +41,6 @@ class MetadataTableRow extends ConsumerWidget {
         : common.textStyle.cardBody);
 
     // Sizes
-    final keyAreaWidth = mainCardArtworkSize - _horizontalMargin;
     final spacingKeyToValue = common.size.insetsLarge;
 
     return Padding(
@@ -54,8 +53,13 @@ class MetadataTableRow extends ConsumerWidget {
         textBaseline: TextBaseline.alphabetic,
         children: [
           Container(
-            padding: const EdgeInsets.only(right: _keyAreaWidthAdjustment),
-            width: keyAreaWidth - _keyAreaWidthAdjustment,
+            padding: const EdgeInsets.only(
+              right: _keyAreaWidthAdjustment,
+            ),
+            margin: EdgeInsets.only(
+              right: spacingKeyToValue,
+            ),
+            width: keyAreaWidth - _horizontalMargin,
             child: Text(
               keyText,
               style: keyTextStyle,
@@ -65,7 +69,6 @@ class MetadataTableRow extends ConsumerWidget {
               overflow: maxLines != null ? TextOverflow.ellipsis : null,
             ),
           ),
-          SizedBox(width: spacingKeyToValue),
           Expanded(
             child: Text(
               valueText ?? _nullValueText,

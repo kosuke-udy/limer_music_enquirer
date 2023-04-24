@@ -6,26 +6,30 @@ import '../../../translations.g.dart';
 import '../../common_parts/m3_cards.dart';
 import '../../common_parts/rounded_image.dart';
 import '../../common_values/common_values.dart';
+import '../../data_converter/general/color.dart';
 
-class ResourceCard extends HookConsumerWidget {
+class ResourceListCard extends HookConsumerWidget {
   final ResourceKind resource;
 
-  const ResourceCard({
+  const ResourceListCard({
     Key? key,
     required this.resource,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Data from resource
     final String title, subtitle;
     final Widget artworkWidget;
+    final Color? bgColor;
 
     if (TrackListKind.types.contains(resource.type)) {
+      // Common to TrackListKind
+      // title, bgColor, artworkWidget
       final trackList = resource as TrackListKind;
-
-      title = trackList.attributes!.name;
-
       final artwork = trackList.attributes!.artwork;
+      title = trackList.attributes!.name;
+      bgColor = artwork?.bgColor?.tune(params: TuningParams.darkAccent);
       artworkWidget = artwork != null
           ? RoundedImage.network(
               artwork.url500,
@@ -34,6 +38,8 @@ class ResourceCard extends HookConsumerWidget {
               color: Colors.grey,
             );
 
+      // Branching for each type
+      // subtitle
       if (AlbumKind.types.contains(resource.type)) {
         subtitle = (resource as AlbumKind).attributes!.artistName;
       } else if (resource.type == ResourceType.playlists) {
@@ -48,10 +54,7 @@ class ResourceCard extends HookConsumerWidget {
     final common = ref.watch(commonValuesProvider);
 
     return FilledCard(
-      // margin: EdgeInsets.only(
-      //   right: common.size.screenPadding,
-      //   bottom: common.size.screenPadding,
-      // ),
+      color: bgColor,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -66,14 +69,18 @@ class ResourceCard extends HookConsumerWidget {
               children: [
                 Text(
                   title,
+                  style: common.textStyle.cardTitle,
                   maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                  overflow: TextOverflow.fade,
+                  softWrap: false,
+                  strutStyle: StrutStyle.disabled,
                   textWidthBasis: TextWidthBasis.longestLine,
                 ),
                 Text(
                   subtitle,
+                  style: common.textStyle.cardSubtitle,
                   maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                  overflow: TextOverflow.clip,
                 ),
               ],
             ),

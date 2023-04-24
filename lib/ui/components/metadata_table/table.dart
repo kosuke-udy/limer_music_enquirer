@@ -14,7 +14,7 @@ class MetadataTable extends ConsumerWidget {
 
   final Map<String, String?> metadataMap;
   final int? maxLines;
-  final double mainCardArtworkSize;
+  final double keyAreaWidth;
 
   /* ---------- Constructor ---------- */
 
@@ -22,7 +22,7 @@ class MetadataTable extends ConsumerWidget {
     Key? key,
     required this.metadataMap,
     this.maxLines,
-    required this.mainCardArtworkSize,
+    required this.keyAreaWidth,
   }) : super(key: key);
 
   /* ---------- Build ---------- */
@@ -43,7 +43,7 @@ class MetadataTable extends ConsumerWidget {
                   top: rowSpacing,
                 ),
           child: MetadataTableRow(
-            mainCardArtworkSize: mainCardArtworkSize,
+            keyAreaWidth: keyAreaWidth,
             maxLines: maxLines,
             keyText: entry.key,
             valueText: entry.value,

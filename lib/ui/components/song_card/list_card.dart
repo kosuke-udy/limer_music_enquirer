@@ -10,7 +10,7 @@ import 'card_unit.dart';
 class SongListCard extends ConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
-  static const double _artworkSize = 76.0;
+  static const double _artworkAreaSize = 76.0;
 
   static const int _mainCardMaxLines = 2;
   void Function() onTapMainCard(BuildContext context) {
@@ -43,7 +43,7 @@ class SongListCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SongCardUnit(
       song: song,
-      artworkSize: _artworkSize,
+      artworkAreaSize: _artworkAreaSize,
       mainCardMaxLines: _mainCardMaxLines,
       onTapMainCard: onTapMainCard(context),
       metadataSetting: metadataSetting,

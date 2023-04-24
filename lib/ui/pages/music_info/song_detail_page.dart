@@ -13,7 +13,7 @@ import '../../components/song_card/card_unit.dart';
 class SongDetailPage extends HookConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
-  static const _artworkSize = 100.0;
+  static const _artworkAreaSize = 100.0;
   static const _mainCardMaxLines = 3;
 
   /* ---------- Properties ---------- */
@@ -90,7 +90,7 @@ class SongDetailPage extends HookConsumerWidget {
                   ),
                   child: SongCardUnit(
                     song: songDetail,
-                    artworkSize: _artworkSize,
+                    artworkAreaSize: _artworkAreaSize,
                     mainCardMaxLines: _mainCardMaxLines,
                     metadataSetting: metadataSetting,
                   ),

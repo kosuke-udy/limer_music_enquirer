@@ -15,7 +15,7 @@ class SongCardMainPart extends ConsumerWidget {
   /* ---------- Properties ---------- */
 
   final SongKind song;
-  final double artworkSize;
+  final double artworkAreaSize;
   final int? maxLines;
 
   /* ---------- Constructor ---------- */
@@ -23,7 +23,7 @@ class SongCardMainPart extends ConsumerWidget {
   const SongCardMainPart({
     Key? key,
     required this.song,
-    required this.artworkSize,
+    required this.artworkAreaSize,
     this.maxLines = 2,
   }) : super(key: key);
 
@@ -31,11 +31,16 @@ class SongCardMainPart extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Attributes Data
     final songAttributes = song.attributes!;
+
     final name = songAttributes.name;
     final artistName = songAttributes.artistName;
     final artworkUrl = songAttributes.artwork.url300;
-    final bgColorBase = songAttributes.artwork.bgColor;
+    final bgColor = songAttributes.artwork.bgColor?.tune(
+      params: TuningParams.darkAccent,
+    );
+    final artworkAreaBgColor = songAttributes.artwork.textColor4;
 
     final common = ref.watch(commonValuesProvider);
 
@@ -44,7 +49,7 @@ class SongCardMainPart extends ConsumerWidget {
     final artistNameTextStyle = common.textStyle.cardSubtitle;
 
     // Max lines
-    final mainAreaMaxHeight = artworkSize - common.size.insetsMedium * 2;
+    final mainAreaMaxHeight = artworkAreaSize - common.size.insetsMedium * 2;
     final maxLinesUnit = _getMaxLinesUnit(
       name,
       nameTextStyle,
@@ -56,18 +61,36 @@ class SongCardMainPart extends ConsumerWidget {
 
     return FilledCard(
       elevation: _elevation,
-      color: bgColorBase?.tune(params: TuningParams.darkAccent),
+      color: bgColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           /* ---------- Artwork ---------- */
 
-          RoundedImage.network(
-            artworkUrl,
-            size: artworkSize,
+          Container(
+            width: artworkAreaSize,
+            height: artworkAreaSize,
+            margin: EdgeInsets.only(
+              right: common.size.insetsSmall,
+            ),
+            padding: EdgeInsets.all(common.size.insetsSmall),
+            child: ElevatedCard(
+              child: RoundedImage.network(
+                artworkUrl,
+              ),
+            ),
+            // child: FilledCard(
+            //   color: artworkAreaBgColor,
+            //   elevation: 8,
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(8),
+            //     child: RoundedImage.network(
+            //       artworkUrl,
+            //     ),
+            //   ),
+            // ),
           ),
-          SizedBox(width: common.size.insetsLarge),
 
           /* ---------- Text Area ---------- */
 

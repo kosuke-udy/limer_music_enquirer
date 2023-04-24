@@ -25,7 +25,6 @@ final appRouterDelegate = BeamerDelegate(
         return ScreenScaffold(
           bodyStackChildren: tabRouterDelegates.mapWithIndex((delegate, index) {
             return Beamer(
-              key: tabBeamerKeys[index],
               routerDelegate: delegate,
               // backButtonDispatcher: tabBackButtonDispatchers[index],
             );
@@ -39,12 +38,6 @@ final appRouterDelegate = BeamerDelegate(
         );
       }
     }));
-
-final tabBeamerKeys = List.generate(
-  tabRouterDelegates.length,
-  (index) => GlobalKey<NavigatorState>(),
-  growable: false,
-);
 
 final tabRouterDelegates = [
   homeTabRouterDelegate,
