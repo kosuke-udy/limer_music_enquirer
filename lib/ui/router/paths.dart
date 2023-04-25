@@ -10,6 +10,9 @@ class AppPath {
   final songDetailPattern = '/song-detail';
   String songDetail(String id) => '$songDetailPattern?id=$id';
 
+  final albumDetailPattern = '/album-detail';
+  String albumDetail(String id) => '$albumDetailPattern?id=$id';
+
   final search = '/search';
 
   final settings = '/settings';

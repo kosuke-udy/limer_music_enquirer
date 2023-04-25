@@ -1,12 +1,13 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../../translations.g.dart';
 import '../../common_parts/m3_cards.dart';
-import '../../common_parts/rounded_image.dart';
 import '../../common_values/common_values.dart';
 import '../../data_converter/general/color.dart';
+import '../../router/paths.dart';
 
 class ResourceListCard extends HookConsumerWidget {
   /* ---------- Fixed Values ---------- */
@@ -76,40 +77,58 @@ class ResourceListCard extends HookConsumerWidget {
 
     return FilledCard(
       color: bgColor,
-      child: Row(
-        children: [
-          SizedBox(
-            width: artworkWidth,
-            child: artworkWidget,
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: common.size.insetsLarge,
-                vertical: common.size.insetsSmall,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: common.textStyle.cardTitle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    strutStyle: StrutStyle.disabled,
-                    textWidthBasis: TextWidthBasis.longestLine,
-                  ),
-                  Text(
-                    subtitle,
-                    style: common.textStyle.cardSubtitle,
-                    maxLines: 1,
-                    overflow: TextOverflow.clip,
-                  ),
-                ],
+      child: GestureDetector(
+        onTap: () {
+          switch (resource.type) {
+            case ResourceType.albums:
+              context.beamToNamed(
+                appPath.albumDetail(resource.id),
+              );
+              break;
+            // case ResourceType.playlists:
+            //   context.beamToNamed(
+            //     appPath.playlistDetail((resource as Playlists).id),
+            //   );
+            //   break;
+            default:
+              break;
+          }
+        },
+        child: Row(
+          children: [
+            SizedBox(
+              width: artworkWidth,
+              child: artworkWidget,
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: common.size.insetsLarge,
+                  vertical: common.size.insetsSmall,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: common.textStyle.cardTitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      strutStyle: StrutStyle.disabled,
+                      textWidthBasis: TextWidthBasis.longestLine,
+                    ),
+                    Text(
+                      subtitle,
+                      style: common.textStyle.cardSubtitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

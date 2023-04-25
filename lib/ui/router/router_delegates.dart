@@ -4,21 +4,15 @@ import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
 import '../../utils/app_logger.dart';
 import 'locations/home/home_location.dart';
-import 'locations/music_info/song_detail_location.dart';
+import 'locations/music_info/album_detail_location.dart';
 import 'locations/music_info/recently_played_tracks_location.dart';
+import 'locations/music_info/song_detail_location.dart';
 import 'locations/search/search_location.dart';
 import 'locations/settings/settings_location.dart';
 import 'navigation.dart';
 import 'paths.dart';
 
-final backButtonDispatcher = BeamerBackButtonDispatcher(
-  delegate: appRouterDelegate,
-  alwaysBeamBack: true,
-  onBack: (delegate) async {
-    delegate.beamBack();
-    return true;
-  },
-);
+/* ---------- App Router Delegate ---------- */
 
 final appRouterDelegate = BeamerDelegate(
     initialPath: appPath.home,
@@ -42,11 +36,22 @@ final appRouterDelegate = BeamerDelegate(
       }
     }));
 
+final backButtonDispatcher = BeamerBackButtonDispatcher(
+  delegate: appRouterDelegate,
+  alwaysBeamBack: true,
+  onBack: (delegate) async {
+    delegate.beamBack();
+    return true;
+  },
+);
+
 final tabRouterDelegates = [
   homeTabRouterDelegate,
   searchTabRouterDelegate,
   settingsTabRouterDelegate,
 ];
+
+/* ---------- Home Tab Router Delegate ---------- */
 
 final homeTabLogger = AppLogger.get("homeTabRouterDelegate");
 
@@ -55,6 +60,7 @@ final homeTabRouterDelegate = BeamerDelegate(
   locationBuilder: BeamerLocationBuilder(
     beamLocations: [
       HomeLocation(),
+      AlbumDetailLocation(),
       RecentlyPlayedTracksLocation(),
       SongDetailLocation(),
     ],
@@ -67,6 +73,8 @@ final homeTabRouterDelegate = BeamerDelegate(
     ]);
   },
 );
+
+/* ---------- Search Tab Router Delegate ---------- */
 
 final searchTabLogger = AppLogger.get("searchTabRouterDelegate");
 
@@ -85,6 +93,8 @@ final searchTabRouterDelegate = BeamerDelegate(
     ]);
   },
 );
+
+/* ---------- Settings Tab Router Delegate ---------- */
 
 final settingsTabLogger = AppLogger.get("settingsTabRouterDelegate");
 

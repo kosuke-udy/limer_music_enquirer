@@ -36,8 +36,6 @@ class RecentlyAddedResources extends _$RecentlyAddedResources {
         "offset": _nextOffset,
       },
     );
-    print(_nextOffset);
-    print(response);
     _nextOffset = int.tryParse(
         Uri.tryParse(response.next ?? "")?.queryParameters["offset"] ?? "");
     return response.data;
