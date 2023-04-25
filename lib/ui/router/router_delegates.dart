@@ -3,7 +3,11 @@ import 'package:fpdart/fpdart.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
 import '../../utils/app_logger.dart';
-import 'locations/locations.dart';
+import 'locations/home/home_location.dart';
+import 'locations/music_info/song_detail_location.dart';
+import 'locations/music_info/recently_played_tracks_location.dart';
+import 'locations/search/search_location.dart';
+import 'locations/settings/settings_location.dart';
 import 'navigation.dart';
 import 'paths.dart';
 
