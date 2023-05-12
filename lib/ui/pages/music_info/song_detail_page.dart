@@ -44,7 +44,7 @@ class SongDetailPage extends HookConsumerWidget {
 
     return PageScaffold(
       onBackButtonPressed: context.beamBack,
-      appBarTitle: const Text("Detail"),
+      appBarTitle: const Text("Song Detail"),
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator.adaptive(),

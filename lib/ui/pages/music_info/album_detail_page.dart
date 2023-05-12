@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
+import '../../../providers/apple_music/detail/album_kind.dart';
+import '../../../providers/db/settings/ap_storefront.dart';
+
 class AlbumDetailPage extends ConsumerWidget {
   /* ---------- Properties ---------- */
 
@@ -19,10 +22,48 @@ class AlbumDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final asyncStorefrontSetting = ref.watch(apStorefrontSettingProvider);
+    final asyncAlbumKindDetail = asyncStorefrontSetting.when(
+      data: (data) {
+        return ref.watch(albumKindDetailProvider(
+          id: id,
+          storefront: data.list[0].countryId,
+          languageTag: data.list[0].languageTag,
+        ));
+      },
+      loading: () => const AsyncValue.loading(),
+      error: (err, stack) => AsyncValue.error(err, stack),
+    );
+
+    final isLoading =
+        asyncStorefrontSetting.isLoading || asyncAlbumKindDetail.isLoading;
+    final hasError =
+        asyncStorefrontSetting.hasError || asyncAlbumKindDetail.hasError;
+
     return PageScaffold(
       appBarTitle: const Text("Album Detail"),
       onBackButtonPressed: () => context.beamBack(),
-      body: Container(),
+      body: isLoading
+          ? const Center(
+              child: CircularProgressIndicator.adaptive(),
+            )
+          : hasError
+              ? Center(
+                  child: Text(asyncStorefrontSetting.error.toString()),
+                )
+              : _afterPreloaded(
+                  context,
+                  ref,
+                  asyncAlbumKindDetail.value!,
+                ),
     );
+  }
+
+  Widget _afterPreloaded(
+    BuildContext context,
+    WidgetRef ref,
+    AlbumKind albumKind,
+  ) {
+    return Container();
   }
 }

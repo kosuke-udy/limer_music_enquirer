@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../converter/converter.dart';
 import '../common_types/common_types.dart';
 import '../base_abstracts.dart';
 import 'library_playlists.dart';

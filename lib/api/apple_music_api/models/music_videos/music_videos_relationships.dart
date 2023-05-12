@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../converter/converter.dart';
 import '../albums/albums.dart';
 import '../artists/artists.dart';
 import '../common_types/common_types.dart';

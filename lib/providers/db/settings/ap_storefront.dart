@@ -1,5 +1,4 @@
 import 'package:isar/isar.dart';
-import 'package:limer_music_enquirer/api/apple_music_api/models/models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../db/settings/ap_storefront.dart';

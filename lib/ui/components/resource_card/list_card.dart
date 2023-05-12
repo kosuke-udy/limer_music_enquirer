@@ -12,7 +12,7 @@ import '../../router/paths.dart';
 class ResourceListCard extends HookConsumerWidget {
   /* ---------- Fixed Values ---------- */
 
-  static const double _artworkWidthProporation = 0.25;
+  static const double _artworkWidthProporation = 0.2;
 
   /* ---------- Properties ---------- */
 

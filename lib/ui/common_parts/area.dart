@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../common_values/common_values.dart';
-import 'headline.dart';
 
 class Area extends ConsumerWidget {
   /* ---------- Properties ---------- */

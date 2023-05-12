@@ -2,8 +2,10 @@ part of converter;
 
 List<T> convertToList<T extends ResourceKind>(Map<String, dynamic> json) {
   final list = <T>[];
-  for (final e in json["data"] as List<dynamic>) {
-    list.add(convertToResourceKind<T>(e as Map<String, dynamic>));
+  for (final Map<String, dynamic> e in json["data"] as List<dynamic>) {
+    if (e["attributes"] != null) {
+      list.add(convertToResourceKind<T>(e));
+    }
   }
   return list;
 }
