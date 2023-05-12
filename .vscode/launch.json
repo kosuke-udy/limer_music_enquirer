@@ -6,7 +6,6 @@
             "request": "launch",
             "type": "dart",
             "args": [
-                "--enable-impeller",
                 "--dart-define-from-file=dart_defines/dev.json",
             ]
         },
@@ -16,7 +15,6 @@
             "type": "dart",
             "flutterMode": "release",
             "args": [
-                "--enable-impeller",
                 "--dart-define-from-file=dart_defines/prod.json",
             ]
         }
