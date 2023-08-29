@@ -4,7 +4,9 @@ import 'dart:developer';
 
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:dio/dio.dart';
+import 'package:fpdart/fpdart.dart';
 
+import '../../../utils/app_logger.dart';
 import '../models/models.dart';
 import 'response.dart';
 
@@ -65,14 +67,31 @@ class AppleMusicApiClient {
     String path, {
     Map<String, dynamic>? queryParameters,
   }) async {
-    final response = await dio.get(
-      path.contains("https://api.music.apple.com")
-          ? path
-          : "https://api.music.apple.com$path",
-      queryParameters: queryParameters,
-    );
+    final logger = AppLogger.get("AppleMusicApiClient.fetch");
 
-    if (logEnabled) logger(response);
+    final response = await TaskEither<Object, Response>(
+      () async {
+        try {
+          final result = await dio.get(
+            path.contains("https://api.music.apple.com")
+                ? path
+                : "https://api.music.apple.com$path",
+            queryParameters: queryParameters,
+          );
+          return Right(result);
+        } catch (e) {
+          return Left(e);
+        }
+      },
+    ).run().then((either) => either.getOrElse(
+          (l) {
+            logger.warning([
+              "Request: GET $path",
+              l.toString(),
+            ]);
+            throw l;
+          },
+        ));
 
     return PagenatedResourceCollectionResponse<T>.fromJson(response);
   }

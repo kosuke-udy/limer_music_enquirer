@@ -16,7 +16,7 @@ class SongListCard extends ConsumerWidget {
   void Function() onTapMainCard(BuildContext context) {
     return () {
       context.beamToNamed(
-        appPath.songDetail(song.id),
+        appPath.songDetail(id: song.id),
       );
     };
   }

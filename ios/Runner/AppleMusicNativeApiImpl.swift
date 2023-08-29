@@ -40,12 +40,6 @@ class AppleMusicNativeApiImpl: NSObject, AppleMusicNativeApi {
         completion(.success(token!))
       } else if error != nil {
         completion(.failure(error!))
-        // switch error {
-        //   case error as? SKError.privacyAcknowledgementRequired:
-        //     completion(.failure(error!))
-        //   default:
-        //     completion(.failure(NSError(domain: "com.teamVinu", code: -1, userInfo: nil)))
-        // }
       } else {
         completion(.failure(NSError(domain: "com.teamVinu", code: -1, userInfo: nil)))
       }
@@ -79,9 +73,9 @@ class AppleMusicNativeApiImpl: NSObject, AppleMusicNativeApi {
                         succeeded: true,
                         id: song.id.rawValue,
                         composerName: song.composerName ?? nil,
-                        lastPlayedDate: AppUtil.date2FormatedInt32(date: song.lastPlayedDate),
-                        libraryAddedDate: AppUtil.date2FormatedInt32(date: song.libraryAddedDate)!,
-                        playCount: Int32(song.playCount ?? 0)
+                        lastPlayedDate: AppUtil.date2FormatedInt64(date: song.lastPlayedDate),
+                        libraryAddedDate: AppUtil.date2FormatedInt64(date: song.libraryAddedDate)!,
+                        playCount: Int64(song.playCount ?? 0)
                     )
                 )
             } catch {

@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "songs_inspector",
+            "name": "limer_music_enquirer (dev mode)",
             "request": "launch",
             "type": "dart",
             "args": [
@@ -10,7 +10,15 @@
             ]
         },
         {
-            "name": "songs_inspector (release mode)",
+            "name": "limer_music_enquirer (devNewToken mode)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define-from-file=dart_defines/devNewToken.json",
+            ]
+        },
+        {
+            "name": "limer_music_enquirer (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",

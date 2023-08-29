@@ -1,5 +1,6 @@
 {
     "FLAVOR": "prod",
     "APP_NAME": "Limer",
-    "APP_ID_SUFFIX": ""
+    "APP_ID_SUFFIX": "",
+    "USE_MOCK_TOKENS": false
 }

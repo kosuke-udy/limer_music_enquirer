@@ -2,5 +2,5 @@
     "FLAVOR": "dev",
     "APP_NAME": "LimerDev",
     "APP_ID_SUFFIX": ".dev",
-    "USE_MOCK_TOKENS": true
+    "USE_MOCK_TOKENS": false
 }

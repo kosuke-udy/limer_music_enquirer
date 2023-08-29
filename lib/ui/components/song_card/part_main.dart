@@ -40,7 +40,6 @@ class SongCardMainPart extends ConsumerWidget {
     final bgColor = songAttributes.artwork.bgColor?.tune(
       params: TuningParams.songCardTopDark,
     );
-    final artworkAreaBgColor = songAttributes.artwork.textColor4;
 
     final common = ref.watch(commonValuesProvider);
 

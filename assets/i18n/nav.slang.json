@@ -7,8 +7,24 @@
         "base": "Search",
         "ja": "検索"
     },
+    "nowPlaying": {
+        "base": "Now Playing",
+        "ja": "Now Playing"
+    },
+    "recentlyPlayed": {
+        "base": "Recently Played",
+        "ja": "再生履歴"
+    },
+    "recentlyPlayedSongs": {
+        "base": "Recently Played Songs",
+        "ja": "最近再生した曲"
+    },
     "settings": {
         "base": "Settings",
         "ja": "設定"
+    },
+    "songsDetail": {
+        "base": "Songs Detail",
+        "ja": "曲詳細"
     }
 }

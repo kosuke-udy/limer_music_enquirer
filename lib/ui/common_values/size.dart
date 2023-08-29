@@ -17,7 +17,7 @@ class SizeCommonModel {
   final double insetsLarge = 16.0;
 
   // Padding
-  final double screenPadding = 24.0;
+  final double screenPadding = 20.0;
 
   // Icon
   final double infoIcon = 16.0;

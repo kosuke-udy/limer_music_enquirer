@@ -1,7 +1,7 @@
 import Foundation
 
 class AppUtil {
-    static func date2FormatedInt32(date: Date?) -> Int32? {
+    static func date2FormatedInt64(date: Date?) -> Int64? {
         // if date is nil, return nil
         if date == nil {
             return nil
@@ -10,6 +10,6 @@ class AppUtil {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd"
         let dateString = formatter.string(from: date!)
-        return Int32(dateString)
+        return Int64(dateString)
     }
 }

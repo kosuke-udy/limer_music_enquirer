@@ -28,17 +28,11 @@ enum ApResponseStatus {
   const ApResponseStatus(this.code);
 
   factory ApResponseStatus.fromCode(int? code) {
-    return code.toOption().match(
-      () => ApResponseStatus.noStatus,
-      (value) {
-        try {
-          final ret =
-              ApResponseStatus.values.firstWhere((e) => e.code == value);
-          return ret;
-        } catch (e) {
-          return ApResponseStatus.unknownStatusCode;
-        }
-      },
-    );
+    return code == null
+        ? ApResponseStatus.noStatus
+        : ApResponseStatus.values.firstWhere(
+            (e) => e.code == code,
+            orElse: () => ApResponseStatus.unknownStatusCode,
+          );
   }
 }

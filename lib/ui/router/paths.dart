@@ -8,7 +8,9 @@ class AppPath {
   final recentlyPlayedTracks = '/recently-played-tracks';
 
   final songDetailPattern = '/song-detail';
-  String songDetail(String id) => '$songDetailPattern?id=$id';
+  String songDetail({String? id}) => id != null && id.isNotEmpty
+      ? '$songDetailPattern?id=$id'
+      : songDetailPattern;
 
   final albumDetailPattern = '/album-detail';
   String albumDetail(String id) => '$albumDetailPattern?id=$id';

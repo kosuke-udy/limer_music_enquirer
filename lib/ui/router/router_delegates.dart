@@ -1,4 +1,5 @@
 import 'package:beamer/beamer.dart';
+import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
@@ -46,59 +47,70 @@ final backButtonDispatcher = BeamerBackButtonDispatcher(
 );
 
 final tabRouterDelegates = [
-  homeTabRouterDelegate,
-  searchTabRouterDelegate,
+  nowPlayingTabRouterDelegate,
+  recentlyPlayedTabRouterDelegate,
   settingsTabRouterDelegate,
 ];
 
-/* ---------- Home Tab Router Delegate ---------- */
+void logRoute(String tabName, BeamerDelegate delegate) {
+  AppLogger.get("logRoute").info([
+    "Tab: $tabName",
+    "Move to ${delegate.currentBeamLocation.state.routeInformation.uri}"
+  ]);
+}
 
-final homeTabLogger = AppLogger.get("homeTabRouterDelegate");
+// /* ---------- Home Tab ---------- */
 
-final homeTabRouterDelegate = BeamerDelegate(
-  initialPath: appPath.home,
+// final homeTabRouterDelegate = BeamerDelegate(
+//   initialPath: appPath.home,
+//   locationBuilder: BeamerLocationBuilder(
+//     beamLocations: [
+//       HomeLocation(),
+//       AlbumDetailLocation(),
+//       RecentlyPlayedTracksLocation(),
+//       SongDetailLocation(),
+//     ],
+//   ),
+//   buildListener: (context, delegate) {
+//     logRoute("Home", delegate);
+//   },
+// );
+
+/* ---------- NowPlaying Tab ---------- */
+
+final nowPlayingTabRouterDelegate = BeamerDelegate(
+  updateParent: false,
+  initialPath: appPath.songDetail(),
   locationBuilder: BeamerLocationBuilder(
     beamLocations: [
-      HomeLocation(),
-      AlbumDetailLocation(),
+      SongDetailLocation(),
+    ],
+  ),
+  buildListener: (context, delegate) {
+    logRoute("NowPlaying", delegate);
+  },
+);
+
+/* ---------- RecentlyPlayed Tab ---------- */
+
+final recentlyPlayedTabRouterDelegate = BeamerDelegate(
+  updateParent: false,
+  initialPath: appPath.recentlyPlayedTracks,
+  locationBuilder: BeamerLocationBuilder(
+    beamLocations: [
       RecentlyPlayedTracksLocation(),
       SongDetailLocation(),
     ],
   ),
   buildListener: (context, delegate) {
-    homeTabLogger.info([
-      // "buildListnener: ${context.beamingHistory}",
-      // "currentBeamPages: ${context.currentBeamPages}",
-      "Move to ${delegate.currentBeamLocation.state.routeInformation.location}"
-    ]);
-  },
-);
-
-/* ---------- Search Tab Router Delegate ---------- */
-
-final searchTabLogger = AppLogger.get("searchTabRouterDelegate");
-
-final searchTabRouterDelegate = BeamerDelegate(
-  initialPath: appPath.search,
-  locationBuilder: BeamerLocationBuilder(
-    beamLocations: [
-      SearchLocation(),
-    ],
-  ),
-  buildListener: (context, delegate) {
-    searchTabLogger.info([
-      // "buildListnener: ${context.beamingHistory}",
-      // "currentBeamPages: ${context.currentBeamPages}",
-      "Move to ${delegate.currentBeamLocation.state.routeInformation.location}"
-    ]);
+    logRoute("RecentlyPlayed", delegate);
   },
 );
 
 /* ---------- Settings Tab Router Delegate ---------- */
 
-final settingsTabLogger = AppLogger.get("settingsTabRouterDelegate");
-
 final settingsTabRouterDelegate = BeamerDelegate(
+  updateParent: false,
   initialPath: appPath.settings,
   locationBuilder: BeamerLocationBuilder(
     beamLocations: [
@@ -106,10 +118,6 @@ final settingsTabRouterDelegate = BeamerDelegate(
     ],
   ),
   buildListener: (context, delegate) {
-    settingsTabLogger.info([
-      // "buildListnener: ${context.beamingHistory}",
-      // "currentBeamPages: ${context.currentBeamPages}",
-      "Move to ${delegate.currentBeamLocation.state.routeInformation.location}"
-    ]);
+    logRoute("Settings", delegate);
   },
 );

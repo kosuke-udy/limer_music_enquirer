@@ -6,9 +6,16 @@ import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 import '../../../providers/apple_music/providers.dart';
 import '../../../providers/db/settings/metadata/ap_song.dart';
 import '../../../providers/db/settings/ap_storefront.dart';
+import '../../../translations.g.dart';
 import '../../common_parts/common_parts.dart';
 import '../../common_values/common_values.dart';
 import '../../components/song_card/card_unit.dart';
+
+final nowPlayingIdProvider = FutureProvider((ref) async {
+  return ref.watch(
+    recentlyPlayedSongsProvider.selectAsync((list) => list[0].id),
+  );
+});
 
 class SongDetailPage extends HookConsumerWidget {
   /* ---------- Fixed Values ---------- */
@@ -18,33 +25,33 @@ class SongDetailPage extends HookConsumerWidget {
 
   /* ---------- Properties ---------- */
 
-  final String id;
-  final SongKind? data;
+  final bool isNowPlaying;
+  final String? id;
 
   /* ---------- Constructor ---------- */
 
-  const SongDetailPage(
-    this.id, {
+  const SongDetailPage({
     Key? key,
-    this.data,
+    this.id,
+    this.isNowPlaying = false,
   }) : super(key: key);
 
   /* ---------- Build ---------- */
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Settings
     final asyncStorefrontSetting = ref.watch(apStorefrontSettingProvider);
     final asyncStandardMetadataSetting =
         ref.watch(apSongMetadataSettingProvider);
-
     final isLoading = asyncStorefrontSetting.isLoading ||
         asyncStandardMetadataSetting.isLoading;
     final hasError = asyncStorefrontSetting.hasError ||
         asyncStandardMetadataSetting.hasError;
 
     return PageScaffold(
-      onBackButtonPressed: context.beamBack,
-      appBarTitle: const Text("Song Detail"),
+      onBackButtonPressed: context.canBeamBack ? context.beamBack : null,
+      appBarTitle: Text(isNowPlaying ? t.nav.nowPlaying : t.nav.songsDetail),
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator.adaptive(),
@@ -53,40 +60,56 @@ class SongDetailPage extends HookConsumerWidget {
               ? Center(
                   child: Text(asyncStorefrontSetting.error.toString()),
                 )
-              : _afterPreloaded(
-                  context,
-                  ref,
-                  asyncStorefrontSetting.value!,
-                  asyncStandardMetadataSetting.value!,
-                ),
+              : id != null
+                  ? _afterPreloaded(
+                      context,
+                      ref,
+                      id!,
+                      asyncStorefrontSetting.value!,
+                      asyncStandardMetadataSetting.value!,
+                    )
+                  : ref.watch(nowPlayingIdProvider).when(
+                        loading: () => const Center(
+                          child: CircularProgressIndicator.adaptive(),
+                        ),
+                        error: (error, stackTrace) => throw error,
+                        data: (songId) => _afterPreloaded(
+                          context,
+                          ref,
+                          songId,
+                          asyncStorefrontSetting.value!,
+                          asyncStandardMetadataSetting.value!,
+                        ),
+                      ),
     );
   }
 
   Widget _afterPreloaded(
     BuildContext context,
     WidgetRef ref,
+    String songId,
     ApStorefrontSettingCollection storefrontSetting,
     ApSongMetadataSettingCollection metadataSetting,
   ) {
     final apStorefront = storefrontSetting.list[0];
     final songDetailProvider = songKindDetailProvider(
-      id: id,
+      id: songId,
       storefront: apStorefront.countryId,
       languageTag: apStorefront.languageTag,
-      data: data,
     );
 
     final common = ref.watch(commonValuesProvider);
 
     return RefreshableListView(
       children: [
-        Area(
-          child: ref.watch(songDetailProvider).when(
-                loading: () => const SizedBox.shrink(),
-                error: (error, stackTrace) => throw error,
-                data: (songDetail) => Padding(
+        ref.watch(songDetailProvider).when(
+              loading: () => const SizedBox.shrink(),
+              error: (error, stackTrace) => throw error,
+              data: (songDetail) => Area(
+                child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: common.size.insetsLarge,
+                    vertical: common.size.insetsMedium,
+                    horizontal: common.size.screenPadding,
                   ),
                   child: SongCardUnit(
                     song: songDetail,
@@ -96,7 +119,7 @@ class SongDetailPage extends HookConsumerWidget {
                   ),
                 ),
               ),
-        ),
+            ),
       ],
     );
   }

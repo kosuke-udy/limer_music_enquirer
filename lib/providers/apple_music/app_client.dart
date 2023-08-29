@@ -23,13 +23,9 @@ class AppApClient extends _$AppApClient {
 
   Future<void> init() async {
     // Get Tokens
-    // devToken = await generateDeveloperToken();
-    // userToken = await requestUserToken(devToken);
-    final devToken =
-        await rootBundle.loadString("auth/apple_music/mock_dev_token");
-    final userToken =
-        await rootBundle.loadString("auth/apple_music/mock_user_token");
+    final (devToken, userToken) = await getTokens();
 
+    // Initialize Client
     _client.initialize(
       devToken: devToken,
       userToken: userToken,
@@ -40,11 +36,25 @@ class AppApClient extends _$AppApClient {
       logger: (response) => AppLogger.get("AppleMusicApiClient").info([
         "Request: ${response.requestOptions.method} ${response.requestOptions.path}",
         "Response Status: ${response.statusCode} ${response.statusMessage}",
-        // "Response Headers:",
-        // response.headers,
-        // "Response Data:",
-        // IndentLog("", object: response, indent: 1),
       ]),
     );
+  }
+
+  Future<(String, String)> getTokens() async {
+    if (const bool.fromEnvironment("USE_MOCK_TOKENS")) {
+      return (
+        await rootBundle.loadString("auth/apple_music/mock_dev_token"),
+        await rootBundle.loadString("auth/apple_music/mock_user_token"),
+      );
+    } else {
+      final devToken = generateDeveloperToken(
+        keyId: await rootBundle.loadString("auth/apple_music/key_id"),
+        teamId: await rootBundle.loadString("auth/apple_music/team_id"),
+        authKey: await rootBundle.loadString("auth/apple_music/auth_key.p8"),
+      );
+      final userToken = (await requestUserToken(devToken))
+          .getOrElse((l) => throw l.toException());
+      return (devToken, userToken);
+    }
   }
 }

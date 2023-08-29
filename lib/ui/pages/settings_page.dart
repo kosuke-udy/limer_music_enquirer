@@ -18,23 +18,23 @@ class SettingsPage extends ConsumerWidget {
     return PageScaffold(
       appBarTitle: Text(t.settingsPage.settings),
       body: RefreshableListView(children: [
-        Area(
-          headline: Headline(t.settingsPage.general),
-          child: FilledCard(
-            margin: EdgeInsets.symmetric(
-              horizontal: common.size.insetsLarge,
-              vertical: common.size.insetsSmall,
-            ),
-            child: ListTile(
-              title: Text(t.settingsPage.regeonsAndLanguages),
-              trailing: Icon(
-                Icons.arrow_forward_ios_rounded,
-                size: common.size.infoIcon,
-              ),
-              onTap: () => context.beamToNamed(appPath.settingsApStorefront),
-            ),
-          ),
-        ),
+        // Area(
+        //   headline: Headline(t.settingsPage.general),
+        //   child: FilledCard(
+        //     margin: EdgeInsets.symmetric(
+        //       horizontal: common.size.screenPadding,
+        //       vertical: common.size.insetsSmall,
+        //     ),
+        //     child: ListTile(
+        //       title: Text(t.settingsPage.regeonsAndLanguages),
+        //       trailing: Icon(
+        //         Icons.arrow_forward_ios_rounded,
+        //         size: common.size.infoIcon,
+        //       ),
+        //       onTap: () => context.beamToNamed(appPath.settingsApStorefront),
+        //     ),
+        //   ),
+        // ),
         Area(
           headline: Headline(t.settingsPage.metadataOrder),
           child: FilledCard(

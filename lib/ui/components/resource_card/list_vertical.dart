@@ -8,7 +8,7 @@ import 'list_card.dart';
 
 class ResourceCardVerticalList extends ConsumerWidget {
   static const int _crossAxisCount = 2;
-  static const double _cardTextAreaHeight = 56;
+  // static const double _cardTextAreaHeight = 56;
 
   /* ---------- Properties ---------- */
 

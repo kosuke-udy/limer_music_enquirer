@@ -5,6 +5,7 @@ import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
 import '../../../providers/apple_music/providers.dart';
 import '../../../providers/db/settings/metadata/ap_song.dart';
+import '../../../translations.g.dart';
 import '../../common_parts/common_parts.dart';
 import '../../components/components.dart';
 
@@ -18,8 +19,8 @@ class RecentlyPlayedTracksPage extends ConsumerWidget {
     final hasError = asyncMetadataSetting.hasError;
 
     return PageScaffold(
-      onBackButtonPressed: context.beamBack,
-      appBarTitle: const Text("Recently Played"),
+      onBackButtonPressed: context.canBeamBack ? context.beamBack : null,
+      appBarTitle: Text(t.nav.recentlyPlayedSongs),
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator.adaptive(),

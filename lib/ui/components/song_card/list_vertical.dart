@@ -7,10 +7,6 @@ import '../../common_values/common_values.dart';
 import 'list_card.dart';
 
 class SongCardListVertical extends ConsumerWidget {
-  /* ---------- Fixed Values ---------- */
-
-  static const _paddingHorizontal = 20.0;
-
   /* ---------- Properties ---------- */
 
   final List<SongKind> songs;
@@ -33,7 +29,7 @@ class SongCardListVertical extends ConsumerWidget {
       children: songs
           .map((e) => Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: _paddingHorizontal,
+                horizontal: common.size.screenPadding,
                 vertical: common.size.insetsMedium,
               ),
               child: SongListCard(
