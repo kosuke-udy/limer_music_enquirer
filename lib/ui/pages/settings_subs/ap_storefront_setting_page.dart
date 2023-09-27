@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-=======
-import 'package:flutter_riverpod/flutter_riverpod.dart';
->>>>>>> Stashed changes
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
 import '../../../providers/apple_music/providers.dart';
@@ -17,10 +13,6 @@ class ApStorefrontSettingPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PageScaffold(
-<<<<<<< Updated upstream
-=======
-      isAllowedToPopScreen: true,
->>>>>>> Stashed changes
       appBarTitle: const Text("Settings: Metadata Locale"),
       body: ref.watch(apStorefrontSettingProvider).when(
             data: (data) => _afterPreloaded(context, ref, data),

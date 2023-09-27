@@ -1,11 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-=======
-import 'package:flutter_riverpod/flutter_riverpod.dart';
->>>>>>> Stashed changes
 
 import 'clipped_text.dart';
 

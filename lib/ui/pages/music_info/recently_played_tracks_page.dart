@@ -1,10 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-=======
-import 'package:flutter_riverpod/flutter_riverpod.dart';
->>>>>>> Stashed changes
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
 import '../../../providers/apple_music/providers.dart';
@@ -23,11 +19,7 @@ class RecentlyPlayedTracksPage extends ConsumerWidget {
     final hasError = asyncMetadataSetting.hasError;
 
     return PageScaffold(
-<<<<<<< Updated upstream
       onBackButtonPressed: context.canBeamBack ? context.beamBack : null,
-=======
-      isAllowedToPopScreen: false,
->>>>>>> Stashed changes
       appBarTitle: Text(t.nav.recentlyPlayedSongs),
       body: isLoading
           ? const Center(

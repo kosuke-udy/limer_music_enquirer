@@ -1,10 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-<<<<<<< Updated upstream
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-=======
-import 'package:flutter_riverpod/flutter_riverpod.dart';
->>>>>>> Stashed changes
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
 import '../../translations.g.dart';
@@ -17,7 +13,6 @@ class SettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-<<<<<<< Updated upstream
     final common = ref.watch(commonValuesProvider);
 
     return PageScaffold(
@@ -59,51 +54,6 @@ class SettingsPage extends ConsumerWidget {
           ),
         ),
       ]),
-=======
-    // final common = ref.watch(commonValuesProvider);
-
-    return PageScaffold(
-      isAllowedToPopScreen: false,
-      appBarTitle: Text(t.settingsPage.settings),
-      // body: refreshablelistview(children: [
-      // area(
-      //   headline: headline(t.settingspage.general),
-      //   child: filledcard(
-      //     margin: edgeinsets.symmetric(
-      //       horizontal: common.size.screenpadding,
-      //       vertical: common.size.insetssmall,
-      //     ),
-      //     child: listtile(
-      //       title: text(t.settingspage.regeonsandlanguages),
-      //       trailing: icon(
-      //         icons.arrow_forward_ios_rounded,
-      //         size: common.size.infoicon,
-      //       ),
-      //       ontap: () => context.beamtonamed(apppath.settingsapstorefront),
-      //     ),
-      //   ),
-      // ),
-      // area(
-      //   headline: headline(t.settingspage.metadataorder),
-      //   child: filledcard(
-      //     margin: edgeinsets.symmetric(
-      //       horizontal: common.size.insetslarge,
-      //       vertical: common.size.insetssmall,
-      //     ),
-      //     child: listtile(
-      //       title: text(t.settingspage.song),
-      //       trailing: icon(
-      //         icons.arrow_forward_ios_rounded,
-      //         size: common.size.infoicon,
-      //       ),
-      //       ontap: () =>
-      //           context.beamtonamed(apppath.settingssongmetadataorder),
-      //     ),
-      //   ),
-      // ),
-      // ]),
-      body: const SizedBox.shrink(),
->>>>>>> Stashed changes
     );
   }
 }

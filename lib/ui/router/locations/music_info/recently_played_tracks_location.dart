@@ -13,7 +13,6 @@ class RecentlyPlayedTracksLocation extends BeamLocation<BeamState> {
 
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
-<<<<<<< Updated upstream
     return generatePageHistory(
       context: context,
       parameters: beamParameters,
@@ -21,22 +20,5 @@ class RecentlyPlayedTracksLocation extends BeamLocation<BeamState> {
       title: "Recently Played Tracks",
       child: const RecentlyPlayedTracksPage(),
     );
-=======
-    // return generatePageHistory(
-    //   context: context,
-    //   parameters: beamParameters,
-    //   path: appPath.recentlyPlayedTracks,
-    //   title: "Recently Played Tracks",
-    //   child: const RecentlyPlayedTracksPage(),
-    // );
-
-    return [
-      const BeamPage(
-        key: ValueKey("recently-played-tracks"),
-        title: "Recently Played Tracks",
-        child: RecentlyPlayedTracksPage(),
-      ),
-    ];
->>>>>>> Stashed changes
   }
 }
