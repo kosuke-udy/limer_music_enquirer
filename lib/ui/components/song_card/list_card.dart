@@ -1,6 +1,10 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+=======
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+>>>>>>> Stashed changes
 
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../../db/settings/metadata/ap_song.dart';
@@ -16,7 +20,11 @@ class SongListCard extends ConsumerWidget {
   void Function() onTapMainCard(BuildContext context) {
     return () {
       context.beamToNamed(
+<<<<<<< Updated upstream
         appPath.songDetail(id: song.id),
+=======
+        appPath.songDetailWithQuery(id: song.id),
+>>>>>>> Stashed changes
       );
     };
   }

@@ -16,13 +16,27 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_adaptive_scaffold: ^0.1.0
+<<<<<<< Updated upstream
   flutter_hooks: ^0.20.0
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.2.19
   fpdart: ^1.0.0-beta.1
+=======
+<<<<<<< Updated upstream
+  flutter_hooks: ^0.18.6
+  fpdart: ^0.4.0
+>>>>>>> Stashed changes
   freezed_annotation: ^2.2.0
   hooks_riverpod: ^2.2.0
+=======
+  flutter_localizations:
+    sdk: flutter
+  flutter_native_splash: ^2.2.19
+  flutter_riverpod: ^2.4.0
+  fpdart: ^1.0.0-beta.1
+  freezed_annotation: ^2.2.0
+>>>>>>> Stashed changes
   intl: ^0.18.0
   isar: ^3.0.5
   isar_flutter_libs: ^3.0.5
@@ -39,18 +53,44 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.3.3
+<<<<<<< Updated upstream
   flutter_launcher_icons: ^0.13.0
+=======
+<<<<<<< Updated upstream
+=======
+  custom_lint: ^0.5.3
+  flutter_launcher_icons: ^0.13.0
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
   freezed: ^2.3.2
+<<<<<<< Updated upstream
   isar_generator: ^3.0.5
   pigeon: ^10.1.6
   riverpod_generator: ^2.1.6
+=======
+<<<<<<< Updated upstream
+  go_router_builder: ^1.1.1
+  json_serializable: ^6.6.1
+  pigeon: ^9.0.1
+  retrofit_generator: ^5.0.0
+  riverpod_generator: ^1.2.0
+=======
+  isar_generator: ^3.0.5
+  pigeon: ^10.1.6
+  riverpod_generator: ^2.1.6
+  riverpod_lint: ^2.1.0
+>>>>>>> Stashed changes
   slang_build_runner: ^3.15.0
   slang_i18n_generator:
     git: 
       url: https://github.com/kosuke-udy/slang_i18n_generator.git
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 flutter:
   uses-material-design: true

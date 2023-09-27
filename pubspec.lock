@@ -233,22 +233,64 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
-  custom_lint:
+  cupertino_will_pop_scope:
     dependency: transitive
     description:
+<<<<<<< Updated upstream
       name: custom_lint
       sha256: ae3cf0f83a155bdfc50315d4a11c7b358ea1e201a57ab0bb2b397f1a9a2a9b80
       url: "https://pub.dev"
     source: hosted
+<<<<<<< Updated upstream
     version: "0.5.2"
+=======
+    version: "0.2.5"
+=======
+      name: cupertino_will_pop_scope
+      sha256: d312103538bee026428d785cc3c06093b34c2793249229b1ddc49a1d8a43901f
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
+  custom_lint:
+    dependency: "direct dev"
+    description:
+      name: custom_lint
+      sha256: "837821e4619c167fd5a547b03bb2fc6be7e65b800ec75528848429705c31ceba"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.3"
+  custom_lint_builder:
+    dependency: transitive
+    description:
+      name: custom_lint_builder
+      sha256: "3537d50202568994a6f42b1f2953aed6292fc5ecf83e45237af73f64aff2be72"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.3"
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   custom_lint_core:
     dependency: transitive
     description:
       name: custom_lint_core
+<<<<<<< Updated upstream
       sha256: a420aa57121a22b2a42e7e1dbbcaf7b91ef73b90adce07149419c16cf67d6fcc
       url: "https://pub.dev"
     source: hosted
     version: "0.5.2"
+=======
+<<<<<<< Updated upstream
+      sha256: "4592ac37e7cf4c9410268765f1c8ca3520309bbd0a340f3dfd047d18e5351962"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.10"
+=======
+      sha256: "3bdebdd52a42b4d6e5be9cd833ad1ecfbbc23e1020ca537060e54085497aea9c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.3"
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   dart_jsonwebtoken:
     dependency: "direct main"
     description:
@@ -341,7 +383,12 @@ packages:
       sha256: "4f448902314bc9b6cf820c85d5bad4de6489c0eff75dcedf5098f3a53ec981ee"
       url: "https://pub.dev"
     source: hosted
+<<<<<<< Updated upstream
     version: "0.1.6"
+=======
+<<<<<<< Updated upstream
+    version: "0.1.0"
+>>>>>>> Stashed changes
   flutter_hooks:
     dependency: "direct main"
     description:
@@ -349,7 +396,13 @@ packages:
       sha256: "9eab8fd7aa752c3c1c0a364f9825851d410eb935243411682f4b1b0a4c569d71"
       url: "https://pub.dev"
     source: hosted
+<<<<<<< Updated upstream
     version: "0.20.0"
+=======
+    version: "0.18.6"
+=======
+    version: "0.1.6"
+>>>>>>> Stashed changes
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -358,6 +411,10 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.13.1"
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -380,13 +437,27 @@ packages:
     source: hosted
     version: "2.3.2"
   flutter_riverpod:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_riverpod
+<<<<<<< Updated upstream
       sha256: b6cb0041c6c11cefb2dcb97ef436eba43c6d41287ac6d8ca93e02a497f53a4f3
       url: "https://pub.dev"
     source: hosted
     version: "2.3.7"
+=======
+<<<<<<< Updated upstream
+      sha256: "46a27b7a11dc13738054093076f2dc65692ddcd463979b15092accf5681aea20"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+=======
+      sha256: "1bd39b04f1bcd217a969589777ca6bd642d116e3e5de65c3e6a8e8bdd8b178ec"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.0"
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -444,7 +515,12 @@ packages:
       sha256: aedc5a15e78fc65a6e23bcd927f24c64dd995062bcd1ca6eda65a3cff92a4d19
       url: "https://pub.dev"
     source: hosted
+<<<<<<< Updated upstream
     version: "2.3.1"
+=======
+<<<<<<< Updated upstream
+    version: "2.2.0"
+>>>>>>> Stashed changes
   hooks_riverpod:
     dependency: "direct main"
     description:
@@ -452,7 +528,21 @@ packages:
       sha256: "2bb8ae6a729e1334f71f1ef68dd5f0400dca8f01de8cbdcde062584a68017b18"
       url: "https://pub.dev"
     source: hosted
+<<<<<<< Updated upstream
     version: "2.3.8"
+=======
+    version: "2.2.0"
+=======
+    version: "2.3.1"
+  hotreloader:
+    dependency: transitive
+    description:
+      name: hotreloader
+      sha256: "728c0613556c1d153f7e7f4a367cffacc3f5a677d7f6497a1c2b35add4e6dacf"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.6"
+>>>>>>> Stashed changes
   html:
     dependency: transitive
     description:
@@ -461,6 +551,10 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.15.4"
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   http_multi_server:
     dependency: transitive
     description:
@@ -737,10 +831,24 @@ packages:
     dependency: transitive
     description:
       name: riverpod
+<<<<<<< Updated upstream
       sha256: b0657b5b30c81a3184bdaab353045f0a403ebd60bb381591a8b7ad77dcade793
       url: "https://pub.dev"
     source: hosted
     version: "2.3.7"
+=======
+<<<<<<< Updated upstream
+      sha256: "59a48de9c757aa61aa28e9fd625ffb360d43b6b54606f12536622c55be9e8c4b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+=======
+      sha256: a600120d6f213a9922860eea1abc32597436edd5b2c4e73b91410f8c2af67d22
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.0"
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   riverpod_analyzer_utils:
     dependency: transitive
     description:
@@ -764,7 +872,23 @@ packages:
       sha256: f668015d7b719c413c6001d4790689ea4a7bf76d5109118a1a98d5c23b20160d
       url: "https://pub.dev"
     source: hosted
+<<<<<<< Updated upstream
     version: "2.2.6"
+=======
+<<<<<<< Updated upstream
+    version: "1.2.0"
+=======
+    version: "2.2.6"
+  riverpod_lint:
+    dependency: "direct dev"
+    description:
+      name: riverpod_lint
+      sha256: ac720622fde22356eca69a4831c15ab811615bf256a2ce37f1fff06b7f86cacf
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   rxdart:
     dependency: transitive
     description:
@@ -960,6 +1084,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  vm_service:
+    dependency: transitive
+    description:
+      name: vm_service
+      sha256: c538be99af830f478718b51630ec1b6bee5e74e52c8a802d328d9e71d35d2583
+      url: "https://pub.dev"
+    source: hosted
+    version: "11.10.0"
   watcher:
     dependency: transitive
     description:

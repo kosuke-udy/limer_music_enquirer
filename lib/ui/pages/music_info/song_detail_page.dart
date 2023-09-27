@@ -1,6 +1,10 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+=======
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+>>>>>>> Stashed changes
 import 'package:udy_flutter_layout/udy_flutter_layout.dart';
 
 import '../../../providers/apple_music/providers.dart';
@@ -17,7 +21,11 @@ final nowPlayingIdProvider = FutureProvider((ref) async {
   );
 });
 
+<<<<<<< Updated upstream
 class SongDetailPage extends HookConsumerWidget {
+=======
+class SongDetailPage extends ConsumerWidget {
+>>>>>>> Stashed changes
   /* ---------- Fixed Values ---------- */
 
   static const _artworkAreaSize = 100.0;
@@ -50,7 +58,15 @@ class SongDetailPage extends HookConsumerWidget {
         asyncStandardMetadataSetting.hasError;
 
     return PageScaffold(
+<<<<<<< Updated upstream
       onBackButtonPressed: context.canBeamBack ? context.beamBack : null,
+=======
+      isAllowedToPopScreen: !isNowPlaying,
+      onWillPop: () {
+        Beamer.of(context).beamBack();
+        return false;
+      },
+>>>>>>> Stashed changes
       appBarTitle: Text(isNowPlaying ? t.nav.nowPlaying : t.nav.songsDetail),
       body: isLoading
           ? const Center(

@@ -1,6 +1,10 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+=======
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+>>>>>>> Stashed changes
 
 import '../../../api/apple_music_api/apple_music_api.dart';
 import '../../../translations.g.dart';
@@ -9,7 +13,11 @@ import '../../common_values/common_values.dart';
 import '../../data_converter/general/color.dart';
 import '../../router/paths.dart';
 
+<<<<<<< Updated upstream
 class ResourceListCard extends HookConsumerWidget {
+=======
+class ResourceListCard extends ConsumerWidget {
+>>>>>>> Stashed changes
   /* ---------- Fixed Values ---------- */
 
   static const double _artworkWidthProporation = 0.2;
